@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_module_upgrade_history_tree" model="ir.ui.view">
+        <field name="name">module.upgrade.history.tree</field>
+        <field name="model">module.upgrade.history</field>
+        <field name="arch" type="xml">
+            <tree string="Module Upgrade History" create="false" delete="true">
+                <field name="upgrade_date"/>
+                <field name="module_display_name"/>
+                <field name="module_name"/>
+                <field name="from_version"/>
+                <field name="to_version"/>
+                <field name="user_id"/>
+                <field name="status" decoration-success="status=='success'"
+                       decoration-danger="status=='failed'"
+                       decoration-warning="status=='pending'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_module_upgrade_history_form" model="ir.ui.view">
+        <field name="name">module.upgrade.history.form</field>
+        <field name="model">module.upgrade.history</field>
+        <field name="arch" type="xml">
+            <form string="Module Upgrade History" create="false">
+                <sheet>
+                    <group>
+                        <group string="Module Information">
+                            <field name="active" invisible="1"/>
+                            <field name="module_display_name"/>
+                            <field name="module_name"/>
+                        </group>
+                        <group string="Upgrade Information">
+                            <field name="from_version" readonly="1"/>
+                            <field name="to_version" readonly="1"/>
+                            <field name="upgrade_date" readonly="1"/>
+                            <field name="status" readonly="1"/>
+                        </group>
+                        <group string="User Information">
+                            <field name="user_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes" placeholder="Optional notes about this upgrade..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View with Filters -->
+    <record id="view_module_upgrade_history_search" model="ir.ui.view">
+        <field name="name">module.upgrade.history.search</field>
+        <field name="model">module.upgrade.history</field>
+        <field name="arch" type="xml">
+            <search string="Module Upgrade History">
+                <field name="module_name"/>
+                <field name="module_display_name"/>
+                <field name="user_id"/>
+
+                <filter name="filter_success" string="Successful"
+                        domain="[('status', '=', 'success')]"/>
+                <filter name="filter_failed" string="Failed"
+                        domain="[('status', '=', 'failed')]"/>
+                <filter name="filter_pending" string="Pending"
+                        domain="[('status', '=', 'pending')]"/>
+
+                <separator/>
+
+                <filter name="filter_today" string="Today"
+                        domain="[('upgrade_date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="filter_week" string="This Week"
+                        domain="[('upgrade_date', '&gt;=', (context_today() - relativedelta(weeks=1)).strftime('%Y-%m-%d'))]"/>
+                <filter name="filter_month" string="This Month"
+                        domain="[('upgrade_date', '&gt;=', (context_today() - relativedelta(months=1)).strftime('%Y-%m-%d'))]"/>
+
+                <separator/>
+
+                <filter name="filter_archived" string="Archived"
+                        domain="[('active', '=', False)]"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="group_module" string="Module"
+                            context="{'group_by': 'module_id'}"/>
+                    <filter name="group_user" string="User"
+                            context="{'group_by': 'user_id'}"/>
+                    <filter name="group_status" string="Status"
+                            context="{'group_by': 'status'}"/>
+                    <filter name="group_date" string="Date"
+                            context="{'group_by': 'upgrade_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_module_upgrade_history" model="ir.actions.act_window">
+        <field name="name">Module Upgrade History</field>
+        <field name="res_model">module.upgrade.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_filter_success': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No module upgrades recorded yet
+            </p>
+            <p>
+                Module upgrade history will appear here once you upgrade any module.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_module_upgrade_history"
+              name="Module Upgrade History"
+              parent="base.menu_custom"
+              action="action_module_upgrade_history"
+              groups="base.group_system"
+              sequence="100"/>
+</odoo>
