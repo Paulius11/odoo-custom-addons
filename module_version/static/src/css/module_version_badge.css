@@ -1,0 +1,22 @@
+/* Version badge styling for module cards in Apps view */
+
+.oe_version_text {
+    margin-left: 4px;
+    font-size: 9px;
+    /* font-weight: 600; */
+    vertical-align: middle;
+}
+
+.oe_version_text.version-upgrade {
+    color: #28a745;
+}
+
+.oe_version_text_float {
+    font-size: 9px;
+    font-weight: 600;
+    float: left;
+}
+
+.oe_version_text_float.version-upgrade {
+    color: #28a745;
+}

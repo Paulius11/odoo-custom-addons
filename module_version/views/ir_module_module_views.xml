@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit search view to add "Updates Available" filter -->
+    <record id="view_module_filter_inherit_version_badge" model="ir.ui.view">
+        <field name="name">ir.module.module.filter.inherit.version.badge</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.view_module_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='not_installed']" position="after">
+                <separator/>
+                <filter name="updates_available" string="Updates Available"
+                        domain="[('state', '=', 'installed'), ('has_version_upgrade', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit ir.module.module kanban view to add version badges -->
+    <record id="module_view_kanban_inherit_version_badge" model="ir.ui.view">
+        <field name="name">ir.module.module.kanban.inherit.version.badge</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_view_kanban"/>
+        <field name="arch" type="xml">
+
+            <!-- Add computed fields to kanban field list -->
+            <xpath expr="//kanban/field[@name='application']" position="after">
+                <field name="installed_version"/>
+                <field name="latest_version"/>
+                <field name="version_badge_text"/>
+                <field name="version_badge_class"/>
+                <field name="has_version_upgrade"/>
+            </xpath>
+
+            <!-- Add version text inside code tag for technical name (admin only) -->
+            <xpath expr="//p[hasclass('oe_module_name')]/code/field[@name='name']" position="after">
+                <t t-if="record.state.raw_value == 'installed'" groups="base.group_system">
+                    <span t-attf-class="oe_version_text {{record.has_version_upgrade.raw_value and 'version-upgrade' or ''}}"
+                          t-att-title="record.version_badge_text.value">
+                        <t t-out="record.version_badge_text.value"/>
+                    </span>
+                </t>
+            </xpath>
+
+            <!-- Add version after summary for non-developer admin users -->
+            <xpath expr="//p[hasclass('oe_module_name')]/field[@name='summary']" position="after">
+                <t t-if="record.state.raw_value == 'installed'" groups="base.group_system,!base.group_no_one">
+                    <br/>
+                    <span t-attf-class="oe_version_text_float {{record.has_version_upgrade.raw_value and 'version-upgrade' or ''}}"
+                          t-att-title="record.version_badge_text.value">
+                        <t t-out="record.version_badge_text.value"/>
+                    </span>
+                </t>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
