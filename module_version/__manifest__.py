@@ -1,6 +1,6 @@
 {
     'name': 'Module Version',
-    'version': '17.0.3.0.0',
+    'version': '17.0.3.0.1',
     'category': 'Extra Tools',
     'summary': 'Display module version and track complete module lifecycle history',
     'description': """
@@ -34,7 +34,7 @@ Help for administrators:
     ],
     'assets': {
         'web.assets_backend': [
-            'module_version/static/src/css/module_version_badge.css',
+            'module_version/static/src/css/styles.css',
         ],
     },
     'installable': True,
