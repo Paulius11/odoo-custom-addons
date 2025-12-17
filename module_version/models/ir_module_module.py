@@ -119,9 +119,9 @@ class IrModuleModule(models.Model):
         for module in self:
             module.upgrade_history_count = len(module.upgrade_history_ids)
 
-    def _create_upgrade_history_record(self, from_version, to_version,
-                                        status='success', notes=None):
-        """Create upgrade history record for this module"""
+    def _create_module_history_record(self, operation_type='upgrade', from_version=None,
+                                       to_version=None, status='success', notes=None):
+        """Create module history record for install/upgrade/uninstall operations"""
         self.ensure_one()
 
         # Check if the upgrade history table exists using SQL
@@ -150,8 +150,9 @@ class IrModuleModule(models.Model):
         try:
             return self.env['module.upgrade.history'].sudo().create({
                 'module_id': self.id,
-                'from_version': from_version,
-                'to_version': to_version,
+                'operation_type': operation_type,
+                'from_version': from_version or '',
+                'to_version': to_version or '',
                 'user_id': self.env.user.id,
                 'upgrade_method': upgrade_method,
                 'status': status,
@@ -179,7 +180,8 @@ class IrModuleModule(models.Model):
         # Create history records with 'pending' status
         for module in self:
             if module.id in pre_upgrade_data:
-                module._create_upgrade_history_record(
+                module._create_module_history_record(
+                    operation_type='upgrade',
                     from_version=pre_upgrade_data[module.id]['from_version'],
                     to_version=pre_upgrade_data[module.id]['to_version'],
                     status='pending'
@@ -217,6 +219,7 @@ class IrModuleModule(models.Model):
                     try:
                         pending = self.env['module.upgrade.history'].sudo().search([
                             ('module_id', '=', module.id),
+                            ('operation_type', '=', 'upgrade'),
                             ('status', '=', 'pending'),
                             ('from_version', '=', pre_upgrade_versions[module.id])
                         ], limit=1)
@@ -230,7 +233,8 @@ class IrModuleModule(models.Model):
                                 'upgrade_date': fields.Datetime.now(),
                             })
                         else:
-                            module._create_upgrade_history_record(
+                            module._create_module_history_record(
+                                operation_type='upgrade',
                                 from_version=pre_upgrade_versions[module.id],
                                 to_version=to_version,
                                 status='success'
@@ -245,10 +249,190 @@ class IrModuleModule(models.Model):
             # Failed: record failure
             for module in self:
                 if module.id in pre_upgrade_versions:
-                    module._create_upgrade_history_record(
+                    module._create_module_history_record(
+                        operation_type='upgrade',
                         from_version=pre_upgrade_versions[module.id],
                         to_version=module.latest_version or '1.0',
                         status='failed',
                         notes=f'Upgrade failed: {str(e)}'
+                    )
+            raise
+
+    @assert_log_admin_access
+    def button_install(self):
+        """Override to track installation history"""
+        # Capture modules being installed
+        modules_to_install = {}
+        for module in self:
+            if module.state == 'uninstalled':
+                modules_to_install[module.id] = module.latest_version or '1.0'
+
+        # Call parent
+        result = super().button_install()
+
+        # Create history records with 'pending' status
+        for module in self:
+            if module.id in modules_to_install:
+                module._create_module_history_record(
+                    operation_type='install',
+                    from_version='',
+                    to_version=modules_to_install[module.id],
+                    status='pending'
+                )
+
+        return result
+
+    @assert_log_admin_access
+    def button_immediate_install(self):
+        """Override to track installation history with success/failure status"""
+        # Capture modules being installed
+        modules_to_install = {
+            m.id: m.latest_version or '1.0'
+            for m in self if m.state == 'uninstalled'
+        }
+
+        try:
+            # Call parent method
+            result = super().button_immediate_install()
+
+            # Success: create/update history
+            for module in self:
+                if module.id in modules_to_install:
+                    # Check if table exists
+                    try:
+                        self.env.cr.execute(
+                            "SELECT 1 FROM information_schema.tables WHERE table_name = 'module_upgrade_history'"
+                        )
+                        if not self.env.cr.fetchone():
+                            continue
+                    except Exception:
+                        continue
+
+                    # Find pending record or create new one
+                    try:
+                        pending = self.env['module.upgrade.history'].sudo().search([
+                            ('module_id', '=', module.id),
+                            ('operation_type', '=', 'install'),
+                            ('status', '=', 'pending')
+                        ], limit=1)
+
+                        to_version = module.latest_version or '1.0'
+
+                        if pending:
+                            pending.write({
+                                'status': 'success',
+                                'to_version': to_version,
+                                'upgrade_date': fields.Datetime.now(),
+                            })
+                        else:
+                            module._create_module_history_record(
+                                operation_type='install',
+                                from_version='',
+                                to_version=to_version,
+                                status='success'
+                            )
+                    except Exception:
+                        pass
+
+            return result
+
+        except Exception as e:
+            # Failed: record failure
+            for module in self:
+                if module.id in modules_to_install:
+                    module._create_module_history_record(
+                        operation_type='install',
+                        from_version='',
+                        to_version=modules_to_install[module.id],
+                        status='failed',
+                        notes=f'Installation failed: {str(e)}'
+                    )
+            raise
+
+    @assert_log_admin_access
+    def button_uninstall(self):
+        """Override to track uninstallation history"""
+        # Capture modules being uninstalled
+        modules_to_uninstall = {}
+        for module in self:
+            if module.state in ('installed', 'to upgrade'):
+                modules_to_uninstall[module.id] = module.installed_version or module.latest_version or '1.0'
+
+        # Call parent
+        result = super().button_uninstall()
+
+        # Create history records with 'pending' status
+        for module in self:
+            if module.id in modules_to_uninstall:
+                module._create_module_history_record(
+                    operation_type='uninstall',
+                    from_version=modules_to_uninstall[module.id],
+                    to_version='',
+                    status='pending'
+                )
+
+        return result
+
+    @assert_log_admin_access
+    def button_immediate_uninstall(self):
+        """Override to track uninstallation history with success/failure status"""
+        # Capture modules being uninstalled
+        modules_to_uninstall = {
+            m.id: m.installed_version or m.latest_version or '1.0'
+            for m in self if m.state in ('installed', 'to upgrade')
+        }
+
+        try:
+            # Call parent method
+            result = super().button_immediate_uninstall()
+
+            # Success: create/update history
+            for module in self:
+                if module.id in modules_to_uninstall:
+                    # Check if table exists
+                    try:
+                        self.env.cr.execute(
+                            "SELECT 1 FROM information_schema.tables WHERE table_name = 'module_upgrade_history'"
+                        )
+                        if not self.env.cr.fetchone():
+                            continue
+                    except Exception:
+                        continue
+
+                    # Find pending record or create new one
+                    try:
+                        pending = self.env['module.upgrade.history'].sudo().search([
+                            ('module_id', '=', module.id),
+                            ('operation_type', '=', 'uninstall'),
+                            ('status', '=', 'pending')
+                        ], limit=1)
+
+                        if pending:
+                            pending.write({
+                                'status': 'success',
+                                'upgrade_date': fields.Datetime.now(),
+                            })
+                        else:
+                            module._create_module_history_record(
+                                operation_type='uninstall',
+                                from_version=modules_to_uninstall[module.id],
+                                to_version='',
+                                status='success'
+                            )
+                    except Exception:
+                        pass
+
+            return result
+
+        except Exception as e:
+            # Failed: record failure
+            for module in self:
+                if module.id in modules_to_uninstall:
+                    module._create_module_history_record(
+                        operation_type='uninstall',
+                        from_version=modules_to_uninstall[module.id],
+                        to_version='',
+                        status='failed',
+                        notes=f'Uninstallation failed: {str(e)}'
                     )
             raise

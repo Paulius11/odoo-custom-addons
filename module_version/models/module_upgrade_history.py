@@ -3,7 +3,7 @@ from odoo import models, fields, api
 
 class ModuleUpgradeHistory(models.Model):
     _name = 'module.upgrade.history'
-    _description = 'Module Upgrade History'
+    _description = 'Module History'
     _order = 'upgrade_date desc, id desc'
     _rec_name = 'module_id'
 
@@ -13,7 +13,7 @@ class ModuleUpgradeHistory(models.Model):
         required=True,
         ondelete='cascade',
         index=True,
-        help='The module that was upgraded'
+        help='The module on which the operation was performed'
     )
 
     module_name = fields.Char(
@@ -31,32 +31,42 @@ class ModuleUpgradeHistory(models.Model):
         help='Human-readable name of the module'
     )
 
+    operation_type = fields.Selection([
+        ('install', 'Install'),
+        ('upgrade', 'Upgrade'),
+        ('uninstall', 'Uninstall'),
+    ],
+        string='Operation Type',
+        required=False,
+        default='upgrade',
+        index=True,
+        help='Type of operation performed on the module'
+    )
+
     from_version = fields.Char(
         string='From Version',
-        required=True,
-        help='Version before the upgrade'
+        help='Version before the operation (empty for install)'
     )
 
     to_version = fields.Char(
         string='To Version',
-        required=True,
-        help='Version after the upgrade'
+        help='Version after the operation (empty for uninstall)'
     )
 
     upgrade_date = fields.Datetime(
-        string='Upgrade Date',
+        string='Operation Date',
         required=True,
         default=fields.Datetime.now,
         index=True,
-        help='Date and time when the upgrade was performed'
+        help='Date and time when the operation was performed'
     )
 
     user_id = fields.Many2one(
         'res.users',
-        string='Upgraded By',
+        string='Performed By',
         default=lambda self: self.env.user,
         index=True,
-        help='User who performed the upgrade'
+        help='User who performed the operation'
     )
 
     status = fields.Selection([
@@ -68,7 +78,7 @@ class ModuleUpgradeHistory(models.Model):
         required=True,
         default='success',
         index=True,
-        help='Status of the upgrade operation'
+        help='Status of the operation'
     )
 
     upgrade_method = fields.Selection([
@@ -77,14 +87,14 @@ class ModuleUpgradeHistory(models.Model):
         ('automated', 'Automated'),
         ('unknown', 'Unknown'),
     ],
-        string='Upgrade Method',
+        string='Method',
         default='unknown',
-        help='How the upgrade was initiated'
+        help='How the operation was initiated'
     )
 
     notes = fields.Text(
         string='Notes',
-        help='Optional notes about this upgrade'
+        help='Optional notes about this operation'
     )
 
     active = fields.Boolean(
@@ -97,6 +107,20 @@ class ModuleUpgradeHistory(models.Model):
         """Custom name display for the record"""
         result = []
         for record in self:
-            name = f"{record.module_display_name or record.module_name} ({record.from_version} → {record.to_version})"
+            if record.operation_type == 'install':
+                name = f"{record.module_display_name or record.module_name} (Installed {record.to_version})"
+            elif record.operation_type == 'uninstall':
+                name = f"{record.module_display_name or record.module_name} (Uninstalled {record.from_version})"
+            else:  # upgrade or None (for backward compatibility)
+                name = f"{record.module_display_name or record.module_name} ({record.from_version} → {record.to_version})"
             result.append((record.id, name))
         return result
+
+    def init(self):
+        """Set default operation_type for existing records"""
+        # Update existing records that don't have operation_type set
+        self.env.cr.execute("""
+            UPDATE module_upgrade_history
+            SET operation_type = 'upgrade'
+            WHERE operation_type IS NULL
+        """)

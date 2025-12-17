@@ -61,10 +61,11 @@
         <field name="inherit_id" ref="base.module_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page string="Upgrade History" groups="base.group_system">
+                <page string="History" groups="base.group_system">
                     <field name="upgrade_history_ids">
                         <tree create="false">
                             <field name="upgrade_date"/>
+                            <field name="operation_type"/>
                             <field name="from_version"/>
                             <field name="to_version"/>
                             <field name="user_id"/>

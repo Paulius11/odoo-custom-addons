@@ -1,27 +1,27 @@
 {
     'name': 'Module Version',
-    'version': '17.0.2.0.1',
+    'version': '17.0.3.0.0',
     'category': 'Extra Tools',
-    'summary': 'Display module version, upgrade status, and track upgrade history',
+    'summary': 'Display module version and track complete module lifecycle history',
     'description': """
 Module Version
 ====================
-This module displays version information and tracks module upgrade history.
+This module displays version information and tracks complete module lifecycle history.
 
 Key Features:
 -------------
 * Version Display: Shows current installed version for all installed modules
 * Upgrade Detection: Displays upgrade available indicator with version comparison
 * Automatic Detection: Compares disk version (manifest) vs installed version (database)
-* Upgrade History: Complete audit trail of all module upgrades
-* Track upgrade details: versions, timestamps, users, methods (UI/CLI)
-* Filter and search upgrade history
+* Complete Module History: Audit trail of installations, upgrades, and uninstallations
+* Track operation details: versions, timestamps, users, operation types
+* Filter and search by operation type (Install/Upgrade/Uninstall)
 
-Help for administrators quickly identify:
-- Which modules are up to date
-- Which modules have updates available
-- Current version of each installed module
-- Complete history of when modules were upgraded
+Help for administrators:
+- Track when modules were installed, upgraded, or removed
+- See who performed each operation
+- View complete lifecycle history per module
+- Identify patterns and troubleshoot issues
     """,
     'author': 'Paulius Gaizauskas',
     'website': 'https://www.yourcompany.com',

@@ -5,9 +5,10 @@
         <field name="name">module.upgrade.history.tree</field>
         <field name="model">module.upgrade.history</field>
         <field name="arch" type="xml">
-            <tree string="Module Upgrade History" create="false" delete="true">
+            <tree string="Module History" create="false" delete="true">
                 <field name="upgrade_date"/>
-                <field name="module_display_name"/>
+                <field name="operation_type"/>
+                <field name="module_id" string="Module Name" widget="many2one_link" readonly="1"/>
                 <field name="module_name"/>
                 <field name="from_version"/>
                 <field name="to_version"/>
@@ -24,15 +25,16 @@
         <field name="name">module.upgrade.history.form</field>
         <field name="model">module.upgrade.history</field>
         <field name="arch" type="xml">
-            <form string="Module Upgrade History" create="false">
+            <form string="Module History" create="false">
                 <sheet>
                     <group>
                         <group string="Module Information">
                             <field name="active" invisible="1"/>
-                            <field name="module_display_name"/>
+                            <field name="module_id" string="Module Name" widget="many2one_link" readonly="1"/>
                             <field name="module_name"/>
                         </group>
-                        <group string="Upgrade Information">
+                        <group string="Operation Information">
+                            <field name="operation_type" readonly="1"/>
                             <field name="from_version" readonly="1"/>
                             <field name="to_version" readonly="1"/>
                             <field name="upgrade_date" readonly="1"/>
@@ -44,7 +46,7 @@
                     </group>
                     <notebook>
                         <page string="Notes">
-                            <field name="notes" placeholder="Optional notes about this upgrade..."/>
+                            <field name="notes" placeholder="Optional notes about this operation..."/>
                         </page>
                     </notebook>
                 </sheet>
@@ -57,10 +59,19 @@
         <field name="name">module.upgrade.history.search</field>
         <field name="model">module.upgrade.history</field>
         <field name="arch" type="xml">
-            <search string="Module Upgrade History">
+            <search string="Module History">
                 <field name="module_name"/>
                 <field name="module_display_name"/>
                 <field name="user_id"/>
+
+                <filter name="filter_install" string="Installations"
+                        domain="[('operation_type', '=', 'install')]"/>
+                <filter name="filter_upgrade" string="Upgrades"
+                        domain="[('operation_type', '=', 'upgrade')]"/>
+                <filter name="filter_uninstall" string="Uninstallations"
+                        domain="[('operation_type', '=', 'uninstall')]"/>
+
+                <separator/>
 
                 <filter name="filter_success" string="Successful"
                         domain="[('status', '=', 'success')]"/>
@@ -84,6 +95,8 @@
                         domain="[('active', '=', False)]"/>
 
                 <group expand="0" string="Group By">
+                    <filter name="group_operation" string="Operation Type"
+                            context="{'group_by': 'operation_type'}"/>
                     <filter name="group_module" string="Module"
                             context="{'group_by': 'module_id'}"/>
                     <filter name="group_user" string="User"
@@ -99,24 +112,24 @@
 
     <!-- Action Window -->
     <record id="action_module_upgrade_history" model="ir.actions.act_window">
-        <field name="name">Module Upgrade History</field>
+        <field name="name">Module History</field>
         <field name="res_model">module.upgrade.history</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{'search_default_filter_success': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                No module upgrades recorded yet
+                No module operations recorded yet
             </p>
             <p>
-                Module upgrade history will appear here once you upgrade any module.
+                Module history will appear here once you install, upgrade, or uninstall any module.
             </p>
         </field>
     </record>
 
     <!-- Menu Item -->
     <menuitem id="menu_module_upgrade_history"
-              name="Module Upgrade History"
-              parent="base.menu_custom"
+              name="Module History"
+              parent="base.next_id_5"
               action="action_module_upgrade_history"
               groups="base.group_system"
               sequence="100"/>
