@@ -92,9 +92,10 @@ class ModuleUpgradeHistory(models.Model):
         help='How the operation was initiated'
     )
 
-    notes = fields.Text(
+    notes = fields.Html(
         string='Notes',
-        help='Optional notes about this operation'
+        help='Optional notes about this operation. You can add formatted text, screenshots, and images.',
+        sanitize=False
     )
 
     active = fields.Boolean(

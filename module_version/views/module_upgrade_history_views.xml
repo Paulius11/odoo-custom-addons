@@ -7,13 +7,13 @@
         <field name="arch" type="xml">
             <tree string="Module History" create="false" delete="true">
                 <field name="upgrade_date"/>
-                <field name="operation_type"/>
+                <field name="operation_type" optional="show"/>
                 <field name="module_id" string="Module Name" widget="many2one_link" readonly="1"/>
                 <field name="module_name" optional="hide"/>
-                <field name="from_version"/>
-                <field name="to_version"/>
+                <field name="from_version" optional="show"/>
+                <field name="to_version" optional="show"/>
                 <field name="user_id" optional="hide"/>
-                <field name="notes"/>
+                <field name="notes" optional="show"/>
                 <field name="status" decoration-success="status=='success'"
                        decoration-danger="status=='failed'"
                        decoration-warning="status=='pending'" optional="hide"/>
@@ -47,7 +47,7 @@
                     </group>
                     <notebook>
                         <page string="Notes">
-                            <field name="notes" placeholder="Optional notes about this operation..."/>
+                            <field name="notes" widget="html" placeholder="Add notes, screenshots, or formatted text about this operation..."/>
                         </page>
                     </notebook>
                 </sheet>

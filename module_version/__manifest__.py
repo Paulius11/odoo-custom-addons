@@ -1,6 +1,6 @@
 {
     'name': 'Module Version',
-    'version': '17.0.3.0.1',
+    'version': '17.0.3.0.2',
     'category': 'Extra Tools',
     'summary': 'Display module version and track complete module lifecycle history',
     'description': """
