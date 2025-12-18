@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- User Permission Copy Wizard Form View -->
+    <record id="view_user_permission_copy_wizard_form" model="ir.ui.view">
+        <field name="name">user.permission.copy.wizard.form</field>
+        <field name="model">user.permission.copy.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Copy User Permissions">
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning:</strong> This action will completely replace all permissions of the target user 
+                    with the permissions from the source user. This action cannot be undone.
+                </div>
+                
+                <group>
+                    <group string="Source User">
+                        <field name="source_user_id" readonly="1"/>
+                        <field name="source_user_groups" 
+                               widget="many2many_tags" 
+                               readonly="1"
+                               options="{'no_create': True}"/>
+                    </group>
+                    <group string="Target User">
+                        <field name="target_user_id" 
+                               options="{'no_create': True, 'no_edit': True}"
+                               placeholder="Select user to copy permissions to..."/>
+                        <field name="target_user_groups" 
+                               widget="many2many_tags" 
+                               readonly="1"
+                               options="{'no_create': True}"
+                               invisible="not target_user_id"/>
+                    </group>
+                </group>
+                
+                <group string="Confirmation">
+                    <field name="confirmation" required="1"/>
+                </group>
+                
+                <div class="alert alert-info" role="alert" invisible="not target_user_id">
+                    <strong>Info:</strong> The following permissions will be copied from 
+                    <em><field name="source_user_id" readonly="1" nolabel="1"/></em> to 
+                    <em><field name="target_user_id" readonly="1" nolabel="1"/></em>:
+                    <ul>
+                        <li>User Groups (Security Groups)</li>
+                        <li>Company Access Rights</li>
+                        <li>Default Company</li>
+                        <li>Additional Permission Fields (if available)</li>
+                    </ul>
+                </div>
+                
+                <footer>
+                    <button name="action_copy_permissions" 
+                            string="Copy Permissions" 
+                            type="object" 
+                            class="btn-primary"
+                            data-hotkey="q"/>
+                    <button name="action_cancel" 
+                            string="Cancel" 
+                            type="object" 
+                            class="btn-secondary"
+                            data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Action -->
+    <record id="action_user_permission_copy_wizard" model="ir.actions.act_window">
+        <field name="name">Copy User Permissions</field>
+        <field name="res_model">user.permission.copy.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+</odoo>

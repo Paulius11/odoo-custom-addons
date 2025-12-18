@@ -8,14 +8,13 @@
     'email': 'paulius.gaizauskas@gmail.com',
     'summary': 'Display online users count in systray',
     'description': """
-Simple Online Users - Free Edition
+Simple Online Users
 ==================================
 
 A lightweight module that displays the count of currently online users in the Odoo systray.
 
 Key Features:
 * Real-time online user count display
-* Clean systray integration  
 * Uses Odoo's built-in bus.presence system
 * No custom models or complex setup required
 * Configurable visibility permissions

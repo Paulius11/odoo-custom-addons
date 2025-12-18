@@ -1,0 +1,19 @@
+.o_language_switcher {
+    .fa-language {
+        color: white !important; // Force white color to match other systray icons
+    }
+}
+
+.o_language_menu {
+    .dropdown-item.active {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    .dropdown-item:hover {
+        background-color: rgba(0, 0, 0, 0.075);
+    }
+    
+    .fa-check {
+        color: #00A09D; // Odoo's primary color for active elements
+    }
+}
