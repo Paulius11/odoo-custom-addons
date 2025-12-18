@@ -1,8 +1,10 @@
 # Odoo Custom Addons
 
-Custom Odoo modules and extensions.
+Custom Odoo modules for Odoo 
 
-## Branches
+## Modules
 
-- `main` - Main development branch
-- `17.0` - Odoo 17.0 specific modules
+- **user_permission_copy** - Copy user permissions between users
+- **language_change** - Quick language switcher in navbar
+- **simple_online_users** - Display online users count in systray
+- **module_version** - Track module versions and upgrade history

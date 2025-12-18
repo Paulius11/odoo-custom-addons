@@ -1,34 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Main Menu </title>
-    </head>
-    <body>
-        <div>
-            <h1 class="text-center">Main Menu</h1>
-            <h3 class="text-center">Version 1.1.0</h3>
-            <p class="text-center">
-                This module is designed for Odoo Community Edition, providing an enhanced way to navigate between modules more efficiently.
-            </p>
-            <h3>Features:</h3>
-            <ul class="list-unstyled p-0">
-                <li class="mb-4">
-                    Centralized main menu to quickly access the core modules installed in Odoo.
-                    <img src="screenshot_1.png" alt="Main Menu Screenshot" class="img-fluid rounded mx-auto d-block w-25"/>
-                </li>
-                <li class="mb-4">
-                    Enables widget functionality to display the current date and publish announcements for all users. Only administrators can modify announcements.
-                    <img src="banner.png" alt="Widget Functionality" class="img-fluid rounded mx-auto d-block w-50"/>
-                </li>
-                <li class="mb-4">
-                    Allows the creation of bookmarks for quick access to important menus within Odoo or external links.
-                    <img src="screenshot_2.png" alt="Bookmarks Screenshot" class="img-fluid rounded mx-auto d-block w-50"/>
-                </li>
-                <li class="mb-4">
-                    Easily create new menu bookmarks using the "Add Bookmark" button.
-                    <img src="screenshot_3.png" alt="Add Bookmarks Screenshot" class="img-fluid rounded mx-auto d-block w-50"/>
-                </li>
-            </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Permission Copy</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .feature h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .screenshots {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .screenshots img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 10px;
+        }
+        .installation {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>User Permission Copy</h1>
+            <span class="badge">Community Edition</span>
+            <p>Streamline user onboarding by copying permissions with a simple wizard</p>
         </div>
-    </body>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">👥</div>
+                <h3>Quick Replication</h3>
+                <p>Copy all permissions from a source user to target users in seconds</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Wizard Interface</h3>
+                <p>Easy-to-use guided process with clear steps and confirmation</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h3>Complete Copy</h3>
+                <p>Transfers all security groups, access rights, and rule assignments</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✅</div>
+                <h3>Safety First</h3>
+                <p>Confirmation dialog prevents accidental permission changes</p>
+            </div>
+        </div>
+
+        <div class="screenshots">
+            <h2>Screenshots</h2>
+            <img src="screenshot_1.png" alt="Permission Copy Wizard" style="max-height: 300px;">
+            <img src="screenshot_2.png" alt="User Selection" style="max-height: 300px;">
+        </div>
+
+        <div class="installation">
+            <h3>🚀 Installation</h3>
+            <ol>
+                <li>Download and install the module from the Apps menu</li>
+                <li>Navigate to Settings → Users & Companies → Users</li>
+                <li>Select a user and click "Copy Permissions"</li>
+                <li>Choose target users and confirm - done!</li>
+            </ol>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
+            <p>Compatible with Odoo 17.0+ | LGPL-3 License</p>
+            <p>Made with ❤️ by Paulius Gaizauskas</p>
+        </div>
+    </div>
+</body>
 </html>

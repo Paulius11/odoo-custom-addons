@@ -24,8 +24,11 @@ Help for administrators:
 - Identify patterns and troubleshoot issues
     """,
     'author': 'Paulius Gaizauskas',
+    'maintainer': 'Paulius Gaizauskas',
     'website': 'https://github.com/Paulius11/odoo-custom-addons',
+    'email': 'paulius.gaizauskas@gmail.com',
     'license': 'LGPL-3',
+    'support': 'paulius.gaizauskas@gmail.com',
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
@@ -37,6 +40,7 @@ Help for administrators:
             'module_version/static/src/css/styles.css',
         ],
     },
+    'images': ['static/description/banner.png', 'static/description/icon.png'],
     'installable': True,
     'application': False,
     'auto_install': False,

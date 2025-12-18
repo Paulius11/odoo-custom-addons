@@ -4,7 +4,7 @@
     'category': 'Website/Tools',
     'author': 'Paulius Gaizauskas',
     'maintainer': 'Paulius Gaizauskas',
-    'website': 'https://github.com/Paulius11/simple-online-users',
+    'website': 'https://github.com/Paulius11/odoo-custom-addons',
     'email': 'paulius.gaizauskas@gmail.com',
     'summary': 'Display online users count in systray',
     'description': """
