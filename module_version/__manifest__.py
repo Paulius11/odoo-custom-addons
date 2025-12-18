@@ -24,7 +24,7 @@ Help for administrators:
 - Identify patterns and troubleshoot issues
     """,
     'author': 'Paulius Gaizauskas',
-    'website': 'https://www.yourcompany.com',
+    'website': 'https://github.com/Paulius11/odoo-custom-addons',
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': [

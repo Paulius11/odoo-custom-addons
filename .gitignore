@@ -1,5 +1,6 @@
 # Custom
-dev_data/
+.claude
+tempates/
 *.Identifier
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
