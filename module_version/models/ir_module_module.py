@@ -1,6 +1,14 @@
+import requests
+
 from odoo import models, fields, api
 from odoo.tools.parse_version import parse_version
 from odoo.addons.base.models.ir_module import assert_log_admin_access
+from odoo.service.common import exp_version
+
+try:
+    from odoo.addons.base_import_module.models.ir_module import APPS_URL
+except ImportError:
+    APPS_URL = "https://apps.odoo.com"
 
 
 class IrModuleModule(models.Model):
@@ -161,6 +169,86 @@ class IrModuleModule(models.Model):
         except Exception:
             # Silently fail if table doesn't exist or other issues
             return False
+
+    # ===========================================
+    # App Store Version Checking Methods
+    # ===========================================
+
+    def check_app_store_updates(self, modules):
+        """Check for updates in the app store for the given modules.
+
+        Args:
+            modules (dict): A dictionary of installed modules.
+
+        Returns:
+            dict: Information about the modules on the odoo server.
+            Example:
+            {
+                'module.name': {
+                    'id': 123,  # module ID
+                    'name': 'example_module',  # module name
+                    'version_local_running': '1.0.0',  # local version
+                    'version_local_downloaded': '1.0.0',  # downloaded version
+                    'version_remote': '1.2.0',  # version available in odoo app store
+                    'todo': 'to_update',  # Indicates that an update is needed
+                },
+            }
+        """
+        url = f"{APPS_URL}/apps/embed/update"
+        payload = {
+            "jsonrpc": "2.0",
+            "method": "call",
+            "params": {
+                "modules": modules,
+                "version": exp_version(),
+            },
+        }
+        try:
+            response = requests.Session().post(url, json=payload, timeout=30).json()
+            return response.get("result", {})
+        except Exception:
+            return {}
+
+    def get_modules_need_update(self):
+        """Find installed modules and get a dictionary of modules that need an update.
+
+        Returns:
+            dict: Modules that need an update.
+            Example:
+            {
+                'module.name': {
+                    'id': 123,  # module ID on the odoo server
+                    'name': 'example_module',  # module name
+                    'version_local_running': '1.0.0',  # local version
+                    'version_local_downloaded': '1.0.0',  # downloaded version
+                    'version_remote': '1.2.0',  # version available in odoo app store
+                    'todo': 'to_update',  # Indicates that an update is needed
+                    'display_name': 'Example Module',  # display name
+                },
+            }
+        """
+        installed_modules = self.search_read(
+            [("state", "=", "installed")],
+            fields=[
+                "name",
+                "installed_version",
+                "latest_version",
+                "state",
+                "display_name",
+            ],
+        )
+        modules_dict = {record["name"]: record for record in installed_modules}
+
+        modules_to_update_dict = self.check_app_store_updates(modules_dict)
+
+        for module_name, module_info in modules_to_update_dict.items():
+            installed_module_info = modules_dict.get(module_name, {})
+            module_info["display_name"] = installed_module_info.get("display_name", "")
+        return modules_to_update_dict
+
+    # ===========================================
+    # Module History Tracking Methods
+    # ===========================================
 
     @assert_log_admin_access
     def button_upgrade(self):

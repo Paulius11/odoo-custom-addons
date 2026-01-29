@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_module_upgrade_history_system,module.upgrade.history.system,model_module_upgrade_history,base.group_system,1,1,1,1
+access_ir_module_update_info_system,ir.module.update.info.system,model_ir_module_update_info,base.group_system,1,1,1,1
