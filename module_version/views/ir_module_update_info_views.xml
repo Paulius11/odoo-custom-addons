@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_module_update_info_view_tree" model="ir.ui.view">
+        <field name="name">ir.module.update.info.tree</field>
+        <field name="model">ir.module.update.info</field>
+        <field name="arch" type="xml">
+            <tree string="Available Updates" create="false" edit="false" delete="false">
+                <field name="display_name" string="Module" />
+                <field name="name" string="Technical Name" />
+                <field name="installed_version" string="Installed Version" />
+                <field name="available_version" string="Available Version" />
+            </tree>
+        </field>
+    </record>
+</odoo>
