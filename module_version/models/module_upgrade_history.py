@@ -27,7 +27,6 @@ class ModuleUpgradeHistory(models.Model):
     module_display_name = fields.Char(
         string='Module Name',
         related='module_id.shortdesc',
-        store=True,
         help='Human-readable name of the module'
     )
 
