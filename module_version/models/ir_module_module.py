@@ -3,6 +3,7 @@ import requests
 from odoo import models, fields, api
 from odoo.tools.parse_version import parse_version
 from odoo.addons.base.models.ir_module import assert_log_admin_access
+from odoo.modules.module import get_module_path
 from odoo.service.common import exp_version
 
 try:
@@ -45,6 +46,17 @@ class IrModuleModule(models.Model):
         compute='_compute_upgrade_history_count',
         help='Number of upgrade history records'
     )
+
+    module_path = fields.Char(
+        string='Module Path',
+        compute='_compute_module_path',
+        store=False,
+    )
+
+    @api.depends('name')
+    def _compute_module_path(self):
+        for module in self:
+            module.module_path = get_module_path(module.name) or ''
 
     @api.depends('state', 'installed_version', 'latest_version')
     def _compute_version_badge(self):

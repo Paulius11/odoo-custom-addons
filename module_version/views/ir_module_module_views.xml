@@ -54,6 +54,18 @@
         </field>
     </record>
 
+    <!-- Add Module Path field after Technical Name in form view -->
+    <record id="view_module_form_add_path" model="ir.ui.view">
+        <field name="name">ir.module.module.form.add.path</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='information']//field[@name='name']" position="after">
+                <field name="module_path"/>
+            </xpath>
+        </field>
+    </record>
+
     <!-- Add Upgrade History notebook tab to module form view -->
     <record id="view_module_form_upgrade_history" model="ir.ui.view">
         <field name="name">ir.module.module.form.upgrade.history</field>
