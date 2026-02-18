@@ -1,6 +1,6 @@
 import requests
 
-from odoo import models, fields, api
+from odoo import _, models, fields, api
 from odoo.tools.parse_version import parse_version
 from odoo.addons.base.models.ir_module import assert_log_admin_access
 from odoo.modules.module import get_module_path
@@ -57,6 +57,41 @@ class IrModuleModule(models.Model):
     def _compute_module_path(self):
         for module in self:
             module.module_path = get_module_path(module.name) or ''
+
+    def action_check_updates_ui(self):
+        """Check for App Store updates and display results."""
+        UpdateInfo = self.env["ir.module.update.info"]
+        UpdateInfo.search([]).unlink()
+
+        modules_to_update = self.env["ir.module.module"].get_modules_need_update()
+
+        if not modules_to_update:
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": _("Module Updates"),
+                    "message": _("All modules are up to date!"),
+                    "type": "success",
+                    "sticky": False,
+                },
+            }
+
+        for name, info in modules_to_update.items():
+            UpdateInfo.create({
+                "name": name,
+                "display_name": info.get("display_name", name),
+                "installed_version": info.get("version_local_running", ""),
+                "available_version": info.get("version_remote", ""),
+            })
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Available Module Updates"),
+            "res_model": "ir.module.update.info",
+            "view_mode": "tree",
+            "target": "new",
+        }
 
     @api.depends('state', 'installed_version', 'latest_version')
     def _compute_version_badge(self):
