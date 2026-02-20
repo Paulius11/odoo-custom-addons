@@ -10,6 +10,12 @@
                 <separator/>
                 <filter name="updates_available" string="Updates Available"
                         domain="[('state', '=', 'installed'), ('has_version_upgrade', '=', True)]"/>
+                <filter name="recently_operated" string="Recently Installed/Upgraded"
+                        domain="[('last_operation_date', '!=', False)]"/>
+            </xpath>
+            <xpath expr="//group[@expand='0']" position="inside">
+                <filter string="Last Installed/Upgraded" name="group_last_operation"
+                        context="{'group_by': 'last_operation_date:month'}"/>
             </xpath>
         </field>
     </record>
@@ -54,16 +60,22 @@
         </field>
     </record>
 
-    <!-- Add Check Updates button to tree view header -->
+    <!-- Add Check Updates button + write_date column to list view, sorted newest first -->
     <record id="view_module_tree_check_updates" model="ir.ui.view">
         <field name="name">ir.module.module.tree.check.updates</field>
         <field name="model">ir.module.module</field>
         <field name="inherit_id" ref="base.module_tree"/>
         <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="default_order">last_operation_date desc</attribute>
+            </xpath>
             <xpath expr="//tree/header" position="inside">
                 <button name="action_check_updates_ui" type="object"
                         string="Check Updates" icon="fa-refresh"
                         class="btn-secondary" groups="base.group_system"/>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="last_operation_date" string="Last Installed/Upgraded" optional="show"/>
             </xpath>
         </field>
     </record>

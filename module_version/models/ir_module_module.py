@@ -47,11 +47,24 @@ class IrModuleModule(models.Model):
         help='Number of upgrade history records'
     )
 
+    last_operation_date = fields.Datetime(
+        string='Last Operation Date',
+        compute='_compute_last_operation_date',
+        store=True,
+        index=True,
+    )
+
     module_path = fields.Char(
         string='Module Path',
         compute='_compute_module_path',
         store=False,
     )
+
+    @api.depends('upgrade_history_ids.upgrade_date')
+    def _compute_last_operation_date(self):
+        for module in self:
+            history = module.upgrade_history_ids.sorted('upgrade_date', reverse=True)
+            module.last_operation_date = history[0].upgrade_date if history else False
 
     @api.depends('name')
     def _compute_module_path(self):
