@@ -40,6 +40,7 @@ Help for administrators:
         'views/ir_module_module_views.xml',
         'views/ir_module_update_info_views.xml',
         'views/res_config_settings_view.xml',
+        'views/ir_cron_views.xml',
     ],
     'assets': {
         'web.assets_backend': [

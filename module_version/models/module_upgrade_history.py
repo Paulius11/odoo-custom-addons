@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from odoo import models, fields, api
 
 
@@ -5,7 +7,6 @@ class ModuleUpgradeHistory(models.Model):
     _name = 'module.upgrade.history'
     _description = 'Module History'
     _order = 'upgrade_date desc, id desc'
-    _rec_name = 'module_id'
 
     module_id = fields.Many2one(
         'ir.module.module',
@@ -103,22 +104,39 @@ class ModuleUpgradeHistory(models.Model):
         help='Set to False to archive this record'
     )
 
-    def name_get(self):
-        """Custom name display for the record"""
-        result = []
+    display_name = fields.Char(
+        compute='_compute_display_name',
+        store=False,
+    )
+
+    @api.depends('operation_type', 'module_display_name', 'module_name', 'from_version', 'to_version')
+    def _compute_display_name(self):
         for record in self:
+            label = record.module_display_name or record.module_name
             if record.operation_type == 'install':
-                name = f"{record.module_display_name or record.module_name} (Installed {record.to_version})"
+                record.display_name = f"{label} (Installed {record.to_version})"
             elif record.operation_type == 'uninstall':
-                name = f"{record.module_display_name or record.module_name} (Uninstalled {record.from_version})"
-            else:  # upgrade or None (for backward compatibility)
-                name = f"{record.module_display_name or record.module_name} ({record.from_version} → {record.to_version})"
-            result.append((record.id, name))
-        return result
+                record.display_name = f"{label} (Uninstalled {record.from_version})"
+            else:
+                record.display_name = f"{label} ({record.from_version} → {record.to_version})"
+
+    def action_gc_stale_pending(self):
+        """Delete pending records older than 24 hours (called by scheduled action).
+
+        A pending record is created when a user queues an operation via the UI
+        but the operation is never applied (e.g. closes the dialog). These are
+        safe to remove after a day because any real completion would have already
+        resolved them to success/failed.
+        """
+        cutoff = fields.Datetime.now() - timedelta(hours=24)
+        stale = self.search([
+            ('status', '=', 'pending'),
+            ('upgrade_date', '<', cutoff),
+        ])
+        stale.unlink()
 
     def init(self):
-        """Set default operation_type for existing records"""
-        # Update existing records that don't have operation_type set
+        """Set default operation_type for existing records."""
         self.env.cr.execute("""
             UPDATE module_upgrade_history
             SET operation_type = 'upgrade'

@@ -60,7 +60,7 @@
         </field>
     </record>
 
-    <!-- Add Check Updates button + write_date column to list view, sorted newest first -->
+    <!-- Add last_operation_date column to list view, sorted newest first -->
     <record id="view_module_tree_check_updates" model="ir.ui.view">
         <field name="name">ir.module.module.tree.check.updates</field>
         <field name="model">ir.module.module</field>
@@ -68,11 +68,6 @@
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="default_order">last_operation_date desc</attribute>
-            </xpath>
-            <xpath expr="//tree/header" position="inside">
-                <button name="action_check_updates_ui" type="object"
-                        string="Check Updates" icon="fa-refresh"
-                        class="btn-secondary" groups="base.group_system"/>
             </xpath>
             <xpath expr="//field[@name='state']" position="after">
                 <field name="last_operation_date" string="Last Installed/Upgraded" optional="show"/>
