@@ -1,4 +1,6 @@
+import json
 import requests
+from datetime import datetime, timedelta
 
 from odoo import _, models, fields, api
 from odoo.tools.parse_version import parse_version
@@ -10,6 +12,14 @@ try:
     from odoo.addons.base_import_module.models.ir_module import APPS_URL
 except ImportError:
     APPS_URL = "https://apps.odoo.com"
+
+
+def _parse_since(since_str):
+    """Parse ISO datetime string; return epoch datetime on failure."""
+    try:
+        return datetime.fromisoformat(since_str)
+    except Exception:
+        return datetime.min
 
 
 class IrModuleModule(models.Model):
@@ -60,6 +70,22 @@ class IrModuleModule(models.Model):
         store=False,
     )
 
+    is_newly_added = fields.Boolean(
+        string='Newly Added',
+        compute='_compute_snapshot_flags',
+        search='_search_is_newly_added',
+        store=False,
+        help='True if this module was installed for the first time within the last 30 days',
+    )
+
+    is_recently_upgraded = fields.Boolean(
+        string='Recently Upgraded',
+        compute='_compute_snapshot_flags',
+        search='_search_is_recently_upgraded',
+        store=False,
+        help='True if this module was upgraded within the last 30 days',
+    )
+
     @api.depends('upgrade_history_ids.upgrade_date')
     def _compute_last_operation_date(self):
         for module in self:
@@ -70,6 +96,146 @@ class IrModuleModule(models.Model):
     def _compute_module_path(self):
         for module in self:
             module.module_path = get_module_path(module.name) or ''
+
+    def _get_snapshot(self):
+        """Return the stored module snapshot dict, or {} if not yet created."""
+        raw = self.env['ir.config_parameter'].sudo().get_param(
+            'module_version.installed_snapshot', '{}'
+        )
+        try:
+            return json.loads(raw)
+        except Exception:
+            return {}
+
+    @api.depends('state', 'latest_version')
+    def _compute_snapshot_flags(self):
+        cutoff = datetime.utcnow() - timedelta(days=30)
+        snapshot = self._get_snapshot()
+        for module in self:
+            if module.state != 'installed':
+                module.is_newly_added = False
+                module.is_recently_upgraded = False
+                continue
+            entry = snapshot.get(module.name)
+            if not entry:
+                module.is_newly_added = False
+                module.is_recently_upgraded = False
+                continue
+            try:
+                since = datetime.fromisoformat(entry['since'])
+            except Exception:
+                module.is_newly_added = False
+                module.is_recently_upgraded = False
+                continue
+            recent = since >= cutoff
+            module.is_newly_added = recent and entry.get('is_new', False)
+            module.is_recently_upgraded = recent and bool(entry.get('upgraded_from'))
+
+    def _search_is_newly_added(self, operator, value):
+        cutoff = datetime.utcnow() - timedelta(days=30)
+        snapshot = self._get_snapshot()
+        newly_added = [
+            name for name, entry in snapshot.items()
+            if entry.get('is_new')
+            and _parse_since(entry.get('since')) >= cutoff
+        ]
+        installed = self.search([('state', '=', 'installed'), ('name', 'in', newly_added)])
+        ids = installed.ids
+        if (operator == '=' and value) or (operator == '!=' and not value):
+            return [('id', 'in', ids)]
+        return [('id', 'not in', ids)]
+
+    def _search_is_recently_upgraded(self, operator, value):
+        cutoff = datetime.utcnow() - timedelta(days=30)
+        snapshot = self._get_snapshot()
+        upgraded = [
+            name for name, entry in snapshot.items()
+            if entry.get('upgraded_from')
+            and _parse_since(entry.get('since')) >= cutoff
+        ]
+        installed = self.search([('state', '=', 'installed'), ('name', 'in', upgraded)])
+        ids = installed.ids
+        if (operator == '=' and value) or (operator == '!=' and not value):
+            return [('id', 'in', ids)]
+        return [('id', 'not in', ids)]
+
+    def _update_module_snapshot(self):
+        """Update snapshot entries for self after an install or upgrade."""
+        ICP = self.env['ir.config_parameter'].sudo()
+        snapshot = self._get_snapshot()
+        now = datetime.utcnow().isoformat()
+        for module in self:
+            if module.state != 'installed':
+                continue
+            name = module.name
+            new_ver = module.latest_version or ''
+            existing = snapshot.get(name)
+            if not existing:
+                # First time seen — mark as new
+                snapshot[name] = {'version': new_ver, 'since': now, 'is_new': True}
+            elif existing.get('version') != new_ver:
+                # Version changed — mark as upgraded
+                snapshot[name] = {
+                    'version': new_ver,
+                    'since': now,
+                    'is_new': False,
+                    'upgraded_from': existing.get('version', ''),
+                }
+            # If version unchanged, leave entry as-is
+        ICP.set_param('module_version.installed_snapshot', json.dumps(snapshot))
+
+    def _sync_module_snapshot(self):
+        """Compare all installed modules against snapshot; record new/upgraded entries.
+
+        Called once per server start via _register_hook() to catch CLI installs/upgrades.
+        """
+        ICP = self.env['ir.config_parameter'].sudo()
+        snapshot = self._get_snapshot()
+        if not snapshot:
+            # Snapshot not yet initialised (module_version just installed via CLI without
+            # post_init_hook running) — bootstrap it with all modules as pre-existing.
+            modules = self.search([('state', '=', 'installed')])
+            now = datetime.utcnow().isoformat()
+            snapshot = {
+                m.name: {'version': m.latest_version or '', 'since': now, 'is_new': False}
+                for m in modules
+            }
+            ICP.set_param('module_version.installed_snapshot', json.dumps(snapshot))
+            return
+
+        modules = self.search([('state', '=', 'installed')])
+        now = datetime.utcnow().isoformat()
+        changed = False
+        for module in modules:
+            name = module.name
+            new_ver = module.latest_version or ''
+            existing = snapshot.get(name)
+            if not existing:
+                snapshot[name] = {'version': new_ver, 'since': now, 'is_new': True}
+                changed = True
+            elif existing.get('version') != new_ver:
+                snapshot[name] = {
+                    'version': new_ver,
+                    'since': now,
+                    'is_new': False,
+                    'upgraded_from': existing.get('version', ''),
+                }
+                changed = True
+        if changed:
+            ICP.set_param('module_version.installed_snapshot', json.dumps(snapshot))
+
+    # Class-level guard so _sync_module_snapshot runs only once per server process
+    _snapshot_synced = False
+
+    def _register_hook(self):
+        res = super()._register_hook()
+        if not IrModuleModule._snapshot_synced:
+            IrModuleModule._snapshot_synced = True
+            try:
+                self._sync_module_snapshot()
+            except Exception:
+                pass
+        return res
 
     def action_check_updates_ui(self):
         """Check for App Store updates and display results."""
@@ -363,6 +529,7 @@ class IrModuleModule(models.Model):
                         to_version=module.latest_version or '1.0',
                         status='success',
                     )
+            self._update_module_snapshot()
             return result
         except Exception as e:
             for module in self:
@@ -403,6 +570,7 @@ class IrModuleModule(models.Model):
                         to_version=module.latest_version or '1.0',
                         status='success',
                     )
+            self._update_module_snapshot()
             return result
         except Exception as e:
             for module in self:

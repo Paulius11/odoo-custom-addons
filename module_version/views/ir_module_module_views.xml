@@ -12,6 +12,10 @@
                         domain="[('state', '=', 'installed'), ('has_version_upgrade', '=', True)]"/>
                 <filter name="recently_operated" string="Recently Installed/Upgraded"
                         domain="[('last_operation_date', '!=', False)]"/>
+                <filter name="newly_added" string="Newly Added"
+                        domain="[('is_newly_added', '=', True)]"/>
+                <filter name="recently_upgraded" string="Recently Upgraded"
+                        domain="[('is_recently_upgraded', '=', True)]"/>
             </xpath>
             <xpath expr="//group[@expand='0']" position="inside">
                 <filter string="Last Installed/Upgraded" name="group_last_operation"
@@ -34,6 +38,8 @@
                 <field name="version_badge_text"/>
                 <field name="version_badge_class"/>
                 <field name="has_version_upgrade"/>
+                <field name="is_newly_added"/>
+                <field name="is_recently_upgraded"/>
             </xpath>
 
             <!-- Add version text inside code tag for technical name (admin only) -->
@@ -43,6 +49,12 @@
                           t-att-title="record.version_badge_text.value">
                         <t t-out="record.version_badge_text.value"/>
                     </span>
+                    <t t-if="record.is_newly_added.raw_value">
+                        <span class="oe_badge_new">NEW</span>
+                    </t>
+                    <t t-if="record.is_recently_upgraded.raw_value">
+                        <span class="oe_badge_upgraded">UPGRADED</span>
+                    </t>
                 </t>
             </xpath>
 
@@ -54,6 +66,12 @@
                           t-att-title="record.version_badge_text.value">
                         <t t-out="record.version_badge_text.value"/>
                     </span>
+                    <t t-if="record.is_newly_added.raw_value">
+                        <span class="oe_badge_new">NEW</span>
+                    </t>
+                    <t t-if="record.is_recently_upgraded.raw_value">
+                        <span class="oe_badge_upgraded">UPGRADED</span>
+                    </t>
                 </t>
             </xpath>
 

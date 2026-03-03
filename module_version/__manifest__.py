@@ -1,6 +1,6 @@
 {
     'name': 'Module Version',
-    'version': '17.0.4.0.0',
+    'version': '17.0.4.2.0',
     'category': 'Extra Tools',
     'summary': 'Display module version, track lifecycle history, and check for App Store updates',
     'description': """
@@ -31,6 +31,7 @@ Help for administrators:
     'maintainer': 'Paulius Gaizauskas',
     'website': 'https://github.com/Paulius11/odoo-custom-addons',
     'email': 'paulius.gaizauskas@gmail.com',
+    'post_init_hook': 'post_init_hook',
     'license': 'LGPL-3',
     'support': 'paulius.gaizauskas@gmail.com',
     'depends': ['base'],

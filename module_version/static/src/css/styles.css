@@ -20,3 +20,26 @@
 .oe_version_text_float.version-upgrade {
     color: #28a745;
 }
+
+.oe_badge_new,
+.oe_badge_upgraded {
+    display: inline-block;
+    margin-left: 4px;
+    padding: 1px 5px;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #fff;
+    border-radius: 3px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.oe_badge_new {
+    background-color: #17a2b8;
+}
+
+.oe_badge_upgraded {
+    background-color: #28a745;
+}
