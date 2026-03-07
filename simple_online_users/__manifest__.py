@@ -1,6 +1,6 @@
 {
     'name': 'Simple Online Users',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Website/Tools',
     'author': 'Paulius Gaizauskas',
     'maintainer': 'Paulius Gaizauskas',

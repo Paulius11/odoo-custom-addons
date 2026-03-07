@@ -1,6 +1,6 @@
 {
     'name': 'User Permission Copy',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Administration',
     'author': 'Paulius Gaizauskas',
     'maintainer': 'Paulius Gaizauskas',

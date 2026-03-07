@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Quick Language Switcher',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Tools',
     'author': 'Paulius Gaizauskas',
     'maintainer': 'Paulius Gaizauskas',
