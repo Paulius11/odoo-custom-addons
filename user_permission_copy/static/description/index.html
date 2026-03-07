@@ -9,35 +9,21 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 0;
+            background: #f5f5f5;
             color: #333;
         }
+        .banner img {
+            width: 100%;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .header h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-        .badge {
-            display: inline-block;
-            background: #e74c3c;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
         }
         .features {
             display: grid;
@@ -59,74 +45,73 @@
             font-size: 2em;
             margin-bottom: 10px;
         }
-        .screenshots {
-            text-align: center;
-            margin: 40px 0;
-        }
-        .screenshots img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin: 10px;
-        }
         .installation {
             background: #e8f5e8;
             padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #27ae60;
+            margin: 30px 0;
         }
+        .installation h2 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 0.9em;
+        }
+        .footer a { color: #3498db; text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>User Permission Copy</h1>
-            <span class="badge">Community Edition</span>
-            <p>Streamline user onboarding by copying permissions with a simple wizard</p>
-        </div>
+    <div class="banner">
+        <img src="banner.png" alt="User Permission Copy">
+    </div>
 
+    <div class="container">
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">👥</div>
+                <div class="feature-icon">&#128101;</div>
                 <h3>Quick Replication</h3>
-                <p>Copy all permissions from a source user to target users in seconds</p>
+                <p>Copy all permissions from a source user to target users in seconds.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🎯</div>
+                <div class="feature-icon">&#127919;</div>
                 <h3>Wizard Interface</h3>
-                <p>Easy-to-use guided process with clear steps and confirmation</p>
+                <p>Easy-to-use guided process with clear steps and confirmation.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🔒</div>
+                <div class="feature-icon">&#128274;</div>
                 <h3>Complete Copy</h3>
-                <p>Transfers all security groups, access rights, and rule assignments</p>
+                <p>Transfers all security groups, access rights, and rule assignments.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">✅</div>
+                <div class="feature-icon">&#9989;</div>
                 <h3>Safety First</h3>
-                <p>Confirmation dialog prevents accidental permission changes</p>
+                <p>Confirmation dialog prevents accidental permission changes.</p>
             </div>
-        </div>
-
-        <div class="screenshots">
-            <h2>Screenshots</h2>
-            <img src="screenshot_1.png" alt="Permission Copy Wizard" style="max-height: 300px;">
-            <img src="screenshot_2.png" alt="User Selection" style="max-height: 300px;">
         </div>
 
         <div class="installation">
-            <h3>🚀 Installation</h3>
+            <h2>Installation &amp; Usage</h2>
             <ol>
-                <li>Download and install the module from the Apps menu</li>
-                <li>Navigate to Settings → Users & Companies → Users</li>
-                <li>Select a user and click "Copy Permissions"</li>
-                <li>Choose target users and confirm - done!</li>
+                <li>Download and install the module from the Apps menu.</li>
+                <li>Navigate to Settings &#8594; Users &amp; Companies &#8594; Users.</li>
+                <li>Select a user and click "Copy Permissions".</li>
+                <li>Choose target users and confirm.</li>
             </ol>
         </div>
 
-        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
-            <p>Compatible with Odoo 17.0+ | LGPL-3 License</p>
-            <p>Made with ❤️ by Paulius Gaizauskas</p>
+        <div class="footer">
+            <p>
+                Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a> &mdash;
+                Free &amp; Open Source (LGPL-3) &mdash;
+                <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
+            </p>
         </div>
     </div>
 </body>
