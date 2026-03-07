@@ -1,6 +1,6 @@
 {
     'name': 'Module Version',
-    'version': '17.0.4.2.0',
+    'version': '18.0.4.2.0',
     'category': 'Extra Tools',
     'summary': 'Display module version, track lifecycle history, and check for App Store updates',
     'description': """
