@@ -5,113 +5,171 @@
     <meta name="viewport" content="width=760">
     <title>Simple Online Users</title>
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background: #f5f5f5;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f7f8fa;
             color: #333;
+            line-height: 1.6;
         }
-        .banner img {
-            width: 100%;
-            display: block;
-            margin: 0;
-            padding: 0;
+        .banner img { width: 100%; display: block; }
+
+        .page { max-width: 900px; margin: 0 auto; background: #fff; padding-bottom: 40px; }
+
+        .tagline {
+            text-align: center;
+            color: #555;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 32px auto;
+            padding: 0 20px;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
+
+        .section { padding: 0 30px 36px; }
+
+        .section-heading {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #4b3c78;
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ede8f5;
         }
+
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
         }
+
         .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #fff;
+            border-radius: 12px;
             padding: 20px;
-            background: #f8f9fa;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #4b3c78;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .feature-body h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 4px;
+        }
+
+        .feature-body p {
+            font-size: 0.875rem;
+            color: #718096;
+            line-height: 1.5;
+        }
+
+        .install-section { padding: 0 30px 36px; }
+
+        .install-box {
+            background: #f0ebfa;
+            border-left: 4px solid #4b3c78;
             border-radius: 8px;
-            border-left: 4px solid #3498db;
+            padding: 24px 28px;
         }
-        .feature h3 {
-            color: #2c3e50;
-            margin-top: 0;
+
+        .install-box ol {
+            padding-left: 20px;
+            color: #333;
+            font-size: 0.93rem;
         }
-        .feature-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        .installation {
-            background: #e8f5e8;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #27ae60;
-            margin: 30px 0;
-        }
-        .installation h2 {
-            color: #27ae60;
-            margin-top: 0;
-        }
+
+        .install-box li { margin-bottom: 8px; }
+
         .footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
+            padding: 20px 30px 0;
             border-top: 1px solid #eee;
-            color: #999;
-            font-size: 0.9em;
+            color: #aaa;
+            font-size: 0.82rem;
         }
-        .footer a { color: #3498db; text-decoration: none; }
+
+        .footer a { color: #4b3c78; text-decoration: none; }
     </style>
 </head>
 <body>
+<div class="page">
     <div class="banner">
         <img src="banner.png" alt="Simple Online Users">
     </div>
 
-    <div class="container">
+    <p class="tagline">
+        See who is currently active in your Odoo instance at a glance —
+        directly from the top navigation bar.
+    </p>
+
+    <div class="section">
+        <h2 class="section-heading">Key Features</h2>
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">&#128101;</div>
-                <h3>Real-time Count</h3>
-                <p>Display live count of online users directly in your systray.</p>
+                <div class="icon-circle">&#128101;</div>
+                <div class="feature-body">
+                    <h3>Real-time Count</h3>
+                    <p>Live count of online users displayed in your systray, updated automatically.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#128269;</div>
-                <h3>User Details</h3>
-                <p>Click to see detailed list with user status and last activity.</p>
+                <div class="icon-circle">&#128269;</div>
+                <div class="feature-body">
+                    <h3>User Details</h3>
+                    <p>Click the indicator to see a full list with user names and last activity timestamps.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#9889;</div>
-                <h3>Lightweight</h3>
-                <p>Uses native Odoo bus.presence — no custom models or heavy resources.</p>
+                <div class="icon-circle">&#9889;</div>
+                <div class="feature-body">
+                    <h3>Lightweight</h3>
+                    <p>Uses native Odoo <code>bus.presence</code> — no custom models, no heavy resources.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#128736;</div>
-                <h3>Easy Setup</h3>
-                <p>Install and it works immediately — configure visibility in settings.</p>
+                <div class="icon-circle">&#128736;</div>
+                <div class="feature-body">
+                    <h3>Easy Setup</h3>
+                    <p>Works immediately after installation. Configure visibility permissions in Settings.</p>
+                </div>
             </div>
-        </div>
-
-        <div class="installation">
-            <h2>Installation &amp; Usage</h2>
-            <ol>
-                <li>Download and install the module.</li>
-                <li>The online users count appears automatically in your systray.</li>
-                <li>Configure visibility in Settings &#8594; General Settings &#8594; Online Users.</li>
-            </ol>
-        </div>
-
-        <div class="footer">
-            <p>
-                Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a> &mdash;
-                Free &amp; Open Source (LGPL-3) &mdash;
-                <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
-            </p>
         </div>
     </div>
+
+    <div class="install-section">
+        <h2 class="section-heading">Installation &amp; Usage</h2>
+        <div class="install-box">
+            <ol>
+                <li>Install the module from the Apps menu.</li>
+                <li>The online users count appears automatically in your systray.</li>
+                <li>Configure who can see it under <strong>Settings &#8594; General Settings &#8594; Online Users</strong>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>
+            Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a>
+            &mdash; Free &amp; Open Source (LGPL-3) &mdash;
+            <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
+        </p>
+    </div>
+</div>
 </body>
 </html>
