@@ -5,124 +5,186 @@
     <meta name="viewport" content="width=760">
     <title>Module Version</title>
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background: #f5f5f5;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f7f8fa;
             color: #333;
+            line-height: 1.6;
         }
-        .banner img {
-            width: 100%;
-            display: block;
-            margin: 0;
-            padding: 0;
+        .banner img { width: 100%; display: block; }
+
+        .page { max-width: 900px; margin: 0 auto; background: #fff; padding-bottom: 40px; }
+
+        .tagline {
+            text-align: center;
+            color: #555;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 32px auto;
+            padding: 0 20px;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
+
+        .section { padding: 0 30px 36px; }
+
+        .section-heading {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #50376e;
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8e0f0;
         }
+
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
         }
+
         .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #fff;
+            border-radius: 12px;
             padding: 20px;
-            background: #f8f9fa;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #50376e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .feature-body h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 4px;
+        }
+
+        .feature-body p {
+            font-size: 0.875rem;
+            color: #718096;
+            line-height: 1.5;
+        }
+
+        .install-section { padding: 0 30px 36px; }
+
+        .install-box {
+            background: #ede8f5;
+            border-left: 4px solid #50376e;
             border-radius: 8px;
-            border-left: 4px solid #3498db;
+            padding: 24px 28px;
         }
-        .feature h3 {
-            color: #2c3e50;
-            margin-top: 0;
+
+        .install-box ol {
+            padding-left: 20px;
+            color: #333;
+            font-size: 0.93rem;
         }
-        .feature-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        .installation {
-            background: #e8f5e8;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #27ae60;
-            margin: 30px 0;
-        }
-        .installation h2 {
-            color: #27ae60;
-            margin-top: 0;
-        }
+
+        .install-box li { margin-bottom: 8px; }
+
         .footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
+            padding: 20px 30px 0;
             border-top: 1px solid #eee;
-            color: #999;
-            font-size: 0.9em;
+            color: #aaa;
+            font-size: 0.82rem;
         }
-        .footer a { color: #3498db; text-decoration: none; }
+
+        .footer a { color: #50376e; text-decoration: none; }
     </style>
 </head>
 <body>
+<div class="page">
     <div class="banner">
         <img src="banner.png" alt="Module Version">
     </div>
 
-    <div class="container">
+    <p class="tagline">
+        Track installed module versions, detect available upgrades, and maintain a complete
+        audit trail of all module lifecycle events in your Odoo instance.
+    </p>
+
+    <div class="section">
+        <h2 class="section-heading">Key Features</h2>
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">&#128202;</div>
-                <h3>Version Display</h3>
-                <p>Shows current installed version for all modules with upgrade detection.</p>
+                <div class="icon-circle">&#128202;</div>
+                <div class="feature-body">
+                    <h3>Version Display</h3>
+                    <p>Shows the current installed version for all modules directly in the Apps list.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#128260;</div>
-                <h3>Upgrade Detection</h3>
-                <p>Automatically detects available upgrades by comparing disk vs database versions.</p>
+                <div class="icon-circle">&#128260;</div>
+                <div class="feature-body">
+                    <h3>Upgrade Detection</h3>
+                    <p>Compares the disk version (manifest) against the database version to flag available upgrades.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#128221;</div>
-                <h3>Complete History</h3>
-                <p>Track all installations, upgrades, and uninstallations with full audit trail.</p>
+                <div class="icon-circle">&#128221;</div>
+                <div class="feature-body">
+                    <h3>Complete History</h3>
+                    <p>Full audit trail of every installation, upgrade, and uninstallation with timestamps and users.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#128269;</div>
-                <h3>Search &amp; Filter</h3>
-                <p>Find operations by module name, type, date, or user.</p>
+                <div class="icon-circle">&#128269;</div>
+                <div class="feature-body">
+                    <h3>Search &amp; Filter</h3>
+                    <p>Filter module history by operation type (Install / Upgrade / Uninstall), date, or user.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#128100;</div>
-                <h3>User Tracking</h3>
-                <p>See who performed each module operation for accountability.</p>
+                <div class="icon-circle">&#128100;</div>
+                <div class="feature-body">
+                    <h3>User Tracking</h3>
+                    <p>See exactly who performed each operation — essential for accountability in shared environments.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#128250;</div>
-                <h3>App Store Check</h3>
-                <p>Check for newer versions available in the Odoo App Store.</p>
+                <div class="icon-circle">&#128250;</div>
+                <div class="feature-body">
+                    <h3>App Store Check</h3>
+                    <p>Check for newer versions available in the Odoo App Store directly from the module list.</p>
+                </div>
             </div>
-        </div>
-
-        <div class="installation">
-            <h2>Installation &amp; Usage</h2>
-            <ol>
-                <li>Download and install the module from the Apps menu.</li>
-                <li>Version information appears automatically on all modules.</li>
-                <li>View module history at Settings &#8594; Technical &#8594; Module Upgrade History.</li>
-                <li>Track all changes with a complete audit trail.</li>
-            </ol>
-        </div>
-
-        <div class="footer">
-            <p>
-                Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a> &mdash;
-                Free &amp; Open Source (LGPL-3) &mdash;
-                <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
-            </p>
         </div>
     </div>
+
+    <div class="install-section">
+        <h2 class="section-heading">Installation &amp; Usage</h2>
+        <div class="install-box">
+            <ol>
+                <li>Install the module from the Apps menu.</li>
+                <li>Version information appears automatically in the module list.</li>
+                <li>View the full history at <strong>Settings &#8594; Technical &#8594; Module Upgrade History</strong>.</li>
+                <li>Use the App Store Check button to compare against the latest available versions.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>
+            Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a>
+            &mdash; Free &amp; Open Source (LGPL-3) &mdash;
+            <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
+        </p>
+    </div>
+</div>
 </body>
 </html>

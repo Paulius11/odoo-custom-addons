@@ -5,114 +5,172 @@
     <meta name="viewport" content="width=760">
     <title>User Permission Copy</title>
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background: #f5f5f5;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f7f8fa;
             color: #333;
+            line-height: 1.6;
         }
-        .banner img {
-            width: 100%;
-            display: block;
-            margin: 0;
-            padding: 0;
+        .banner img { width: 100%; display: block; }
+
+        .page { max-width: 900px; margin: 0 auto; background: #fff; padding-bottom: 40px; }
+
+        .tagline {
+            text-align: center;
+            color: #555;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 32px auto;
+            padding: 0 20px;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
+
+        .section { padding: 0 30px 36px; }
+
+        .section-heading {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #62398c;
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ede0f5;
         }
+
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
         }
+
         .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #fff;
+            border-radius: 12px;
             padding: 20px;
-            background: #f8f9fa;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #62398c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .feature-body h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 4px;
+        }
+
+        .feature-body p {
+            font-size: 0.875rem;
+            color: #718096;
+            line-height: 1.5;
+        }
+
+        .install-section { padding: 0 30px 36px; }
+
+        .install-box {
+            background: #f4eefa;
+            border-left: 4px solid #62398c;
             border-radius: 8px;
-            border-left: 4px solid #3498db;
+            padding: 24px 28px;
         }
-        .feature h3 {
-            color: #2c3e50;
-            margin-top: 0;
+
+        .install-box ol {
+            padding-left: 20px;
+            color: #333;
+            font-size: 0.93rem;
         }
-        .feature-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        .installation {
-            background: #e8f5e8;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #27ae60;
-            margin: 30px 0;
-        }
-        .installation h2 {
-            color: #27ae60;
-            margin-top: 0;
-        }
+
+        .install-box li { margin-bottom: 8px; }
+
         .footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
+            padding: 20px 30px 0;
             border-top: 1px solid #eee;
-            color: #999;
-            font-size: 0.9em;
+            color: #aaa;
+            font-size: 0.82rem;
         }
-        .footer a { color: #3498db; text-decoration: none; }
+
+        .footer a { color: #62398c; text-decoration: none; }
     </style>
 </head>
 <body>
+<div class="page">
     <div class="banner">
         <img src="banner.png" alt="User Permission Copy">
     </div>
 
-    <div class="container">
+    <p class="tagline">
+        Streamline user onboarding by copying all permissions from one user to another
+        in seconds — no manual group assignment needed.
+    </p>
+
+    <div class="section">
+        <h2 class="section-heading">Key Features</h2>
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">&#128101;</div>
-                <h3>Quick Replication</h3>
-                <p>Copy all permissions from a source user to target users in seconds.</p>
+                <div class="icon-circle">&#128101;</div>
+                <div class="feature-body">
+                    <h3>Quick Replication</h3>
+                    <p>Copy all security groups and access rights from a source user to one or more targets.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#127919;</div>
-                <h3>Wizard Interface</h3>
-                <p>Easy-to-use guided process with clear steps and confirmation.</p>
+                <div class="icon-circle">&#127919;</div>
+                <div class="feature-body">
+                    <h3>Wizard Interface</h3>
+                    <p>Simple guided wizard with clear steps — select source, select targets, confirm.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#128274;</div>
-                <h3>Complete Copy</h3>
-                <p>Transfers all security groups, access rights, and rule assignments.</p>
+                <div class="icon-circle">&#128274;</div>
+                <div class="feature-body">
+                    <h3>Complete Transfer</h3>
+                    <p>Transfers all security groups, access rights, and record rule assignments at once.</p>
+                </div>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#9989;</div>
-                <h3>Safety First</h3>
-                <p>Confirmation dialog prevents accidental permission changes.</p>
+                <div class="icon-circle">&#9989;</div>
+                <div class="feature-body">
+                    <h3>Safe by Design</h3>
+                    <p>Confirmation dialog prevents accidental changes. Existing permissions are replaced, not merged.</p>
+                </div>
             </div>
-        </div>
-
-        <div class="installation">
-            <h2>Installation &amp; Usage</h2>
-            <ol>
-                <li>Download and install the module from the Apps menu.</li>
-                <li>Navigate to Settings &#8594; Users &amp; Companies &#8594; Users.</li>
-                <li>Select a user and click "Copy Permissions".</li>
-                <li>Choose target users and confirm.</li>
-            </ol>
-        </div>
-
-        <div class="footer">
-            <p>
-                Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a> &mdash;
-                Free &amp; Open Source (LGPL-3) &mdash;
-                <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
-            </p>
         </div>
     </div>
+
+    <div class="install-section">
+        <h2 class="section-heading">Installation &amp; Usage</h2>
+        <div class="install-box">
+            <ol>
+                <li>Install the module from the Apps menu.</li>
+                <li>Go to <strong>Settings &#8594; Users &amp; Companies &#8594; Users</strong>.</li>
+                <li>Select a user and click <strong>Copy Permissions</strong>.</li>
+                <li>Choose the target user(s) and confirm.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>
+            Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a>
+            &mdash; Free &amp; Open Source (LGPL-3) &mdash;
+            <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
+        </p>
+    </div>
+</div>
 </body>
 </html>
