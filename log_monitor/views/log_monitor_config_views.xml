@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action to open General Settings on the Log Monitor section -->
+    <record id="action_open_log_monitor_settings" model="ir.actions.act_window">
+        <field name="name">Log Monitor Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'log_monitor', 'bin_size': False}</field>
+    </record>
+
+    <!-- Server action to open log viewer from menu -->
+    <record id="action_open_log_viewer" model="ir.actions.server">
+        <field name="name">View Log File</field>
+        <field name="model_id" ref="model_log_monitor_config"/>
+        <field name="state">code</field>
+        <field name="code">
+cfg = env['log.monitor.config']._get_config()
+action = cfg.action_view_log()
+        </field>
+    </record>
+
+</odoo>

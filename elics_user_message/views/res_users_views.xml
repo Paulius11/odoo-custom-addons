@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_res_users_form_inherit_user_message" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.elics_user_message</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences']" position="inside">
+                <separator string="Send Message to User"/>
+                <group>
+                    <field name="user_message" widget="html" colspan="2"/>
+                    <field name="user_message_enabled" string="Send Now"/>
+                </group>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="%(elics_user_message.action_user_message_wizard)d"
+                        type="action"
+                        string="Send Message"
+                        context="{'default_user_id': active_id}"
+                        class="btn-secondary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

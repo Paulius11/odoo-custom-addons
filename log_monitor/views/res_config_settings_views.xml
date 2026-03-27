@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_inherit_log_monitor" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.log.monitor</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Log Monitor" string="Log Monitor" name="log_monitor"
+                     groups="base.group_system">
+                    <block title="Log File" name="log_monitor_file">
+                        <setting id="log_monitor_file_path"
+                                 help="Path to the Odoo log file. Leave blank to auto-detect from Odoo config.">
+                            <field name="log_monitor_file_path"
+                                   placeholder="/opt/odoo/odoo17/conf/odoo-systemd.log"/>
+                        </setting>
+                        <setting id="log_monitor_view_lines"
+                                 help="Number of lines to load when opening the log file viewer.">
+                            <field name="log_monitor_view_lines"/>
+                            <label for="log_monitor_view_lines" class="o_form_label"/> lines
+                        </setting>
+                    </block>
+
+                    <block title="Capture" name="log_monitor_capture">
+                        <setting id="log_monitor_capture_errors"
+                                 help="Store ERROR level log events. CRITICAL is always captured.">
+                            <field name="log_monitor_capture_errors"/>
+                        </setting>
+                        <setting id="log_monitor_capture_warnings"
+                                 help="Store WARNING level log events.">
+                            <field name="log_monitor_capture_warnings"/>
+                        </setting>
+                        <setting id="log_monitor_retention_days"
+                                 help="Events older than this many days are automatically deleted on each scan.">
+                            <field name="log_monitor_retention_days"/>
+                            <label for="log_monitor_retention_days" class="o_form_label"/> days retention
+                        </setting>
+                    </block>
+
+                    <block title="Email Alerts" name="log_monitor_email">
+                        <setting id="log_monitor_alert_on_error"
+                                 help="Send an email when new ERROR events are detected.">
+                            <field name="log_monitor_alert_on_error"/>
+                            <div class="row mt-2" invisible="not log_monitor_alert_on_error">
+                                <label for="log_monitor_alert_email"/>
+                                <field name="log_monitor_alert_email"
+                                       placeholder="admin@example.com, ops@example.com"/>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

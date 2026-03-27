@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_user_activity_root"
+              name="User Activity"
+              parent="base.next_id_5"
+              groups="base.group_system"
+              sequence="90"/>
+
+    <menuitem id="menu_user_session_log"
+              name="Session History"
+              parent="menu_user_activity_root"
+              action="action_user_session_log"
+              sequence="10"/>
+
+    <menuitem id="menu_log_import_wizard"
+              name="Import from Log File"
+              parent="menu_user_activity_root"
+              action="action_log_import_wizard"
+              sequence="20"/>
+</odoo>
