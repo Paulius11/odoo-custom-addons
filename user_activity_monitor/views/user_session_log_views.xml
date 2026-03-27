@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- LIST VIEW -->
+    <record id="view_user_session_log_list" model="ir.ui.view">
+        <field name="name">user.session.log.list</field>
+        <field name="model">user.session.log</field>
+        <field name="arch" type="xml">
+            <tree string="User Sessions"
+                  decoration-success="logout_time == False"
+                  decoration-muted="timed_out == True">
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="login_time"/>
+                <field name="logout_time" optional="show"/>
+                <field name="duration" widget="float_time" string="Duration" optional="show"/>
+                <field name="ip_address" optional="show"/>
+                <field name="timed_out" optional="show"/>
+                <field name="login_hour" optional="hide"/>
+                <field name="user_agent" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="view_user_session_log_form" model="ir.ui.view">
+        <field name="name">user.session.log.form</field>
+        <field name="model">user.session.log</field>
+        <field name="arch" type="xml">
+            <form string="Session Detail" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group string="User">
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="ip_address"/>
+                            <field name="user_agent"/>
+                        </group>
+                        <group string="Session Timing">
+                            <field name="login_time"/>
+                            <field name="logout_time"/>
+                            <field name="duration" widget="float_time" string="Duration"/>
+                            <field name="timed_out"/>
+                        </group>
+                    </group>
+                    <group string="Analysis">
+                        <field name="login_hour" help="Hour of login (UTC, 0-23)"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="view_user_session_log_search" model="ir.ui.view">
+        <field name="name">user.session.log.search</field>
+        <field name="model">user.session.log</field>
+        <field name="arch" type="xml">
+            <search string="User Sessions">
+                <field name="user_id"/>
+                <field name="ip_address"/>
+
+                <filter name="filter_active"
+                        string="Currently Active"
+                        domain="[('logout_time', '=', False)]"/>
+                <filter name="filter_timed_out"
+                        string="Timed Out (No Explicit Logout)"
+                        domain="[('timed_out', '=', True)]"/>
+
+                <separator/>
+
+                <filter name="filter_night"
+                        string="Night Sessions (00:00-06:00 UTC)"
+                        domain="[('login_hour', '&lt;', 6)]"/>
+
+                <separator/>
+
+                <filter name="filter_today"
+                        string="Today"
+                        domain="[('login_time', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="filter_week"
+                        string="This Week"
+                        domain="[('login_time', '&gt;=', (context_today() - relativedelta(weeks=1)).strftime('%Y-%m-%d'))]"/>
+                <filter name="filter_month"
+                        string="This Month"
+                        domain="[('login_time', '&gt;=', (context_today() - relativedelta(months=1)).strftime('%Y-%m-%d'))]"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="group_user"
+                            string="User"
+                            context="{'group_by': 'user_id'}"/>
+                    <filter name="group_date"
+                            string="Login Date"
+                            context="{'group_by': 'login_time:day'}"/>
+                    <filter name="group_hour"
+                            string="Hour of Day"
+                            context="{'group_by': 'login_hour'}"/>
+                    <filter name="group_ip"
+                            string="IP Address"
+                            context="{'group_by': 'ip_address'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="action_user_session_log" model="ir.actions.act_window">
+        <field name="name">Session History</field>
+        <field name="res_model">user.session.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_filter_month': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No sessions recorded yet
+            </p>
+            <p>
+                Sessions appear here as users log in and out.
+                Use the log file import wizard to backfill historical data.
+            </p>
+        </field>
+    </record>
+
+</odoo>

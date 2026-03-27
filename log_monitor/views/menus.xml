@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_log_monitor_root"
+              name="Log Monitor"
+              parent="base.menu_administration"
+              groups="base.group_system"
+              sequence="95"/>
+
+    <menuitem id="menu_log_event"
+              name="Error Events"
+              parent="menu_log_monitor_root"
+              action="action_log_event"
+              sequence="10"/>
+
+    <menuitem id="menu_log_viewer"
+              name="View Log File"
+              parent="menu_log_monitor_root"
+              action="action_open_log_viewer"
+              sequence="20"/>
+
+    <menuitem id="menu_log_monitor_configuration"
+              name="Configuration"
+              parent="menu_log_monitor_root"
+              action="action_open_log_monitor_settings"
+              groups="base.group_system"
+              sequence="30"/>
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_session_log_system,user.session.log.system,model_user_session_log,base.group_system,1,1,1,1
+access_user_session_log_user,user.session.log.user,model_user_session_log,base.group_user,1,0,0,0
+access_log_import_wizard_system,user.activity.log.import.wizard,model_user_activity_log_import_wizard,base.group_system,1,1,1,1
