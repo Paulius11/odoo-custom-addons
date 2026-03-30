@@ -8,7 +8,7 @@
                 <strong t-esc="currentAnnouncement.name"/>
             </div>
             <div class="ae_banner_actions">
-                <button class="btn btn-sm ae_banner_btn" t-on-click="openAnnouncement">
+                <button class="btn btn-sm ae_banner_btn" t-on-click.stop="openAnnouncement">
                     Read more
                 </button>
             </div>
