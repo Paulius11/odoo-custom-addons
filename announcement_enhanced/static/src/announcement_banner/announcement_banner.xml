@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
     <t t-name="announcement_enhanced.AnnouncementBanner">
-        <div t-if="shouldShow" class="ae_announcement_banner">
+        <div t-if="shouldShow" class="ae_announcement_banner" t-on-click="openAnnouncement">
             <div class="ae_banner_content">
                 <i class="fa fa-bullhorn me-2"/>
                 <strong t-esc="currentAnnouncement.name"/>
