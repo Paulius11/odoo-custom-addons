@@ -1,0 +1,51 @@
+.ae_announcement_banner {
+    background: #374151;
+    border-top: 3px solid #dc3545;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.95em;
+    position: relative;
+    z-index: 10;
+
+    .ae_banner_content {
+        text-align: center;
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        a {
+            color: #60a5fa;
+            text-decoration: underline;
+            &:hover { color: #93c5fd; }
+        }
+
+        b, strong { font-weight: 600; }
+        i, em { font-style: italic; }
+    }
+
+    .ae_banner_separator {
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0 4px;
+    }
+
+    .ae_banner_actions {
+        position: absolute;
+        right: 8px;
+    }
+
+    .ae_banner_btn {
+        color: rgba(255, 255, 255, 0.6);
+        background: transparent;
+        border: none;
+        padding: 2px 8px;
+
+        &:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+}

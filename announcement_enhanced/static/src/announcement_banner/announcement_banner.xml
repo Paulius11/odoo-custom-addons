@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="announcement_enhanced.AnnouncementBanner">
+        <div t-if="shouldShow" class="ae_announcement_banner">
+            <div class="ae_banner_content">
+                <strong class="ae_banner_title" t-esc="currentAnnouncement.name"/>
+                <span class="ae_banner_separator"> — </span>
+                <span class="ae_banner_body" t-out="announcementContent"/>
+            </div>
+            <div class="ae_banner_actions">
+                <button class="btn btn-sm ae_banner_btn" t-on-click="dismiss" title="Mark as read">
+                    <i class="fa fa-times"/>
+                </button>
+            </div>
+        </div>
+    </t>
+
+    <!-- Inject banner below the navbar -->
+    <t t-name="announcement_enhanced.NavBar"
+       t-inherit="web.NavBar"
+       t-inherit-mode="extension">
+        <xpath expr="//nav" position="after">
+            <AnnouncementBanner/>
+        </xpath>
+    </t>
+
+</templates>
