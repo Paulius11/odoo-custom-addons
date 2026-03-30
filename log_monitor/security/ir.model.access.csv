@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_log_event_system,log.event.system,model_log_event,base.group_system,1,1,1,1
-access_log_monitor_config_system,log.monitor.config.system,model_log_monitor_config,base.group_system,1,1,1,1
-access_log_viewer_system,log.viewer.system,model_log_viewer,base.group_system,1,1,1,1
