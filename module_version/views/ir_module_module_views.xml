@@ -42,35 +42,32 @@
                 <field name="is_recently_upgraded"/>
             </xpath>
 
-            <!-- Add version text inside code tag for technical name (admin only) -->
-            <xpath expr="//p[hasclass('oe_module_name')]/code/field[@name='name']" position="after">
+            <!-- Make title a flex row so version sits top-right without clipping -->
+            <xpath expr="//h4[hasclass('o_kanban_record_title')]" position="attributes">
+                <attribute name="class">o_kanban_record_title oe_module_title_flex</attribute>
+            </xpath>
+
+            <!-- Inject version as flex child after title text -->
+            <xpath expr="//h4[hasclass('o_kanban_record_title')]/field[@name='shortdesc']" position="after">
                 <t t-if="record.state.raw_value == 'installed'" groups="base.group_system">
-                    <span t-attf-class="oe_version_text {{record.has_version_upgrade.raw_value and 'version-upgrade' or ''}}"
+                    <span t-attf-class="oe_version_sup {{record.has_version_upgrade.raw_value and 'version-upgrade' or ''}}"
                           t-att-title="record.version_badge_text.value">
                         <t t-out="record.version_badge_text.value"/>
                     </span>
-                    <t t-if="record.is_newly_added.raw_value">
-                        <span class="oe_badge_new">NEW</span>
-                    </t>
-                    <t t-if="record.is_recently_upgraded.raw_value">
-                        <span class="oe_badge_upgraded">UPGRADED</span>
-                    </t>
                 </t>
             </xpath>
 
-            <!-- Add version after summary for non-developer admin users -->
-            <xpath expr="//p[hasclass('oe_module_name')]/field[@name='summary']" position="after">
-                <t t-if="record.state.raw_value == 'installed'" groups="base.group_system,!base.group_no_one">
-                    <br/>
-                    <span t-attf-class="oe_version_text_float {{record.has_version_upgrade.raw_value and 'version-upgrade' or ''}}"
-                          t-att-title="record.version_badge_text.value">
-                        <t t-out="record.version_badge_text.value"/>
-                    </span>
+            <!-- NEW/UPGRADED/UPDATE badges in action bar (sits inline with Module Info / Learn More) -->
+            <xpath expr="//div[hasclass('oe_module_action')]" position="inside">
+                <t t-if="record.state.raw_value == 'installed'" groups="base.group_system">
+                    <t t-if="record.has_version_upgrade.raw_value">
+                        <span class="mv_badge mv_badge_update">NEW VERSION</span>
+                    </t>
                     <t t-if="record.is_newly_added.raw_value">
-                        <span class="oe_badge_new">NEW</span>
+                        <span class="mv_badge mv_badge_new">ADDED</span>
                     </t>
                     <t t-if="record.is_recently_upgraded.raw_value">
-                        <span class="oe_badge_upgraded">UPGRADED</span>
+                        <span class="mv_badge mv_badge_upgraded">UPGRADED</span>
                     </t>
                 </t>
             </xpath>
@@ -118,8 +115,12 @@
             <xpath expr="//page[@name='information']//field[@name='name']" position="after">
                 <field name="module_path"/>
             </xpath>
+            <xpath expr="//page[@name='information']//field[@name='installed_version']" position="after">
+                <field name="latest_version" readonly="1"/>
+            </xpath>
         </field>
     </record>
+
 
     <!-- Add Upgrade History notebook tab to module form view -->
     <record id="view_module_form_upgrade_history" model="ir.ui.view">
