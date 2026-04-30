@@ -10,9 +10,7 @@
                 <separator/>
                 <filter name="updates_available" string="Updates Available"
                         domain="[('state', '=', 'installed'), ('has_version_upgrade', '=', True)]"/>
-                <filter name="recently_operated" string="Recently Installed/Upgraded"
-                        domain="[('last_operation_date', '!=', False)]"/>
-                <filter name="newly_added" string="Newly Added"
+<filter name="newly_added" string="Newly Added"
                         domain="[('is_newly_added', '=', True)]"/>
                 <filter name="recently_upgraded" string="Recently Upgraded"
                         domain="[('is_recently_upgraded', '=', True)]"/>
@@ -40,21 +38,6 @@
                 <field name="has_version_upgrade"/>
                 <field name="is_newly_added"/>
                 <field name="is_recently_upgraded"/>
-            </xpath>
-
-            <!-- Make title a flex row so version sits top-right without clipping -->
-            <xpath expr="//h4[hasclass('o_kanban_record_title')]" position="attributes">
-                <attribute name="class">o_kanban_record_title oe_module_title_flex</attribute>
-            </xpath>
-
-            <!-- Inject version as flex child after title text -->
-            <xpath expr="//h4[hasclass('o_kanban_record_title')]/field[@name='shortdesc']" position="after">
-                <t t-if="record.state.raw_value == 'installed'" groups="base.group_system">
-                    <span t-attf-class="oe_version_sup {{record.has_version_upgrade.raw_value and 'version-upgrade' or ''}}"
-                          t-att-title="record.version_badge_text.value">
-                        <t t-out="record.version_badge_text.value"/>
-                    </span>
-                </t>
             </xpath>
 
             <!-- NEW/UPGRADED/UPDATE badges in action bar (sits inline with Module Info / Learn More) -->

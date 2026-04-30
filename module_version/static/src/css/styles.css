@@ -1,27 +1,4 @@
-/* Version badge styling for module cards in Apps view */
-
-.oe_module_title_flex {
-    display: flex !important;
-    align-items: flex-start;
-    gap: 4px;
-}
-
-.oe_version_sup {
-    flex-shrink: 0;
-    align-self: flex-start;
-    font-size: 8px;
-    font-weight: 600;
-    color: #9e9e9e;
-    line-height: 1;
-    margin-top: 2px;
-    user-select: none;
-    -webkit-user-select: none;
-    white-space: nowrap;
-}
-
-.oe_version_sup.version-upgrade {
-    color: #28a745;
-}
+/* Module version badge styling for Apps kanban cards */
 
 .mv_badge {
     display: inline-block !important;
