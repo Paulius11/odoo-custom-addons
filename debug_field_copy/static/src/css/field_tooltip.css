@@ -1,0 +1,130 @@
+/* Debug Field Copy - Tooltip Styles */
+
+/* Copyable tooltip container */
+.o-tooltip--copyable {
+    min-width: 250px;
+}
+
+/* Pin row at top */
+.o-tooltip--pin-row {
+    display: flex !important;
+    justify-content: flex-end;
+    padding: 2px 0 6px 0 !important;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    list-style: none !important;
+}
+
+/* Copy row layout */
+.o-tooltip--copy-row {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.o-tooltip--copy-row .o-tooltip--technical--title {
+    flex-shrink: 0;
+}
+
+.o-tooltip--copy-row .o-tooltip--value {
+    flex: 1;
+    word-break: break-all;
+    cursor: text;
+    user-select: text;
+}
+
+/* Copy button */
+.o-tooltip--copy-btn {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    font-size: 12px;
+}
+
+.o-tooltip--copy-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.o-tooltip--copy-btn:active {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Copy success state */
+.o-tooltip--copy-btn.o-tooltip--copied {
+    color: #4caf50;
+}
+
+.o-tooltip--copy-btn.o-tooltip--copied i {
+    animation: copySuccess 0.3s ease;
+}
+
+@keyframes copySuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Pin button */
+.o-tooltip--pin-btn,
+.o-tooltip--close-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.o-tooltip--pin-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.o-tooltip--close-btn {
+    color: #ff6b6b;
+}
+
+.o-tooltip--close-btn:hover {
+    background: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+}
+
+/* Pinned tooltip state */
+.o_popover.o-tooltip--pinned {
+    pointer-events: auto !important;
+    z-index: 10000 !important;
+}
+
+.o_popover.o-tooltip--pinned .o-tooltip {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Make tooltip text selectable when pinned */
+.o-tooltip--pinned .o-tooltip--copyable {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+}
+
+/* Hover effect on value to indicate it's copyable */
+.o-tooltip--copy-row:hover .o-tooltip--value {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    padding: 0 4px;
+    margin: 0 -4px;
+}
+
+/* Selection styling */
+.o-tooltip--copyable ::selection {
+    background: rgba(255, 255, 255, 0.3);
+}
