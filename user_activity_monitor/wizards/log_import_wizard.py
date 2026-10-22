@@ -5,6 +5,7 @@ from datetime import datetime
 
 from odoo import fields, models
 from odoo.exceptions import UserError
+from odoo.tools import config
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -24,7 +25,7 @@ class LogImportWizard(models.TransientModel):
 
     log_path = fields.Char(
         string='Log File Path',
-        default='/opt/odoo/odoo17/conf/odoo-systemd.log',
+        default=lambda self: config.get('logfile') or '',
         required=True,
     )
     import_count = fields.Integer(string='Imported', readonly=True)
