@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="language_switcher.LanguageSwitcher" owl="1">
-        <Dropdown 
-            togglerClass="'o_language_switcher d-flex align-items-center h-100 px-0 text-reset'"
-            position="'bottom-end'"
-            menuClass="'o_language_menu'">
-            <t t-set-slot="toggler">
+        <!-- 18.0 Dropdown: the toggler is the default slot, the items go in the "content" slot -->
+        <Dropdown position="'bottom-end'" menuClass="'o_language_menu'">
+            <button class="o_language_switcher d-flex align-items-center h-100 px-0 text-reset">
                 <i class="fa fa-language fa-lg" role="img" aria-label="Language" title="Switch Language"/>
-            </t>
-
-            <t t-foreach="state.languages" t-as="language" t-key="language.code">
-                <DropdownItem 
-                    onSelected="() => this.switchLanguage(language.code)">
-                    <div class="d-flex align-items-center">
-                        <span t-esc="language.name"/>
-                        <i t-if="language.code === state.currentLang" class="fa fa-check ms-auto" role="img" aria-label="Selected" title="Selected Language"/>
-                    </div>
-                </DropdownItem>
+            </button>
+            <t t-set-slot="content">
+                <t t-foreach="state.languages" t-as="language" t-key="language.code">
+                    <DropdownItem
+                        onSelected="() => this.switchLanguage(language.code)">
+                        <div class="d-flex align-items-center">
+                            <span t-esc="language.name"/>
+                            <i t-if="language.code === state.currentLang" class="fa fa-check ms-auto" role="img" aria-label="Selected" title="Selected Language"/>
+                        </div>
+                    </DropdownItem>
+                </t>
             </t>
         </Dropdown>
     </t>

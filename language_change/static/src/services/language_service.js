@@ -3,14 +3,16 @@
 import { registry } from "@web/core/registry";
 import { browser } from "@web/core/browser/browser";
 import { _t } from "@web/core/l10n/translation";
+import { rpc } from "@web/core/network/rpc";
+import { user } from "@web/core/user";
 
 /**
  * Service to handle language switching functionality
  */
 export const languageService = {
-    dependencies: ["rpc", "notification", "user"],
+    dependencies: ["notification"],
 
-    start(env, { rpc, notification, user }) {
+    start(env, { notification }) {
         let languages = null;
 
         return {
@@ -75,8 +77,8 @@ export const languageService = {
              * @returns {String} langCode
              */
             getCurrentLanguage() {
-                // Use user service instead of session
-                return user.lang || 'en_US';
+                // user.lang is a browser locale ("en-US"); res.lang codes look like "en_US"
+                return user.context.lang || 'en_US';
             }
         };
     },
