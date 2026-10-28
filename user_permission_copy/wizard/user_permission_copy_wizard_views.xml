@@ -69,6 +69,6 @@
         <field name="res_model">user.permission.copy.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
     </record>
 </odoo>

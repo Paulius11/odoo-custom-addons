@@ -49,7 +49,7 @@ class ResUsers(models.Model):
         
         # Base fields that we always want to copy if they exist
         base_fields = [
-            'groups_id',           # User groups (main permissions)
+            'group_ids',           # User groups (main permissions)
             'company_ids',         # Multi-company access
             'company_id',          # Default company
         ]
@@ -194,8 +194,8 @@ class ResUsers(models.Model):
             
             # Prepare success message
             success_details = []
-            if 'groups_id' in copied_fields:
-                group_count = len(self.groups_id)
+            if 'group_ids' in copied_fields:
+                group_count = len(self.group_ids)
                 success_details.append(_("%d security groups") % group_count)
             if 'company_ids' in copied_fields:
                 company_count = len(self.company_ids)
@@ -236,7 +236,7 @@ class ResUsers(models.Model):
                 ))
             elif 'company_id' in error_msg:
                 raise UserError(_("Failed to copy company settings. Please check company access rights. Error: %s") % error_msg)
-            elif 'groups_id' in error_msg:
+            elif 'group_ids' in error_msg:
                 raise UserError(_("Failed to copy security groups. Please check group permissions. Error: %s") % error_msg)
             else:
                 raise UserError(_("Failed to copy permissions: %s") % error_msg)

@@ -31,13 +31,13 @@ class UserPermissionCopyWizard(models.TransientModel):
     # Display fields for user information
     source_user_groups = fields.Many2many(
         'res.groups',
-        related='source_user_id.groups_id',
+        related='source_user_id.group_ids',
         string='Source User Groups',
         readonly=True
     )
     target_user_groups = fields.Many2many(
         'res.groups',
-        related='target_user_id.groups_id',
+        related='target_user_id.group_ids',
         string='Current Target User Groups',
         readonly=True
     )
