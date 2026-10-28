@@ -43,7 +43,7 @@
             </xpath>
 
             <!-- Add version text inside code tag for technical name (admin only) -->
-            <xpath expr="//p[hasclass('oe_module_name')]/code/field[@name='name']" position="after">
+            <xpath expr="//main/p/code/field[@name='name']" position="after">
                 <t t-if="record.state.raw_value == 'installed'" groups="base.group_system">
                     <span t-attf-class="oe_version_text {{record.has_version_upgrade.raw_value and 'version-upgrade' or ''}}"
                           t-att-title="record.version_badge_text.value">
@@ -59,7 +59,7 @@
             </xpath>
 
             <!-- Add version after summary for non-developer admin users -->
-            <xpath expr="//p[hasclass('oe_module_name')]/field[@name='summary']" position="after">
+            <xpath expr="//main/p/field[@name='summary']" position="after">
                 <t t-if="record.state.raw_value == 'installed'" groups="base.group_system,!base.group_no_one">
                     <br/>
                     <span t-attf-class="oe_version_text_float {{record.has_version_upgrade.raw_value and 'version-upgrade' or ''}}"
@@ -84,7 +84,7 @@
         <field name="model">ir.module.module</field>
         <field name="inherit_id" ref="base.module_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="default_order">last_operation_date desc</attribute>
             </xpath>
             <xpath expr="//field[@name='state']" position="after">
@@ -130,7 +130,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="History" groups="base.group_system">
                     <field name="upgrade_history_ids">
-                        <tree create="false">
+                        <list create="false">
                             <field name="upgrade_date"/>
                             <field name="operation_type"/>
                             <field name="from_version"/>
@@ -139,7 +139,7 @@
                             <field name="status" decoration-success="status=='success'"
                                    decoration-danger="status=='failed'"
                                    decoration-warning="status=='pending'"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
