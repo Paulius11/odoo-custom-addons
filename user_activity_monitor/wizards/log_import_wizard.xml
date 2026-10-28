@@ -5,6 +5,7 @@
         <field name="model">user.activity.log.import.wizard</field>
         <field name="arch" type="xml">
             <form string="Import Sessions from Log File">
+                <field name="state" invisible="1"/>
                 <group>
                     <field name="log_path" readonly="state == 'done'"/>
                 </group>

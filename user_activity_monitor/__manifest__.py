@@ -1,6 +1,6 @@
 {
     'name': 'User Activity Monitor',
-    'version': '17.0.1.0.1',
+    'version': '17.0.1.0.2',
     'category': 'Technical',
     'summary': 'Track user login sessions and detect unusual activity patterns',
     'author': 'Paulius Gaizauskas',
