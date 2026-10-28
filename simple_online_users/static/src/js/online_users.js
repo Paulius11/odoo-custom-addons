@@ -2,6 +2,8 @@
 
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
+import { rpc } from "@web/core/network/rpc";
+import { user } from "@web/core/user";
 import { Component, useState, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
 
 const UPDATE_INTERVAL = 30000; // Update every 30 seconds
@@ -18,8 +20,9 @@ class OnlineUsersSystray extends Component {
             users: [],
         });
         
-        this.rpc = useService("rpc");
-        this.userService = useService("user");
+        // 18.0 dropped the "rpc" and "user" services: both are plain imports now
+        this.rpc = rpc;
+        this.userService = user;
         this.notification = useService("notification");
         
         this.intervalId = null;

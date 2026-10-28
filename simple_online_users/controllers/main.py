@@ -17,7 +17,7 @@ class OnlineUsersController(http.Controller):
             current_time = datetime.now()
             
             # Find or create presence record
-            presence = request.env['bus.presence'].sudo().search([
+            presence = request.env['mail.presence'].sudo().search([
                 ('user_id', '=', current_user.id)
             ], limit=1)
             
@@ -32,7 +32,7 @@ class OnlineUsersController(http.Controller):
                     })
             else:
                 # Create new presence record
-                request.env['bus.presence'].sudo().create({
+                request.env['mail.presence'].sudo().create({
                     'user_id': current_user.id,
                     'last_poll': current_time,
                     'last_presence': current_time,
@@ -59,7 +59,7 @@ class OnlineUsersController(http.Controller):
             
             for user in active_users:
                 # Get the most recent presence record for this user
-                presence = request.env['bus.presence'].sudo().search([
+                presence = request.env['mail.presence'].sudo().search([
                     ('user_id', '=', user.id)
                 ], limit=1, order='last_poll desc')
                 
