@@ -1,176 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=760">
-    <title>User Permission Copy</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #f7f8fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        .banner img { width: 100%; display: block; }
+<section style="max-width:760px; margin:0 auto; font-family:Inter, 'Segoe UI', Roboto, Arial, sans-serif; color:#1f2937; line-height:1.6;">
 
-        .page { max-width: 900px; margin: 0 auto; background: #fff; padding-bottom: 40px; }
+  <img src="banner.png" alt="User Permission Copy" style="width:100%; display:block; border-radius:12px;">
 
-        .tagline {
-            text-align: center;
-            color: #555;
-            font-size: 1.05rem;
-            max-width: 600px;
-            margin: 32px auto;
-            padding: 0 20px;
-        }
+  <p style="text-align:center; font-size:18px; color:#4b5563; max-width:600px; margin:28px auto 12px;">
+    Set up a new colleague in seconds: copy every access right from someone in the same role instead of ticking groups one by one.
+  </p>
 
-        .section { padding: 0 30px 36px; }
+  <p style="text-align:center; margin:0 0 32px;">
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#efebf4; color:#62398c; font-size:13px; font-weight:600;">Odoo 18.0</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#efebf4; color:#62398c; font-size:13px; font-weight:600;">Community &amp; Enterprise</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#efebf4; color:#62398c; font-size:13px; font-weight:600;">Free &middot; LGPL-3</span>
+  </p>
 
-        .section-heading {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #62398c;
-            text-align: center;
-            margin-bottom: 24px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ede0f5;
-        }
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">See it in action</h2>
+  <img src="screenshot_1.png" alt="Copy User Permissions wizard" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">The wizard shows both users' groups side by side before anything changes.</p>
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            background: #fff;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .icon-circle {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #62398c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            color: #fff;
-        }
-
-        .feature-body h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #1a202c;
-            margin-bottom: 4px;
-        }
-
-        .feature-body p {
-            font-size: 0.875rem;
-            color: #718096;
-            line-height: 1.5;
-        }
-
-        .install-section { padding: 0 30px 36px; }
-
-        .install-box {
-            background: #f4eefa;
-            border-left: 4px solid #62398c;
-            border-radius: 8px;
-            padding: 24px 28px;
-        }
-
-        .install-box ol {
-            padding-left: 20px;
-            color: #333;
-            font-size: 0.93rem;
-        }
-
-        .install-box li { margin-bottom: 8px; }
-
-        .footer {
-            text-align: center;
-            padding: 20px 30px 0;
-            border-top: 1px solid #eee;
-            color: #aaa;
-            font-size: 0.82rem;
-        }
-
-        .footer a { color: #62398c; text-decoration: none; }
-    </style>
-</head>
-<body>
-<div class="page">
-    <div class="banner">
-        <img src="banner.png" alt="User Permission Copy">
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 20px;">Key features</h2>
+  <div style="display:flex; flex-wrap:wrap; margin:0 -8px 32px;">
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #62398c; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">One button on the user</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Copy Permissions on the user form starts from that user.</p>
     </div>
-
-    <p class="tagline">
-        Streamline user onboarding by copying all permissions from one user to another
-        in seconds — no manual group assignment needed.
-    </p>
-
-    <div class="section">
-        <h2 class="section-heading">Key Features</h2>
-        <div class="features">
-            <div class="feature">
-                <div class="icon-circle">&#128101;</div>
-                <div class="feature-body">
-                    <h3>Quick Replication</h3>
-                    <p>Copy all security groups and access rights from a source user to one or more targets.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="icon-circle">&#127919;</div>
-                <div class="feature-body">
-                    <h3>Wizard Interface</h3>
-                    <p>Simple guided wizard with clear steps — select source, select targets, confirm.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="icon-circle">&#128274;</div>
-                <div class="feature-body">
-                    <h3>Complete Transfer</h3>
-                    <p>Transfers all security groups, access rights, and record rule assignments at once.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="icon-circle">&#9989;</div>
-                <div class="feature-body">
-                    <h3>Safe by Design</h3>
-                    <p>Confirmation dialog prevents accidental changes. Existing permissions are replaced, not merged.</p>
-                </div>
-            </div>
-        </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #62398c; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Groups and companies</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Copies security groups, allowed companies and the default company.</p>
     </div>
-
-    <div class="install-section">
-        <h2 class="section-heading">Installation &amp; Usage</h2>
-        <div class="install-box">
-            <ol>
-                <li>Install the module from the Apps menu.</li>
-                <li>Go to <strong>Settings &#8594; Users &amp; Companies &#8594; Users</strong>.</li>
-                <li>Select a user and click <strong>Copy Permissions</strong>.</li>
-                <li>Choose the target user(s) and confirm.</li>
-            </ol>
-        </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #62398c; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Compare first</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">See the source's groups next to the target's current ones before you confirm.</p>
     </div>
-
-    <div class="footer">
-        <p>
-            Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a>
-            &mdash; Free &amp; Open Source (LGPL-3) &mdash;
-            <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
-        </p>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #62398c; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Safe by design</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Administrators only, a confirmation tick, and the main admin can never be overwritten.</p>
     </div>
-</div>
-</body>
-</html>
+  </div>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">Get started</h2>
+  <div style="padding:20px 24px; border-left:4px solid #62398c; border-radius:8px; background-color:#efebf4; margin:0 0 32px;">
+    <ol style="margin:0; padding-left:20px; font-size:15px;">
+      <li style="margin:0 0 6px;">Install <b>User Permission Copy</b> from the Apps menu.</li>
+      <li style="margin:0 0 6px;">Open the user to copy from in <b>Settings &rsaquo; Users &amp; Companies &rsaquo; Users</b> and click <b>Copy Permissions</b>.</li>
+      <li style="margin:0;">Pick the target user, tick the confirmation and click <b>Copy Permissions</b>.</li>
+    </ol>
+  </div>
+
+  <p style="text-align:center; font-size:13px; color:#9ca3af; border-top:1px solid #e5e7eb; padding-top:16px; margin:0;">
+    Free and open source (LGPL-3) by
+    <a href="https://github.com/Paulius11/odoo-custom-addons" style="color:#62398c; text-decoration:none;">Paulius Gaizauskas</a>
+    &middot; Questions or bugs:
+    <a href="https://github.com/Paulius11/odoo-custom-addons/issues" style="color:#62398c; text-decoration:none;">GitHub issues</a>
+  </p>
+</section>

@@ -1,0 +1,32 @@
+# Install and test every addon on the OCA CI image for Odoo 18.0.
+name: tests
+
+on:
+  push:
+    branches: ["18.0"]
+  pull_request:
+    branches: ["18.0*"]
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: odoo
+          POSTGRES_PASSWORD: odoo
+          POSTGRES_DB: odoo
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install addons and dependencies
+        run: oca_install_addons
+      - name: Check licenses
+        run: manifestoo -d . check-licenses
+      - name: Initialize test db
+        run: oca_init_test_database
+      - name: Run tests
+        run: oca_run_tests
