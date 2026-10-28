@@ -1,185 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=760">
-    <title>Log Real IP</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #f7f8fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        .banner img { width: 100%; display: block; }
+<section style="max-width:760px; margin:0 auto; font-family:Inter, 'Segoe UI', Roboto, Arial, sans-serif; color:#1f2937; line-height:1.6;">
 
-        .page { max-width: 900px; margin: 0 auto; background: #fff; padding-bottom: 40px; }
+  <img src="banner.png" alt="Log Real IP" style="width:100%; display:block; border-radius:12px;">
 
-        .tagline {
-            text-align: center;
-            color: #555;
-            font-size: 1.05rem;
-            max-width: 600px;
-            margin: 32px auto;
-            padding: 0 20px;
-        }
+  <p style="text-align:center; font-size:18px; color:#4b5563; max-width:600px; margin:28px auto 12px;">
+    Behind nginx or another reverse proxy, Odoo's access log shows the proxy's address on every line. This module logs the visitor's real IP instead.
+  </p>
 
-        .section { padding: 0 30px 36px; }
+  <p style="text-align:center; margin:0 0 32px;">
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#e9eef2; color:#23507a; font-size:13px; font-weight:600;">Odoo 19.0</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#e9eef2; color:#23507a; font-size:13px; font-weight:600;">Community &amp; Enterprise</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#e9eef2; color:#23507a; font-size:13px; font-weight:600;">Free &middot; LGPL-3</span>
+  </p>
 
-        .section-heading {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #23507a;
-            text-align: center;
-            margin-bottom: 24px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e0eaf4;
-        }
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">See it in action</h2>
+  <img src="screenshot_1.png" alt="Odoo access log before and after" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">The same request through a proxy, logged without and with the module.</p>
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            background: #fff;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .icon-circle {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #23507a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            color: #fff;
-        }
-
-        .feature-body h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #1a202c;
-            margin-bottom: 4px;
-        }
-
-        .feature-body p {
-            font-size: 0.875rem;
-            color: #718096;
-            line-height: 1.5;
-        }
-
-        code {
-            background: #f0f4f8;
-            padding: 1px 5px;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85em;
-            color: #c0392b;
-        }
-
-        .install-section { padding: 0 30px 36px; }
-
-        .install-box {
-            background: #e8f0f8;
-            border-left: 4px solid #23507a;
-            border-radius: 8px;
-            padding: 24px 28px;
-        }
-
-        .install-box ol {
-            padding-left: 20px;
-            color: #333;
-            font-size: 0.93rem;
-        }
-
-        .install-box li { margin-bottom: 8px; }
-
-        .footer {
-            text-align: center;
-            padding: 20px 30px 0;
-            border-top: 1px solid #eee;
-            color: #aaa;
-            font-size: 0.82rem;
-        }
-
-        .footer a { color: #23507a; text-decoration: none; }
-    </style>
-</head>
-<body>
-<div class="page">
-    <div class="banner">
-        <img src="banner.png" alt="Log Real IP">
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 20px;">Key features</h2>
+  <div style="display:flex; flex-wrap:wrap; margin:0 -8px 32px;">
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #23507a; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Real client IP</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Reads the standard X-Forwarded-For header your proxy sets.</p>
     </div>
-
-    <p class="tagline">
-        When Odoo runs behind a reverse proxy, werkzeug logs the proxy's internal IP.
-        This module patches it to log the real client IP instead.
-    </p>
-
-    <div class="section">
-        <h2 class="section-heading">Key Features</h2>
-        <div class="features">
-            <div class="feature">
-                <div class="icon-circle">&#127760;</div>
-                <div class="feature-body">
-                    <h3>X-Forwarded-For</h3>
-                    <p>Reads the standard reverse-proxy header to extract the originating client IP address.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="icon-circle">&#128736;</div>
-                <div class="feature-body">
-                    <h3>X-Real-IP Fallback</h3>
-                    <p>Falls back to the <code>X-Real-IP</code> header — the nginx convention — when <code>X-Forwarded-For</code> is absent.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="icon-circle">&#128274;</div>
-                <div class="feature-body">
-                    <h3>Proxy Mode Only</h3>
-                    <p>The patch activates only when <code>proxy_mode = True</code> in <code>odoo.conf</code>. Zero impact on direct setups.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="icon-circle">&#9889;</div>
-                <div class="feature-body">
-                    <h3>Zero Overhead</h3>
-                    <p>A single startup monkey-patch. No database writes, no config UI, no performance cost.</p>
-                </div>
-            </div>
-        </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #23507a; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">nginx fallback</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Uses X-Real-IP when X-Forwarded-For is missing.</p>
     </div>
-
-    <div class="install-section">
-        <h2 class="section-heading">Installation &amp; Setup</h2>
-        <div class="install-box">
-            <ol>
-                <li>Copy or install the <strong>log_real_ip</strong> module into your addons path.</li>
-                <li>Enable <code>proxy_mode = True</code> in your <code>odoo.conf</code>.</li>
-                <li>Install the module from the Apps menu.</li>
-                <li>Restart Odoo — real IPs will appear in werkzeug access logs immediately.</li>
-            </ol>
-        </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #23507a; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Only with proxy mode</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Active only when Odoo runs with proxy_mode = True, so the header cannot be spoofed on direct setups.</p>
     </div>
-
-    <div class="footer">
-        <p>
-            Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a>
-            &mdash; Free &amp; Open Source (LGPL-3) &mdash;
-            <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
-        </p>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #23507a; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">No overhead</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">A small patch at startup: no tables, no settings, no extra queries.</p>
     </div>
-</div>
-</body>
-</html>
+  </div>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">Get started</h2>
+  <div style="padding:20px 24px; border-left:4px solid #23507a; border-radius:8px; background-color:#e9eef2; margin:0 0 32px;">
+    <ol style="margin:0; padding-left:20px; font-size:15px;">
+      <li style="margin:0 0 6px;">Set <b>proxy_mode = True</b> in your <b>odoo.conf</b>.</li>
+      <li style="margin:0 0 6px;">Install <b>Log Real IP</b> from the Apps menu.</li>
+      <li style="margin:0;">Restart Odoo: new log lines show the visitor's IP.</li>
+    </ol>
+  </div>
+
+  <p style="text-align:center; font-size:13px; color:#9ca3af; border-top:1px solid #e5e7eb; padding-top:16px; margin:0;">
+    Free and open source (LGPL-3) by
+    <a href="https://github.com/Paulius11/odoo-custom-addons" style="color:#23507a; text-decoration:none;">Paulius Gaizauskas</a>
+    &middot; Questions or bugs:
+    <a href="https://github.com/Paulius11/odoo-custom-addons/issues" style="color:#23507a; text-decoration:none;">GitHub issues</a>
+  </p>
+</section>

@@ -2,6 +2,8 @@
 
 Show real client IPs in werkzeug access logs when Odoo runs behind a reverse proxy.
 
+![The same request logged without and with log_real_ip](static/description/screenshot_1.png)
+
 ## Features
 
 - Reads `X-Forwarded-For` header (standard reverse-proxy convention)
