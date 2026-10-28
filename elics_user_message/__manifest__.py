@@ -1,12 +1,7 @@
 {
     'name': 'User Message',
     'summary': 'Send a direct OdooBot message to a user from their profile',
-    'description': '''
-        Allows administrators to send a personalized message to any user.
-        The message is delivered as a direct chat message from OdooBot,
-        appearing in the user's Discuss inbox.
-    ''',
-    'version': '17.0.1.1.0',
+    'version': '17.0.1.1.1',
     'category': 'Technical',
     'license': 'AGPL-3',
     'author': 'Paulius Gaižauskas',
@@ -17,6 +12,7 @@
         'views/user_message_wizard_views.xml',
         'views/res_users_views.xml',
     ],
+    'images': ['static/description/banner.png'],
     'installable': True,
     'auto_install': False,
 }
