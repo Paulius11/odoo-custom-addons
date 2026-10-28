@@ -268,7 +268,7 @@ class IrModuleModule(models.Model):
             "type": "ir.actions.act_window",
             "name": _("Available Module Updates"),
             "res_model": "ir.module.update.info",
-            "view_mode": "tree",
+            "view_mode": "list",
             "target": "new",
         }
 
