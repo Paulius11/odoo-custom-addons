@@ -1,9 +1,11 @@
 {
     'name': 'User Activity Monitor',
-    'version': '17.0.1.0.2',
+    'version': '17.0.1.0.3',
     'category': 'Technical',
     'summary': 'Track user login sessions and detect unusual activity patterns',
     'author': 'Paulius Gaizauskas',
+    'website': 'https://github.com/Paulius11/odoo-custom-addons',
+    'images': ['static/description/banner.png'],
     'license': 'AGPL-3',
     'depends': ['base', 'web', 'bus'],
     'data': [
