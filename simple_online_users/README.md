@@ -2,7 +2,7 @@
 
 A lightweight Odoo module that displays the count of currently online users in the systray.
 
-![Online Users Display](static/description/online_status.png)
+![Online Users Display](static/description/screenshot_1.png)
 
 ## Features
 
