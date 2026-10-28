@@ -1,175 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=760">
-    <title>Simple Online Users</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #f7f8fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        .banner img { width: 100%; display: block; }
+<section style="max-width:760px; margin:0 auto; font-family:Inter, 'Segoe UI', Roboto, Arial, sans-serif; color:#1f2937; line-height:1.6;">
 
-        .page { max-width: 900px; margin: 0 auto; background: #fff; padding-bottom: 40px; }
+  <img src="banner.png" alt="Simple Online Users" style="width:100%; display:block; border-radius:12px;">
 
-        .tagline {
-            text-align: center;
-            color: #555;
-            font-size: 1.05rem;
-            max-width: 600px;
-            margin: 32px auto;
-            padding: 0 20px;
-        }
+  <p style="text-align:center; font-size:18px; color:#4b5563; max-width:600px; margin:28px auto 12px;">
+    Know who is working in Odoo right now: a live count in the top bar and the list of names one hover away.
+  </p>
 
-        .section { padding: 0 30px 36px; }
+  <p style="text-align:center; margin:0 0 32px;">
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#edecf2; color:#4b3c78; font-size:13px; font-weight:600;">Odoo 18.0</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#edecf2; color:#4b3c78; font-size:13px; font-weight:600;">Community &amp; Enterprise</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#edecf2; color:#4b3c78; font-size:13px; font-weight:600;">Free &middot; LGPL-3</span>
+  </p>
 
-        .section-heading {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #4b3c78;
-            text-align: center;
-            margin-bottom: 24px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ede8f5;
-        }
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">See it in action</h2>
+  <img src="screenshot_1.png" alt="Online users list in the top bar" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">Hovering the people icon lists who is online, with their status.</p>
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            background: #fff;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .icon-circle {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #4b3c78;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            color: #fff;
-        }
-
-        .feature-body h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #1a202c;
-            margin-bottom: 4px;
-        }
-
-        .feature-body p {
-            font-size: 0.875rem;
-            color: #718096;
-            line-height: 1.5;
-        }
-
-        .install-section { padding: 0 30px 36px; }
-
-        .install-box {
-            background: #f0ebfa;
-            border-left: 4px solid #4b3c78;
-            border-radius: 8px;
-            padding: 24px 28px;
-        }
-
-        .install-box ol {
-            padding-left: 20px;
-            color: #333;
-            font-size: 0.93rem;
-        }
-
-        .install-box li { margin-bottom: 8px; }
-
-        .footer {
-            text-align: center;
-            padding: 20px 30px 0;
-            border-top: 1px solid #eee;
-            color: #aaa;
-            font-size: 0.82rem;
-        }
-
-        .footer a { color: #4b3c78; text-decoration: none; }
-    </style>
-</head>
-<body>
-<div class="page">
-    <div class="banner">
-        <img src="banner.png" alt="Simple Online Users">
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 20px;">Key features</h2>
+  <div style="display:flex; flex-wrap:wrap; margin:0 -8px 32px;">
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #4b3c78; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Live count</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">The number of online users sits in the top bar and updates by itself.</p>
     </div>
-
-    <p class="tagline">
-        See who is currently active in your Odoo instance at a glance —
-        directly from the top navigation bar.
-    </p>
-
-    <div class="section">
-        <h2 class="section-heading">Key Features</h2>
-        <div class="features">
-            <div class="feature">
-                <div class="icon-circle">&#128101;</div>
-                <div class="feature-body">
-                    <h3>Real-time Count</h3>
-                    <p>Live count of online users displayed in your systray, updated automatically.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="icon-circle">&#128269;</div>
-                <div class="feature-body">
-                    <h3>User Details</h3>
-                    <p>Click the indicator to see a full list with user names and last activity timestamps.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="icon-circle">&#9889;</div>
-                <div class="feature-body">
-                    <h3>Lightweight</h3>
-                    <p>Uses native Odoo <code>bus.presence</code> — no custom models, no heavy resources.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="icon-circle">&#128736;</div>
-                <div class="feature-body">
-                    <h3>Easy Setup</h3>
-                    <p>Works immediately after installation. Configure visibility permissions in Settings.</p>
-                </div>
-            </div>
-        </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #4b3c78; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Who and how active</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Hover to see each user's name, login and whether they are active now or away.</p>
     </div>
-
-    <div class="install-section">
-        <h2 class="section-heading">Installation &amp; Usage</h2>
-        <div class="install-box">
-            <ol>
-                <li>Install the module from the Apps menu.</li>
-                <li>The online users count appears automatically in your systray.</li>
-                <li>Configure who can see it under <strong>Settings &#8594; General Settings &#8594; Online Users</strong>.</li>
-            </ol>
-        </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #4b3c78; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">You choose who sees it</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Show it to administrators only, all internal users, or portal users too.</p>
     </div>
-
-    <div class="footer">
-        <p>
-            Developed by <a href="https://github.com/Paulius11/odoo-custom-addons">Paulius Gaizauskas</a>
-            &mdash; Free &amp; Open Source (LGPL-3) &mdash;
-            <a href="mailto:paulius.gaizauskas@gmail.com">paulius.gaizauskas@gmail.com</a>
-        </p>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #4b3c78; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Light</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Uses Odoo's own presence tracking: no new tables, no extra load.</p>
     </div>
-</div>
-</body>
-</html>
+  </div>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">Get started</h2>
+  <div style="padding:20px 24px; border-left:4px solid #4b3c78; border-radius:8px; background-color:#edecf2; margin:0 0 32px;">
+    <ol style="margin:0; padding-left:20px; font-size:15px;">
+      <li style="margin:0 0 6px;">Install <b>Simple Online Users</b> from the Apps menu.</li>
+      <li style="margin:0 0 6px;">Hover the people icon in the top bar.</li>
+      <li style="margin:0;">To show it to more people, set the group in <b>Settings &rsaquo; General Settings</b>.</li>
+    </ol>
+  </div>
+
+  <p style="text-align:center; font-size:13px; color:#9ca3af; border-top:1px solid #e5e7eb; padding-top:16px; margin:0;">
+    Free and open source (LGPL-3) by
+    <a href="https://github.com/Paulius11/odoo-custom-addons" style="color:#4b3c78; text-decoration:none;">Paulius Gaizauskas</a>
+    &middot; Questions or bugs:
+    <a href="https://github.com/Paulius11/odoo-custom-addons/issues" style="color:#4b3c78; text-decoration:none;">GitHub issues</a>
+  </p>
+</section>
