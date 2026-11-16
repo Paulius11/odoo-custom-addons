@@ -81,4 +81,4 @@ class UserSessionLog(models.Model):
                 'logout_time': fields.Datetime.now(),
                 'timed_out': True,
             })
-            _logger.info('user_activity_monitor: expired %d stale sessions', len(stale))
+            _logger.info('user_session_monitor: expired %d stale sessions', len(stale))

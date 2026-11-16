@@ -1,6 +1,6 @@
 {
     'name': 'User Activity Monitor',
-    'version': '17.0.1.0.3',
+    'version': '17.0.1.0.4',
     'category': 'Technical',
     'summary': 'Track user login sessions and detect unusual activity patterns',
     'author': 'Paulius Gaizauskas',
@@ -10,7 +10,7 @@
     'depends': ['base', 'web', 'bus'],
     'data': [
         'security/ir.model.access.csv',
-        'security/user_activity_monitor_security.xml',
+        'security/user_session_monitor_security.xml',
         'data/ir_cron.xml',
         'views/user_session_log_views.xml',
         'wizards/log_import_wizard.xml',

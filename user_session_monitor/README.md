@@ -1,6 +1,6 @@
 # User Activity Monitor
 
-[![Odoo 17.0](https://img.shields.io/badge/Odoo-17.0-714B67)](https://apps.odoo.com/apps/modules/17.0/user_activity_monitor)
+[![Odoo 17.0](https://img.shields.io/badge/Odoo-17.0-714B67)](https://apps.odoo.com/apps/modules/17.0/user_session_monitor)
 [![License: AGPL-3](https://img.shields.io/badge/license-AGPL--3-blue)](https://www.gnu.org/licenses/agpl-3.0)
 
 Track user login sessions and spot unusual activity.

@@ -8,8 +8,8 @@ exclude: |
     language_change/|
     module_version/|
     simple_online_users/|
-    user_activity_monitor/|
     user_permission_copy/|
+    user_session_monitor/|
     web_listview_column_presets/
   )
 repos:

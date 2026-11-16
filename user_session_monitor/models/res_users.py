@@ -25,5 +25,5 @@ class ResUsers(models.Model):
             })
         except Exception:
             _logger.exception(
-                'user_activity_monitor: failed to create session log for user %s', self.id
+                'user_session_monitor: failed to create session log for user %s', self.id
             )

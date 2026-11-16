@@ -19,7 +19,7 @@ class IrHttp(models.AbstractModel):
             if request and request.env and request.env.uid:
                 uid = request.env.uid
         except Exception:
-            _logger.debug('user_activity_monitor: could not read uid during logout')
+            _logger.debug('user_session_monitor: could not read uid during logout')
 
         super()._post_logout()
 
@@ -33,5 +33,5 @@ class IrHttp(models.AbstractModel):
                     session_log.write({'logout_time': fields.Datetime.now()})
             except Exception:
                 _logger.exception(
-                    'user_activity_monitor: failed to close session log for uid %s', uid
+                    'user_session_monitor: failed to close session log for uid %s', uid
                 )
