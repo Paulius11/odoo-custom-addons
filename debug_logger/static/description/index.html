@@ -1,0 +1,68 @@
+<section style="max-width:760px; margin:0 auto; font-family:Inter, 'Segoe UI', Roboto, Arial, sans-serif; color:#1f2937; line-height:1.6;">
+
+  <img src="banner.png" alt="Debug Logger" style="width:100%; display:block; border-radius:12px;">
+
+  <p style="text-align:center; font-size:18px; color:#4b5563; max-width:600px; margin:28px auto 12px;">
+    See every create, write and delete Odoo runs: which records, what changed, who did it and which line of code made the call.
+  </p>
+
+  <p style="text-align:center; margin:0 0 32px;">
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#ecf0eb; color:#3d6b35; font-size:13px; font-weight:600;">Odoo 17.0</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#ecf0eb; color:#3d6b35; font-size:13px; font-weight:600;">Community &amp; Enterprise</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#ecf0eb; color:#3d6b35; font-size:13px; font-weight:600;">Free &middot; LGPL-3</span>
+  </p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">See it in action</h2>
+  <img src="screenshot_1.png" alt="Log Entries list" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">Log Entries: one line per call, with the user and the file, line and method that made it.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 20px;">Key features</h2>
+  <div style="display:flex; flex-wrap:wrap; margin:0 -8px 32px;">
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #3d6b35; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Create, write, delete</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Every call on every model, and search or search_read when you switch them on.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #3d6b35; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">The real caller</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">File, line and method of the code that made the call, not Odoo's own wrappers.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #3d6b35; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Before and after</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">A write keeps the old values next to the new ones; a delete keeps the record names.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #3d6b35; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Only the models you pick</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Log all models, or only the few you are chasing a bug in.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #3d6b35; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Secrets masked</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Passwords, tokens and API keys show as ***; long values such as file contents are cut short.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #3d6b35; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Server log or database</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Always in the server log; optionally stored as entries, oldest deleted past a limit you set.</p>
+    </div>
+  </div>
+
+  <img src="screenshot_2.png" alt="One log entry" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 32px;">One entry: the values written and what they were before.</p>
+
+  <img src="screenshot_3.png" alt="Logger Settings" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">Logger Settings: switch logging on and choose the operations and models.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">Get started</h2>
+  <div style="padding:20px 24px; border-left:4px solid #3d6b35; border-radius:8px; background-color:#ecf0eb; margin:0 0 32px;">
+    <ol style="margin:0; padding-left:20px; font-size:15px;">
+      <li style="margin:0 0 6px;">Install <b>Debug Logger</b> from the Apps menu. Logging starts switched off.</li>
+      <li style="margin:0 0 6px;">Open <b>Debug Tools &rsaquo; Logger Settings</b>, turn on <b>Enable Logging</b>, and <b>Store Log Entries</b> to keep them in the database.</li>
+      <li style="margin:0;">Repeat the action you are debugging, then read <b>Debug Tools &rsaquo; Log Entries</b>. Switch logging off when done: it slows every call.</li>
+    </ol>
+  </div>
+
+  <p style="text-align:center; font-size:13px; color:#9ca3af; border-top:1px solid #e5e7eb; padding-top:16px; margin:0;">
+    Free and open source (LGPL-3) by
+    <a href="https://github.com/Paulius11/odoo-custom-addons" style="color:#3d6b35; text-decoration:none;">Paulius Gaizauskas</a>
+    &middot; Questions or bugs:
+    <a href="https://github.com/Paulius11/odoo-custom-addons/issues" style="color:#3d6b35; text-decoration:none;">GitHub issues</a>
+  </p>
+</section>

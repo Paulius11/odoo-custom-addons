@@ -4,7 +4,6 @@
 exclude: |
   (?x)^(
     debug_field_copy/|
-    debug_logger/|
     language_change/|
     module_version/|
     simple_online_users/|

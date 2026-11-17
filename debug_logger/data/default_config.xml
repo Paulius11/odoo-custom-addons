@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <!-- Default logging configuration: off until an admin switches it on -->
+    <record id="default_debug_logger_settings" model="debug.logger.settings">
+        <field name="name">Default Configuration</field>
+        <field name="active" eval="True" />
+        <field name="enable_logging" eval="False" />
+        <field name="store_entries" eval="False" />
+        <field name="max_entries">1000</field>
+        <field name="log_create" eval="True" />
+        <field name="log_write" eval="True" />
+        <field name="log_unlink" eval="True" />
+        <field name="log_search" eval="False" />
+        <field name="log_search_read" eval="False" />
+    </record>
+</odoo>

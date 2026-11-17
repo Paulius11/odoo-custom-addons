@@ -1,0 +1,21 @@
+{
+    "name": "Debug Logger",
+    "version": "17.0.1.2.0",
+    "category": "Technical",
+    "summary": "Log create, write, delete and search calls for debugging",
+    "author": "Paulius Gaizauskas",
+    "maintainers": ["Paulius11"],
+    "website": "https://github.com/Paulius11/odoo-custom-addons",
+    "license": "LGPL-3",
+    "depends": ["base"],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/default_config.xml",
+        "views/debug_logger_settings_views.xml",
+        "views/debug_logger_entry_views.xml",
+    ],
+    "images": ["static/description/banner.png"],
+    "installable": True,
+    "application": False,
+    "auto_install": False,
+}
