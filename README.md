@@ -14,6 +14,7 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 | | Module | What it does | 17.0 | 18.0 | 19.0 |
 |---|---|---|---|---|---|
 | <img src="debug_field_copy/static/description/icon.png" width="32"> | [Debug Field Copy](debug_field_copy/) | Copy field names from debug tooltip | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/debug_field_copy) |  |  |
+| <img src="debug_logger/static/description/icon.png" width="32"> | [Debug Logger](debug_logger/) | Log create, write, delete and search calls for debugging | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/debug_logger) |  |  |
 |  | Log Real IP | Show real client IP in werkzeug logs when behind a reverse proxy |  | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/log_real_ip) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/log_real_ip) |
 | <img src="module_version/static/description/icon.png" width="32"> | [Module Version](module_version/) | Display module version, track lifecycle history, and check for App Store updates | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/module_version) |
 | <img src="language_change/static/description/icon.png" width="32"> | [Quick Language Switcher](language_change/) | Fast language switching from the Odoo interface | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/language_change) |
@@ -28,6 +29,12 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 Copy field names from debug tooltip
 
 ![Debug Field Copy](debug_field_copy/static/description/screenshot_1.png)
+
+### Debug Logger
+
+Log create, write, delete and search calls for debugging
+
+![Debug Logger](debug_logger/static/description/screenshot_1.png)
 
 ### Module Version
 
