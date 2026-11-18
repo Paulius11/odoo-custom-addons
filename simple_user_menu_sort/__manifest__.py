@@ -1,0 +1,20 @@
+{
+    "name": "Simple User Menu Sort",
+    "summary": "Each user sorts the main app menu in their own order",
+    "version": "17.0.2.1.1",
+    "category": "Extra Tools",
+    "website": "https://github.com/Paulius11/odoo-custom-addons",
+    "author": "Paulius Gaizauskas",
+    "maintainers": ["Paulius11"],
+    "support": "paulius.gaizauskas@gmail.com",
+    "license": "LGPL-3",
+    "depends": ["base", "web"],
+    "data": [
+        "security/user_menu_sort_security.xml",
+        "security/ir.model.access.csv",
+        "views/user_menu_sort_views.xml",
+    ],
+    "images": ["static/description/banner.png"],
+    "installable": True,
+    "application": False,
+}

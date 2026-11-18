@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Server actions behind the dialog's header buttons -->
+    <record id="action_reset_menu_order" model="ir.actions.server">
+        <field name="name">Reset to Default</field>
+        <field name="model_id" ref="model_user_menu_sort"/>
+        <field name="state">code</field>
+        <field name="code">
+action = model.reset_user_menu_order()
+        </field>
+    </record>
+
+    <record id="action_sort_alphabetically" model="ir.actions.server">
+        <field name="name">Sort Alphabetically</field>
+        <field name="model_id" ref="model_user_menu_sort"/>
+        <field name="state">code</field>
+        <field name="code">
+action = model.sort_alphabetically()
+        </field>
+    </record>
+
+    <record id="action_apply_to_all_users" model="ir.actions.server">
+        <field name="name">Apply to All Users</field>
+        <field name="model_id" ref="model_user_menu_sort"/>
+        <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
+        <field name="state">code</field>
+        <field name="code">
+action = model.apply_to_all_users()
+        </field>
+    </record>
+
+    <!-- Configure Menu Order dialog: the user's own record with the menu rows -->
+    <record id="view_user_menu_sort_config_form" model="ir.ui.view">
+        <field name="name">user.menu.sort.config.form</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <form string="Configure Menu Order">
+                <header>
+                    <button name="%(action_sort_alphabetically)d"
+                            string="Sort Alphabetically"
+                            type="action"
+                            icon="fa-sort-alpha-asc"/>
+                    <button name="%(action_reset_menu_order)d"
+                            string="Reset to Default"
+                            type="action"
+                            icon="fa-undo"/>
+                    <button name="%(action_apply_to_all_users)d"
+                            string="Apply to All Users"
+                            type="action"
+                            icon="fa-users"
+                            groups="base.group_system"
+                            confirm="Every user's app menu will follow your order. Continue?"/>
+                </header>
+                <sheet>
+                    <p class="text-muted">
+                        Drag the apps by the handle into the order you want, then click Save.
+                    </p>
+                    <field name="user_menu_sort_ids" domain="[('user_id', '=', id)]">
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="sequence" widget="handle"/>
+                            <field name="menu_id" readonly="1"/>
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name="action_save_menu_order"
+                            string="Save"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Discard" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Preferences: open the dialog -->
+    <record id="view_users_form_preferences_inherit" model="ir.ui.view">
+        <field name="name">res.users.preferences.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences_page']" position="inside">
+                <separator string="Menu Customization"/>
+                <div>
+                    <button name="action_open_menu_config"
+                            string="Configure Menu Order"
+                            type="object"
+                            class="oe_link"
+                            icon="fa-bars"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
