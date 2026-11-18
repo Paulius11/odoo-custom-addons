@@ -1,0 +1,21 @@
+{
+    "name": "Lost Emails",
+    "summary": "Keep incoming emails that Odoo cannot route, and route them by hand",
+    "version": "19.0.1.0.0",
+    "category": "Discuss",
+    "website": "https://github.com/Paulius11/odoo-custom-addons",
+    "author": "Paulius Gaizauskas",
+    "maintainers": ["Paulius11"],
+    "support": "paulius.gaizauskas@gmail.com",
+    "license": "LGPL-3",
+    "depends": ["mail"],
+    "data": [
+        "security/mail_lost_security.xml",
+        "security/ir.model.access.csv",
+        "views/mail_lost_views.xml",
+        "wizards/mail_lost_route_views.xml",
+    ],
+    "images": ["static/description/banner.png"],
+    "installable": True,
+    "application": False,
+}
