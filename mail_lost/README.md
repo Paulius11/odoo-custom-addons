@@ -17,7 +17,8 @@ can move each one to the record it belongs to.
 ## Features
 
 - **No email bounced or dropped**: emails Odoo cannot route are kept, whether they come from
-  an incoming mail server or the mail gateway.
+  an incoming mail server or the mail gateway, and so are new emails written straight to
+  the catchall address.
 - **The whole email**: sender, To, Cc, subject, body and attachments in the chatter; the
   original email is kept for routing.
 - **Route to any record**: add one or several emails to any record with a chatter, as if they
@@ -60,9 +61,13 @@ default) or to create records of the chosen type.
   is routed to a new `mail.lost` record instead. Routing parses the kept original again and
   hands it to core `_message_route_process` with the chosen record, so the result is the same
   as if the email had arrived there.
-- **Not caught**: emails written straight to the catchall address (core bounces them on
-  purpose), bounce reports, and emails core ignores as duplicates or replies to its own
-  bounces.
+- **Catchall**: core bounces an email written straight to the catchall address; here
+  `_detect_write_to_catchall` returns `False`, so it ends as a lost email (or in the
+  incoming mail server's default model, when one is set).
+- **Route targets**: business models with a chatter; technical ones (`ir.*`, `iap.*`,
+  `base.*`, `bus.*`, `*.blacklist`) are hidden.
+- **Not caught**: bounce reports, and emails core ignores as duplicates or replies to its
+  own bounces.
 - **Odoo versions**: see the branches of this repository (one branch per series)
 
 ## Support
