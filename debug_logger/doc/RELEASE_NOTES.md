@@ -1,5 +1,10 @@
 ## Module debug_logger
 
+#### 18.11.2026
+#### Version 17.0.1.2.1
+#### BUG FIX
+- The password-masking test no longer fails when Discuss (`mail`) is installed.
+
 #### 17.11.2026
 #### Version 17.0.1.2.0
 #### BUG FIX

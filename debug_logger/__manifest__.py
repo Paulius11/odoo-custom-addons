@@ -1,6 +1,6 @@
 {
     "name": "Debug Logger",
-    "version": "17.0.1.2.0",
+    "version": "17.0.1.2.1",
     "category": "Technical",
     "summary": "Log create, write, delete and search calls for debugging",
     "author": "Paulius Gaizauskas",

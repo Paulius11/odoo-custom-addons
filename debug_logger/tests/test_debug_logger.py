@@ -41,7 +41,8 @@ class TestDebugLogger(TransactionCase):
                 {"name": "Masked", "login": "masked_user", "password": "s3cret-pw"}
             )
         self.assertNotIn("s3cret-pw", "".join(logs.output))
-        self.assertIn("'password': '***'", logs.output[0])
+        # other modules' writes (e.g. mail's notification type) may be logged first
+        self.assertIn("'password': '***'", "".join(logs.output))
 
     def test_search_read_keeps_read_kwargs(self):
         self._enable(log_search_read=True)
