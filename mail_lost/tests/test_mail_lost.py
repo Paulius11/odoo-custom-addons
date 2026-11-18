@@ -54,10 +54,10 @@ class TestMailLost(TransactionCase):
         """What fetchmail and the mailgate script do with every incoming email."""
         return self.Thread.message_process(model, source)
 
-    def route(self, lost, **values):
+    def route(self, lost, user=None, **values):
         wizard = Form(
             self.env["mail.lost.route"]
-            .with_user(self.manager)
+            .with_user(user or self.manager)
             .with_context(default_lost_ids=lost.ids)
         )
         for name, value in values.items():
@@ -199,13 +199,40 @@ class TestMailLost(TransactionCase):
         )
 
     def test_route_needs_post_access_on_target(self):
-        blocked = self.env["mail.blacklist"].create({"email": "spam@example.com"})
+        # a manager without "Contact Creation" may read contacts, not post or create
+        reader = mail_new_test_user(
+            self.env,
+            login="lost_reader",
+            groups="base.group_user,mail_lost.group_mail_lost_manager",
+        )
         lost = self.Lost.browse(self.receive(email_source()))
         with self.assertRaises(AccessError):
-            self.route(lost, record_ref=blocked)
+            self.route(lost, user=reader, record_ref=self.partner)
         with self.assertRaises(AccessError):
-            self.route(lost, mode="new", model="mail.blacklist")
+            self.route(lost, user=reader, mode="new", model="res.partner")
         self.assertEqual(lost.state, "new")
+
+    def test_hidden_model_rejected(self):
+        """A hidden model sent by hand over RPC never reaches the routing."""
+        blocked = self.env["mail.blacklist"].create({"email": "spam@example.com"})
+        lost = self.Lost.browse(self.receive(email_source()))
+        with self.assertRaises(ValueError):
+            self.env["mail.lost.route"].with_user(self.manager).create(
+                {"lost_ids": lost.ids, "record_ref": f"mail.blacklist,{blocked.id}"}
+            )
+
+    def test_catchall_write_is_kept_not_bounced(self):
+        self.env["mail.alias.domain"].create(
+            {"name": "company.example", "catchall_alias": "catchall"}
+        )
+        source = email_source().replace(
+            "To: nobody@company.example", "To: catchall@company.example"
+        )
+        with patch.object(type(self.Thread), "_routing_create_bounce_email") as bounce:
+            lost = self.Lost.browse(self.receive(source))
+        bounce.assert_not_called()
+        self.assertEqual(lost._name, "mail.lost")
+        self.assertEqual(lost.email_to, "catchall@company.example")
 
     def test_route_only_once(self):
         lost = self.Lost.browse(self.receive(email_source()))
@@ -236,8 +263,8 @@ class TestMailLost(TransactionCase):
             lost.with_user(user).read(["name"])
         self.assertEqual(lost.with_user(self.manager).name, "Invoice please")
 
-    def test_targets_exclude_lost_and_abstract_models(self):
+    def test_targets_exclude_lost_abstract_and_technical_models(self):
         models = dict(self.Lost._selection_target_model())
         self.assertIn("res.partner", models)
-        self.assertNotIn("mail.lost", models)
-        self.assertNotIn("mail.thread", models)
+        for hidden in ("mail.lost", "mail.thread", "ir.cron", "mail.blacklist"):
+            self.assertNotIn(hidden, models)
