@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Debug Field Copy',
-    'version': '17.0.1.1.2',
+    'version': '17.0.1.1.3',
     'category': 'Technical',
     'summary': 'Copy field names from debug tooltip',
     'author': 'Paulius Gaizauskas',

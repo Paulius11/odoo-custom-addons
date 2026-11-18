@@ -148,12 +148,11 @@ function enhanceTooltip(tooltipEl) {
             const valueSpan = document.createElement("span");
             valueSpan.style.cssText =
                 "flex: 1; word-break: break-all; user-select: text; cursor: text;";
-            valueSpan.textContent = valueText;
 
-            // Remove old text nodes
+            // Move the value nodes (text, and lists such as Selection) into the span
             childNodes.forEach((node) => {
-                if (node !== title && node.nodeType === Node.TEXT_NODE) {
-                    node.remove();
+                if (node !== title) {
+                    valueSpan.appendChild(node);
                 }
             });
 
@@ -214,8 +213,13 @@ function setupPopoverPersistence(popover) {
         reachTimeout = null;
     });
 
-    popover.addEventListener("mouseleave", () => {
+    popover.addEventListener("mouseleave", (ev) => {
         isMouseInPopover = false;
+        // Back on its own "?" (or the popover moved off the cursor): stay open, else a
+        // popover covering its trigger closes and reopens in a loop.
+        if (deferredTrigger?.contains(ev.relatedTarget)) {
+            return;
+        }
         replayDeferredLeave();
     });
 }
@@ -317,6 +321,20 @@ function deferTooltipClose() {
                 }
                 replayDeferredLeave();
             }, REACH_DELAY);
+        },
+        { capture: true }
+    );
+    // Back on the "?" whose tooltip is still open: keep it. Odoo 17 would close and
+    // reopen it (18.0+ skips its current target), which loops when the tooltip covers the "?".
+    document.addEventListener(
+        "mouseenter",
+        (ev) => {
+            if (!deferredTrigger || ev.target !== deferredTrigger || !getTechnicalPopover()) {
+                return;
+            }
+            ev.stopImmediatePropagation();
+            clearTimeout(reachTimeout);
+            reachTimeout = null;
         },
         { capture: true }
     );
