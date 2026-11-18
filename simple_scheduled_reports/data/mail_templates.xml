@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_mail_body">
+        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #222222;">
+            <p style="margin: 0 0 4px 0; font-size: 16px; color: #8a3f6e;">
+                <strong t-out="report.name" />
+            </p>
+            <p t-if="period" style="margin: 0 0 4px 0; color: #666666;">
+                Period: <t t-out="period" />
+            </p>
+            <p style="margin: 0 0 12px 0; color: #666666;">
+                <t t-out="count" /> records
+            </p>
+            <p t-if="not count">No record matches.</p>
+            <table t-else="" style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th
+                            t-foreach="headers"
+                            t-as="header"
+                            t-out="header"
+                            style="text-align: left; padding: 6px 10px; border-bottom: 2px solid #8a3f6e;"
+                        />
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="groups" t-as="group">
+                        <tr t-if="grouped" style="background-color: #f3ecf1;">
+                            <td
+                                t-att-colspan="len(headers)"
+                                style="padding: 6px 10px; font-weight: bold;"
+                            >
+                                <t t-out="group['label']" /> (<t t-out="group['count']" />)
+                            </td>
+                        </tr>
+                        <tr t-foreach="group['body_rows']" t-as="cells">
+                            <td
+                                t-foreach="cells"
+                                t-as="cell"
+                                t-out="cell[0]"
+                                style="padding: 4px 10px; border-bottom: 1px solid #e5e5e5;"
+                            />
+                        </tr>
+                        <tr t-if="grouped and group['totals'] and group['body_rows']">
+                            <td
+                                t-foreach="group['totals']"
+                                t-as="cell"
+                                t-out="cell[0]"
+                                style="padding: 4px 10px; font-weight: bold;"
+                            />
+                        </tr>
+                    </t>
+                    <tr t-if="grand_totals">
+                        <td
+                            t-foreach="grand_totals"
+                            t-as="cell"
+                            style="padding: 6px 10px; font-weight: bold; border-top: 2px solid #8a3f6e;"
+                        >
+                            <t t-if="cell_first and not cell[0]">Total</t>
+                            <t t-else="" t-out="cell[0]" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p t-if="hidden" style="margin: 12px 0 0 0; color: #666666;">
+                <t t-out="hidden" /> more rows are not shown here.
+                <t t-if="report.attach_xlsx">The Excel file has all of them.</t>
+            </p>
+        </div>
+    </template>
+</odoo>

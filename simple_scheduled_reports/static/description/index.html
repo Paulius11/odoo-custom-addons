@@ -1,0 +1,74 @@
+<!--
+  Odoo Apps Store page. The store drops <head> and <style>, so every style is an inline
+  style="" attribute; no classes, scripts, web fonts or emoji.
+-->
+<section style="max-width:760px; margin:0 auto; font-family:Inter, 'Segoe UI', Roboto, Arial, sans-serif; color:#1f2937; line-height:1.6;">
+
+  <img src="banner.png" alt="Simple Scheduled Reports" style="width:100%; display:block; border-radius:12px;">
+
+  <p style="text-align:center; font-size:18px; color:#4b5563; max-width:600px; margin:28px auto 12px;">
+    Stop opening the same filtered list every Monday. Pick a model, a filter and the columns once,
+    and Odoo emails the list as a table and an Excel file, daily, weekly or monthly.
+  </p>
+
+  <p style="text-align:center; margin:0 0 32px;">
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#f3ecf0; color:#8a3f6e; font-size:13px; font-weight:600;">Odoo 17.0</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#f3ecf0; color:#8a3f6e; font-size:13px; font-weight:600;">Community &amp; Enterprise</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#f3ecf0; color:#8a3f6e; font-size:13px; font-weight:600;">Free &middot; LGPL-3</span>
+  </p>
+
+  <!-- Main functionality first: the screenshot sells the module. -->
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">See it in action</h2>
+  <img src="screenshot_1.png" alt="The email of the report Unpaid customer invoices, grouped by customer with totals" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">The email your team gets: unpaid customer invoices, grouped by customer, with subtotals and a grand total.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 20px;">Key features</h2>
+  <div style="display:flex; flex-wrap:wrap; margin:0 -8px 32px;">
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #8a3f6e; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Any list in Odoo</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Invoices, deliveries, leads, tasks: pick the model, build the filter with Odoo's domain editor and choose the columns.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #8a3f6e; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Table and Excel file</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">The list is in the email body, and an .xlsx file with every row is attached.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #8a3f6e; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Groups and totals</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Group by customer, salesperson or status; amounts get a subtotal per group and a grand total.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #8a3f6e; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Daily, weekly or monthly</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Every day, on chosen weekdays or on a day of the month, at the hour you pick in the owner's timezone.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #8a3f6e; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Respects access rights</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Each report reads the records as its owner, so it never mails a record the owner may not see.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #8a3f6e; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Date periods</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Limit the list to the last 7 days, this week or last month, on any date field. Skip the email when nothing matches.</p>
+    </div>
+  </div>
+
+  <img src="screenshot_2.png" alt="A scheduled report form with its filter, group by and columns" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 24px;">One report: the filter, the group by and the columns, in the order they appear.</p>
+
+  <img src="screenshot_3.png" alt="The schedule tab and the chatter with the sent Excel file" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">The schedule, and every sent report logged in the chatter with its Excel file.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">Get started</h2>
+  <div style="padding:20px 24px; border-left:4px solid #8a3f6e; border-radius:8px; background-color:#f3ecf0; margin:0 0 32px;">
+    <ol style="margin:0; padding-left:20px; font-size:15px;">
+      <li style="margin:0 0 6px;">Install <b>Simple Scheduled Reports</b> from the Apps menu. Give the users who build reports the group <b>Scheduled Reports Manager</b> (the administrator has it).</li>
+      <li style="margin:0 0 6px;">Open <b>Discuss &rsaquo; Scheduled Reports</b> and click <b>New</b>: pick a model, a filter, columns, a schedule and the recipients.</li>
+      <li style="margin:0;">Click <b>Send Now</b> to get the first email at once; after that it arrives on schedule.</li>
+    </ol>
+  </div>
+
+  <p style="text-align:center; font-size:13px; color:#9ca3af; border-top:1px solid #e5e7eb; padding-top:16px; margin:0;">
+    Free and open source (LGPL-3) by
+    <a href="https://github.com/Paulius11/odoo-custom-addons" style="color:#8a3f6e; text-decoration:none;">Paulius Gaizauskas</a>
+    &middot; Questions or bugs:
+    <a href="https://github.com/Paulius11/odoo-custom-addons/issues" style="color:#8a3f6e; text-decoration:none;">GitHub issues</a>
+  </p>
+</section>

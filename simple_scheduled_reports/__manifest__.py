@@ -1,0 +1,22 @@
+{
+    "name": "Simple Scheduled Reports",
+    "summary": "Email any filtered list as a table and Excel file on a schedule",
+    "version": "17.0.1.0.0",
+    "category": "Extra Tools",
+    "website": "https://github.com/Paulius11/odoo-custom-addons",
+    "author": "Paulius Gaizauskas",
+    "maintainers": ["Paulius11"],
+    "support": "paulius.gaizauskas@gmail.com",
+    "license": "LGPL-3",
+    "depends": ["mail"],
+    "data": [
+        "security/simple_scheduled_reports_security.xml",
+        "security/ir.model.access.csv",
+        "data/ir_cron_data.xml",
+        "data/mail_templates.xml",
+        "views/simple_scheduled_report_views.xml",
+    ],
+    "images": ["static/description/banner.png"],
+    "installable": True,
+    "application": False,
+}

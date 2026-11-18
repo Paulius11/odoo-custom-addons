@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_simple_scheduled_report_manager,simple.scheduled.report manager,model_simple_scheduled_report,group_scheduled_report_manager,1,1,1,1
+access_simple_scheduled_report_column_manager,simple.scheduled.report.column manager,model_simple_scheduled_report_column,group_scheduled_report_manager,1,1,1,1
+access_ir_model_scheduled_report_manager,ir.model scheduled report manager,base.model_ir_model,group_scheduled_report_manager,1,0,0,0
+access_ir_model_fields_scheduled_report_manager,ir.model.fields scheduled report manager,base.model_ir_model_fields,group_scheduled_report_manager,1,0,0,0
