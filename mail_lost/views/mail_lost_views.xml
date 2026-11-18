@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mail_lost_view_list" model="ir.ui.view">
+        <field name="name">mail.lost.list</field>
+        <field name="model">mail.lost</field>
+        <field name="arch" type="xml">
+            <list
+                create="false"
+                decoration-muted="state == 'ignored'"
+                decoration-bf="state == 'new'"
+            >
+                <field name="message_date" />
+                <field name="email_from" />
+                <field name="email_to" optional="show" />
+                <field name="name" />
+                <field name="target_ref" optional="show" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-warning="state == 'new'"
+                    decoration-success="state == 'routed'"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="mail_lost_view_form" model="ir.ui.view">
+        <field name="name">mail.lost.form</field>
+        <field name="model">mail.lost</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <header>
+                    <button
+                        name="action_route"
+                        string="Route"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'new'"
+                    />
+                    <button
+                        name="action_ignore"
+                        string="Ignore"
+                        type="object"
+                        invisible="state != 'new'"
+                    />
+                    <button
+                        name="action_reopen"
+                        string="Route Again"
+                        type="object"
+                        invisible="state != 'ignored'"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="email_from" />
+                            <field name="author_id" invisible="not author_id" />
+                            <field name="email_to" />
+                            <field name="email_cc" invisible="not email_cc" />
+                        </group>
+                        <group>
+                            <field name="message_date" />
+                            <field name="target_ref" invisible="state != 'routed'" />
+                            <field name="reason" groups="base.group_no_one" />
+                        </group>
+                    </group>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="mail_lost_view_search" model="ir.ui.view">
+        <field name="name">mail.lost.search</field>
+        <field name="model">mail.lost</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="email_from" />
+                <field name="email_to" />
+                <filter
+                    name="to_route"
+                    string="To Route"
+                    domain="[('state', '=', 'new')]"
+                />
+                <filter
+                    name="routed"
+                    string="Routed"
+                    domain="[('state', '=', 'routed')]"
+                />
+                <filter
+                    name="ignored"
+                    string="Ignored"
+                    domain="[('state', '=', 'ignored')]"
+                />
+                <group>
+                    <filter
+                        name="group_from"
+                        string="Sender"
+                        context="{'group_by': 'email_from'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mail_lost_action" model="ir.actions.act_window">
+        <field name="name">Lost Emails</field>
+        <field name="res_model">mail.lost</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_to_route': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No lost emails</p>
+            <p>
+                Incoming emails that Odoo cannot place on a record land here instead
+                of bouncing. Route each one to the record it belongs to.
+            </p>
+        </field>
+    </record>
+
+    <record id="mail_lost_action_route" model="ir.actions.server">
+        <field name="name">Route</field>
+        <field name="model_id" ref="model_mail_lost" />
+        <field name="binding_model_id" ref="model_mail_lost" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_route()</field>
+    </record>
+
+    <menuitem
+        id="mail_lost_menu"
+        name="Lost Emails"
+        parent="mail.menu_root_discuss"
+        action="mail_lost_action"
+        groups="group_mail_lost_manager"
+        sequence="50"
+    />
+</odoo>
