@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">account.move.form.advance</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <button id="account_invoice_payment_btn" position="after">
+                <button
+                    name="action_apply_advance"
+                    type="object"
+                    string="Apply Advance"
+                    invisible="not has_open_advances"
+                    groups="account.group_account_invoice"
+                />
+                <button
+                    name="action_undo_advance"
+                    type="object"
+                    string="Undo Advance"
+                    invisible="not advance_payment_id or state != 'posted' or reversal_move_id"
+                    confirm="Give this amount back to the advance? The entry is reversed."
+                    groups="account.group_account_invoice"
+                />
+                <field name="has_open_advances" invisible="1" />
+                <field name="advance_payment_id" invisible="1" />
+                <field name="reversal_move_id" invisible="1" />
+            </button>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,75 @@
+<!--
+  Odoo Apps Store page. The store drops <head> and <style>, so every style is an inline
+  style="" attribute; no classes, scripts, web fonts or emoji.
+-->
+<section style="max-width:760px; margin:0 auto; font-family:Inter, 'Segoe UI', Roboto, Arial, sans-serif; color:#1f2937; line-height:1.6;">
+
+  <img src="banner.png" alt="Advance Payments" style="width:100%; display:block; border-radius:12px;">
+
+  <p style="text-align:center; font-size:18px; color:#4b5563; max-width:600px; margin:28px auto 12px;">
+    A customer pays a deposit before the invoice, or you prepay a supplier before the bill.
+    Odoo books it on the receivable or payable as an open credit. Advance Payments keeps it on
+    an account of its own, lists what is still unapplied, and moves it onto the invoice or
+    bill when that comes.
+  </p>
+
+  <p style="text-align:center; margin:0 0 32px;">
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#eaf2ef; color:#2e7d5b; font-size:13px; font-weight:600;">Odoo 17.0</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#eaf2ef; color:#2e7d5b; font-size:13px; font-weight:600;">Community &amp; Enterprise</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#eaf2ef; color:#2e7d5b; font-size:13px; font-weight:600;">Free &middot; LGPL-3</span>
+  </p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">See it in action</h2>
+  <img src="screenshot_1.png" alt="Customer Advances list with amounts and what is still unapplied" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">Customer Advances: every deposit, and how much of it is not applied yet.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 20px;">Key features</h2>
+  <div style="display:flex; flex-wrap:wrap; margin:0 -8px 32px;">
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #2e7d5b; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Deposits on their own account</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Tick Advance on a payment: it posts to your customer advances (a liability) or vendor prepayments account, not to the receivable or payable.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #2e7d5b; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">See what is unapplied</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Customers &rsaquo; Advances and Vendors &rsaquo; Prepayments list every advance with the amount still open.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #2e7d5b; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Apply to the invoice</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Apply Advance on a posted invoice or bill proposes the oldest open advance; apply all of it or part.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #2e7d5b; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">One clear entry</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Applying posts one miscellaneous entry from the advance account to the receivable or payable, reconciled on both sides.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #2e7d5b; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Undo</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Undo Advance on that entry reverses it: the invoice is due again and the advance is open again.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #2e7d5b; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Customers and vendors</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">The same steps for customer deposits on invoices and vendor prepayments on bills, including advances paid by a company's contacts.</p>
+    </div>
+  </div>
+
+  <img src="screenshot_2.png" alt="Apply Advance dialog on an invoice" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 24px;">Apply Advance on an invoice: the oldest open advance and the amount to apply.</p>
+
+  <img src="screenshot_3.png" alt="Invoice partly paid by an advance, with the amount due" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">The invoice after applying a $500 deposit: $700 still due.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">Get started</h2>
+  <div style="padding:20px 24px; border-left:4px solid #2e7d5b; border-radius:8px; background-color:#eaf2ef; margin:0 0 32px;">
+    <ol style="margin:0; padding-left:20px; font-size:15px;">
+      <li style="margin:0 0 6px;">In <b>Invoicing &rsaquo; Configuration &rsaquo; Settings &rsaquo; Default Accounts</b>, pick a Customer advances account (type Payable) and a Vendor prepayments account (type Receivable), separate from the partners' own.</li>
+      <li style="margin:0 0 6px;">Register the deposit in <b>Customers &rsaquo; Advances</b> (or tick <b>Advance</b> on any draft payment) and confirm it.</li>
+      <li style="margin:0;">On the posted invoice, click <b>Apply Advance</b>, check the amount, and click <b>Apply</b>.</li>
+    </ol>
+  </div>
+
+  <p style="text-align:center; font-size:13px; color:#9ca3af; border-top:1px solid #e5e7eb; padding-top:16px; margin:0;">
+    Free and open source (LGPL-3) by
+    <a href="https://github.com/Paulius11/odoo-custom-addons" style="color:#2e7d5b; text-decoration:none;">Paulius Gaizauskas</a>
+    &middot; Questions or bugs:
+    <a href="https://github.com/Paulius11/odoo-custom-addons/issues" style="color:#2e7d5b; text-decoration:none;">GitHub issues</a>
+  </p>
+</section>
