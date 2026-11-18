@@ -1,0 +1,77 @@
+<!--
+  Odoo Apps Store page. The store drops <head> and <style>, so every style is an inline
+  style="" attribute; no classes, scripts, web fonts or emoji.
+-->
+<section style="max-width:760px; margin:0 auto; font-family:Inter, 'Segoe UI', Roboto, Arial, sans-serif; color:#1f2937; line-height:1.6;">
+
+  <img src="banner.png" alt="List View Column Presets" style="width:100%; display:block; border-radius:12px;">
+
+  <p style="text-align:center; font-size:18px; color:#4b5563; max-width:600px; margin:28px auto 12px;">
+    Odoo lets you pick which optional columns a list shows, but it keeps only one choice per
+    list. Column Presets saves your choices under a name, so you switch between them in one
+    click instead of ticking columns again.
+  </p>
+
+  <p style="text-align:center; margin:0 0 32px;">
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#f8f0e8; color:#b5651d; font-size:13px; font-weight:600;">Odoo 17.0</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#f8f0e8; color:#b5651d; font-size:13px; font-weight:600;">Community &amp; Enterprise</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#f8f0e8; color:#b5651d; font-size:13px; font-weight:600;">Free &middot; LGPL-3</span>
+  </p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">See it in action</h2>
+  <img src="screenshot_1.png" alt="Customers list with the column menu open: Save as Preset and three saved presets above the optional columns" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 24px;">Saved presets sit at the top of the list's column menu, above the usual column checkboxes.</p>
+
+  <img src="screenshot_2.png" alt="Customers list after choosing the Tax check preset: State, Country and Tax ID columns" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">One click on <b>Tax check</b>: the list shows exactly the columns saved in it.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 20px;">Key features</h2>
+  <div style="display:flex; flex-wrap:wrap; margin:0 -8px 32px;">
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #b5651d; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Switch in one click</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">A preset turns on its columns and turns off the other optional ones. Odoo remembers the result, as if you had ticked the columns yourself.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #b5651d; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Personal presets</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Every user saves their own presets. Nobody else sees them.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #b5651d; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Shared presets</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Users in the Manage Shared Column Presets group save presets for the whole company. Everyone can use them; only that group can delete them.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #b5651d; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Lists inside forms too</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Order lines, invoice lines, rates: any list inside a form that has optional columns gets the same menu.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #b5651d; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Delete from the menu</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">The bin icon next to a preset deletes it after you confirm. It shows only on presets you may delete.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #b5651d; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">One list for administrators</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Every saved preset, with its owner and model, in Settings &rsaquo; Technical &rsaquo; User Interface (developer mode).</p>
+    </div>
+  </div>
+
+  <img src="screenshot_3.png" alt="Currency form: the Rates list inside it has its own column menu with a saved preset" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 24px;">A list inside a form, here a currency's rates, with its own presets.</p>
+
+  <img src="screenshot_4.png" alt="Save Column Preset dialog with a name and the Share with all users box" style="width:100%; max-width:650px; display:block; margin:0 auto; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">Save as Preset: a name, and for the shared-presets group, a box to share it.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">Get started</h2>
+  <div style="padding:20px 24px; border-left:4px solid #b5651d; border-radius:8px; background-color:#f8f0e8; margin:0 0 32px;">
+    <ol style="margin:0; padding-left:20px; font-size:15px;">
+      <li style="margin:0 0 6px;">Install <b>List View Column Presets</b> from the Apps menu.</li>
+      <li style="margin:0 0 6px;">Open any list, click the column icon at the right end of the header and tick the columns you want.</li>
+      <li style="margin:0;">In the same menu, click <b>Save as Preset...</b>, give it a name and click <b>Save</b>. Click the preset later to get those columns back.</li>
+    </ol>
+  </div>
+
+  <p style="text-align:center; font-size:13px; color:#9ca3af; border-top:1px solid #e5e7eb; padding-top:16px; margin:0;">
+    Free and open source (LGPL-3) by
+    <a href="https://github.com/Paulius11/odoo-custom-addons" style="color:#b5651d; text-decoration:none;">Paulius Gaizauskas</a>
+    &middot; Questions or bugs:
+    <a href="https://github.com/Paulius11/odoo-custom-addons/issues" style="color:#b5651d; text-decoration:none;">GitHub issues</a>
+  </p>
+</section>

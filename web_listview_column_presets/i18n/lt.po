@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* web_listview_column_presets
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Lithuanian\n"
+"Language: lt_LT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/list_renderer_patch.js:0
+#, python-format
+msgid "Save as Preset..."
+msgstr "Išsaugoti kaip šabloną..."
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/save_preset_dialog.js:0
+#, python-format
+msgid "Save Column Preset"
+msgstr "Išsaugoti stulpelių šabloną"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/save_preset_dialog.js:0
+#, python-format
+msgid "Enter preset name..."
+msgstr "Įveskite šablono pavadinimą..."
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/save_preset_dialog.xml:0
+#, python-format
+msgid "Preset Name"
+msgstr "Šablono pavadinimas"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/save_preset_dialog.xml:0
+#, python-format
+msgid "Share with all users"
+msgstr "Bendrinti su visais vartotojais"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/save_preset_dialog.xml:0
+#, python-format
+msgid "Save"
+msgstr "Išsaugoti"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/save_preset_dialog.xml:0
+#, python-format
+msgid "Cancel"
+msgstr "Atšaukti"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/list_renderer_patch.js:0
+#, python-format
+msgid "Are you sure you want to delete this preset?"
+msgstr "Ar tikrai norite ištrinti šį šabloną?"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/list_renderer_patch.js:0
+#, python-format
+msgid "Preset deleted successfully"
+msgstr "Šablonas sėkmingai ištrintas"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/list_renderer_patch.js:0
+#, python-format
+msgid "Failed to delete preset"
+msgstr "Nepavyko ištrinti šablono"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/list_renderer_patch.js:0
+#, python-format
+msgid "Failed to save preset: %s"
+msgstr "Nepavyko išsaugoti šablono: %s"
+
+#. module: web_listview_column_presets
+#. odoo-javascript
+#: code:addons/web_listview_column_presets/static/src/js/list_renderer_patch.js:0
+#, python-format
+msgid "Failed to apply preset: %s"
+msgstr "Nepavyko pritaikyti šablono: %s"
+
+#. module: web_listview_column_presets
+#: model:ir.model,name:web_listview_column_presets.model_ir_listview_column_preset
+msgid "List View Column Preset"
+msgstr "Sąrašo stulpelių šablonas"
+
+#. module: web_listview_column_presets
+#: model:ir.model.fields,field_description:web_listview_column_presets.field_ir_listview_column_preset__name
+msgid "Preset Name"
+msgstr "Šablono pavadinimas"
+
+#. module: web_listview_column_presets
+#: model:ir.model.fields,field_description:web_listview_column_presets.field_ir_listview_column_preset__model_name
+msgid "Model"
+msgstr "Modelis"
+
+#. module: web_listview_column_presets
+#: model:ir.model.fields,field_description:web_listview_column_presets.field_ir_listview_column_preset__column_fields
+msgid "Column Fields"
+msgstr "Stulpelių laukai"
+
+#. module: web_listview_column_presets
+#: model:ir.model.fields,field_description:web_listview_column_presets.field_ir_listview_column_preset__is_shared
+msgid "Shared"
+msgstr "Bendrinamas"
+
+#. module: web_listview_column_presets
+#: model:ir.model.fields,field_description:web_listview_column_presets.field_ir_listview_column_preset__user_id
+msgid "User"
+msgstr "Vartotojas"
+
+#. module: web_listview_column_presets
+#: model:ir.model.fields,field_description:web_listview_column_presets.field_ir_listview_column_preset__parent_model
+msgid "Parent Model"
+msgstr "Tėvinis modelis"
+
+#. module: web_listview_column_presets
+#: model:ir.model.fields,field_description:web_listview_column_presets.field_ir_listview_column_preset__relational_field
+msgid "Relational Field"
+msgstr "Reliacinis laukas"
+
+#. module: web_listview_column_presets
+#: model:res.groups,name:web_listview_column_presets.group_shared_presets
+msgid "Shared Presets Manager"
+msgstr "Bendrinamų šablonų valdytojas"

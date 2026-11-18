@@ -8,8 +8,7 @@ exclude: |
     module_version/|
     simple_online_users/|
     user_permission_copy/|
-    user_session_monitor/|
-    web_listview_column_presets/
+    user_session_monitor/
   )
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit

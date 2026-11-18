@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_listview_column_preset_user,ir.listview.column.preset.user,model_ir_listview_column_preset,base.group_user,1,1,1,1

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Group for managing shared presets -->
+    <record id="group_shared_presets" model="res.groups">
+        <field name="name">Manage Shared Column Presets</field>
+        <field name="comment">Users in this group can create and delete shared column presets.</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- Add group to Settings / Administration -->
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_shared_presets'))]"/>
+    </record>
+
+    <!-- Record rule: non-admin users can read their own presets and shared presets -->
+    <record id="rule_listview_preset_read" model="ir.rule">
+        <field name="name">Column Preset: read own and shared</field>
+        <field name="model_id" ref="model_ir_listview_column_preset"/>
+        <field name="domain_force">[
+            '|',
+            ('user_id', '=', user.id),
+            ('user_id', '=', False)
+        ]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Record rule: users create, write and delete their own presets -->
+    <record id="rule_listview_preset_write_own" model="ir.rule">
+        <field name="name">Column Preset: create/write/delete own</field>
+        <field name="model_id" ref="model_ir_listview_column_preset"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- Record rule: the shared-presets group creates, writes and deletes shared presets -->
+    <record id="rule_listview_preset_shared" model="ir.rule">
+        <field name="name">Column Preset: manage shared</field>
+        <field name="model_id" ref="model_ir_listview_column_preset"/>
+        <field name="domain_force">[('user_id', '=', False)]</field>
+        <field name="groups" eval="[(4, ref('group_shared_presets'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- Record rule: system administrators can view and manage ALL presets -->
+    <record id="rule_listview_preset_admin" model="ir.rule">
+        <field name="name">Column Preset: admin full access</field>
+        <field name="model_id" ref="model_ir_listview_column_preset"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>
