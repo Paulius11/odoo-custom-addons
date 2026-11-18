@@ -4,6 +4,10 @@ from odoo import api, models
 class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
+    def _detect_write_to_catchall(self, msg_dict):
+        # Core bounces an email written straight to the catchall; keep it as lost.
+        return False
+
     @api.model
     def message_route(
         self, message, message_dict, model=None, thread_id=None, custom_values=None

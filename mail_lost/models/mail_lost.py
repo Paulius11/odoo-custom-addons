@@ -9,6 +9,10 @@ from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
+# Technical models with a chatter that no email belongs to.
+HIDDEN_PREFIXES = ("ir.", "iap.", "base.", "bus.")
+HIDDEN_SUFFIXES = (".blacklist",)
+
 
 class MailLost(models.Model):
     _name = "mail.lost"
@@ -45,7 +49,7 @@ class MailLost(models.Model):
 
     @api.model
     def _selection_target_model(self):
-        """Every model with a chatter that can take an email, except this one."""
+        """Every business model with a chatter, except this one."""
         models_ = (
             self.env["ir.model"]
             .sudo()
@@ -60,7 +64,10 @@ class MailLost(models.Model):
         return [
             (m.model, m.name)
             for m in models_
-            if m.model in self.env and not self.env[m.model]._abstract
+            if m.model in self.env
+            and not self.env[m.model]._abstract
+            and not m.model.startswith(HIDDEN_PREFIXES)
+            and not m.model.endswith(HIDDEN_SUFFIXES)
         ]
 
     @api.depends("target_model", "target_res_id")
