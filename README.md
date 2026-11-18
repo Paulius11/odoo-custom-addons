@@ -13,6 +13,7 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 <!-- modules:start -->
 | | Module | What it does | 17.0 | 18.0 | 19.0 |
 |---|---|---|---|---|---|
+| <img src="account_payment_advance/static/description/icon.png" width="32"> | [Advance Payments](account_payment_advance/) | Customer deposits and vendor prepayments, applied to invoices later | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/account_payment_advance) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/account_payment_advance) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/account_payment_advance) |
 |  | Debug Field Copy | Copy field names from debug tooltip | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/debug_field_copy) |  |  |
 |  | Debug Logger | Log create, write, delete and search calls for debugging | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/debug_logger) |  |  |
 | <img src="log_real_ip/static/description/icon.png" width="32"> | [Log Real IP](log_real_ip/) | Show real client IP in werkzeug logs when behind a reverse proxy |  | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/log_real_ip) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/log_real_ip) |
@@ -24,6 +25,12 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 | <img src="user_permission_copy/static/description/icon.png" width="32"> | [User Permission Copy](user_permission_copy/) | Copy user permissions from one user to another | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/user_permission_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/user_permission_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/user_permission_copy) |
 
 ## Screenshots
+
+### Advance Payments
+
+Customer deposits and vendor prepayments, applied to invoices later
+
+![Advance Payments](account_payment_advance/static/description/screenshot_1.png)
 
 ### Log Real IP
 
