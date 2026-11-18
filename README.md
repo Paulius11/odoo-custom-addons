@@ -22,6 +22,7 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 | <img src="module_version/static/description/icon.png" width="32"> | [Module Version](module_version/) | Display module version, track lifecycle history, and check for App Store updates | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/module_version) |
 | <img src="language_change/static/description/icon.png" width="32"> | [Quick Language Switcher](language_change/) | Fast language switching from the Odoo interface | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/language_change) |
 | <img src="simple_online_users/static/description/icon.png" width="32"> | [Simple Online Users](simple_online_users/) | Display online users count in systray | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_online_users) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/simple_online_users) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/simple_online_users) |
+| <img src="simple_user_menu_sort/static/description/icon.png" width="32"> | [Simple User Menu Sort](simple_user_menu_sort/) | Each user sorts the main app menu in their own order | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_user_menu_sort) |  |  |
 | <img src="user_session_monitor/static/description/icon.png" width="32"> | [User Activity Monitor](user_session_monitor/) | Track user login sessions and detect unusual activity patterns | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/user_session_monitor) |  |  |
 | <img src="user_permission_copy/static/description/icon.png" width="32"> | [User Permission Copy](user_permission_copy/) | Copy user permissions from one user to another | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/user_permission_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/user_permission_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/user_permission_copy) |
 
@@ -74,6 +75,12 @@ Fast language switching from the Odoo interface
 Display online users count in systray
 
 ![Simple Online Users](simple_online_users/static/description/screenshot_1.png)
+
+### Simple User Menu Sort
+
+Each user sorts the main app menu in their own order
+
+![Simple User Menu Sort](simple_user_menu_sort/static/description/screenshot_1.png)
 
 ### User Activity Monitor
 
