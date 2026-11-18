@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mail_lost_route_view_form" model="ir.ui.view">
+        <field name="name">mail.lost.route.form</field>
+        <field name="model">mail.lost.route</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="lost_ids" widget="many2many_tags" readonly="1" />
+                    <field name="mode" widget="radio" />
+                    <field
+                        name="record_ref"
+                        invisible="mode != 'existing'"
+                        required="mode == 'existing'"
+                    />
+                    <field
+                        name="model"
+                        invisible="mode != 'new'"
+                        required="mode == 'new'"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="Route"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
