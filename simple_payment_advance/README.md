@@ -1,6 +1,6 @@
 # Advance Payments
 
-[![Odoo 19.0](https://img.shields.io/badge/Odoo-19.0-714B67)](https://apps.odoo.com/apps/modules/19.0/account_payment_advance)
+[![Odoo 19.0](https://img.shields.io/badge/Odoo-19.0-714B67)](https://apps.odoo.com/apps/modules/19.0/simple_payment_advance)
 [![License: LGPL-3](https://img.shields.io/badge/license-LGPL--3-blue)](https://www.gnu.org/licenses/lgpl-3.0)
 
 Customer deposits and vendor prepayments, applied to invoices later
