@@ -16,6 +16,7 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 | <img src="account_payment_advance/static/description/icon.png" width="32"> | [Advance Payments](account_payment_advance/) | Customer deposits and vendor prepayments, applied to invoices later | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/account_payment_advance) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/account_payment_advance) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/account_payment_advance) |
 | <img src="debug_field_copy/static/description/icon.png" width="32"> | [Debug Field Copy](debug_field_copy/) | Copy field names from debug tooltip | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/debug_field_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/debug_field_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/debug_field_copy) |
 | <img src="debug_logger/static/description/icon.png" width="32"> | [Debug Logger](debug_logger/) | Log create, write, delete and search calls for debugging | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/debug_logger) |  |  |
+| <img src="web_list_arrow_keys/static/description/icon.png" width="32"> | [List Arrow Keys](web_list_arrow_keys/) | Arrow keys move between cells of an editable list, like a spreadsheet | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/web_list_arrow_keys) |  |  |
 | <img src="web_listview_column_presets/static/description/icon.png" width="32"> | [List View Column Presets](web_listview_column_presets/) | Save the columns of a list view as presets, switch back in one click | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/web_listview_column_presets) |  |  |
 |  | Log Real IP | Show real client IP in werkzeug logs when behind a reverse proxy |  | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/log_real_ip) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/log_real_ip) |
 | <img src="mail_lost/static/description/icon.png" width="32"> | [Lost Emails](mail_lost/) | Keep incoming emails that Odoo cannot route, and route them by hand | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/mail_lost) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/mail_lost) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/mail_lost) |
@@ -46,6 +47,12 @@ Copy field names from debug tooltip
 Log create, write, delete and search calls for debugging
 
 ![Debug Logger](debug_logger/static/description/screenshot_1.png)
+
+### List Arrow Keys
+
+Arrow keys move between cells of an editable list, like a spreadsheet
+
+![List Arrow Keys](web_list_arrow_keys/static/description/screenshot_1.png)
 
 ### List View Column Presets
 
