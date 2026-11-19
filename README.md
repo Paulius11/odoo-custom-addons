@@ -21,6 +21,7 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 | <img src="log_real_ip/static/description/icon.png" width="32"> | [Log Real IP](log_real_ip/) | Show real client IP in werkzeug logs when behind a reverse proxy |  | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/log_real_ip) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/log_real_ip) |
 | <img src="mail_lost/static/description/icon.png" width="32"> | [Lost Emails](mail_lost/) | Keep incoming emails that Odoo cannot route, and route them by hand | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/mail_lost) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/mail_lost) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/mail_lost) |
 | <img src="module_version/static/description/icon.png" width="32"> | [Module Version](module_version/) | Display module version, track lifecycle history, and check for App Store updates | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/module_version) |
+| <img src="pos_escpos_printer/static/description/icon.png" width="32"> | [POS Network Printer](pos_escpos_printer/) | Receipts and kitchen tickets on ESC/POS network printers, no IoT box |  |  | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/pos_escpos_printer) |
 | <img src="language_change/static/description/icon.png" width="32"> | [Quick Language Switcher](language_change/) | Fast language switching from the Odoo interface | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/language_change) |
 | <img src="simple_online_users/static/description/icon.png" width="32"> | [Simple Online Users](simple_online_users/) | Display online users count in systray | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_online_users) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/simple_online_users) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/simple_online_users) |
 |  | Simple Scheduled Reports | Email any filtered list as a table and Excel file on a schedule | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_scheduled_reports) |  |  |
@@ -59,6 +60,12 @@ Keep incoming emails that Odoo cannot route, and route them by hand
 Display module version, track lifecycle history, and check for App Store updates
 
 ![Module Version](module_version/static/description/screenshot_1.png)
+
+### POS Network Printer
+
+Receipts and kitchen tickets on ESC/POS network printers, no IoT box
+
+![POS Network Printer](pos_escpos_printer/static/description/screenshot_1.png)
 
 ### Quick Language Switcher
 
