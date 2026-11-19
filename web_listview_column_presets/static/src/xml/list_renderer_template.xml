@@ -6,33 +6,35 @@
         t-inherit-mode="extension"
     >
         <xpath expr="//t[@t-foreach='optionalFieldGroups']" position="before">
-            <DropdownItem
-                class="'o_column_preset_save'"
-                onSelected="() => this.onSaveColumnPreset()"
-            >
-                <i class="fa fa-fw fa-floppy-o me-1" />Save as Preset...
-            </DropdownItem>
-            <t
-                t-foreach="presetState.presets"
-                t-as="preset"
-                t-key="preset.id"
-            >
+            <t t-if="columnPresetService">
                 <DropdownItem
-                    class="'o_column_preset d-flex align-items-center'"
-                    onSelected="() => this.onApplyColumnPreset(preset)"
+                    class="'o_column_preset_save'"
+                    onSelected="() => this.onSaveColumnPreset()"
                 >
-                    <i t-if="preset.is_shared" class="fa fa-fw fa-users me-1" title="Shared" />
-                    <i t-else="" class="fa fa-fw fa-user me-1" title="Personal" />
-                    <span class="text-truncate flex-grow-1" t-esc="preset.name" />
-                    <i
-                        t-if="canDeletePreset(preset)"
-                        class="o_column_preset_delete fa fa-trash-o ms-2"
-                        title="Delete"
-                        t-on-click.stop="() => this.onDeleteColumnPreset(preset)"
-                    />
+                    <i class="fa fa-fw fa-floppy-o me-1" />Save as Preset...
                 </DropdownItem>
+                <t
+                    t-foreach="presetState.presets"
+                    t-as="preset"
+                    t-key="preset.id"
+                >
+                    <DropdownItem
+                        class="'o_column_preset d-flex align-items-center'"
+                        onSelected="() => this.onApplyColumnPreset(preset)"
+                    >
+                        <i t-if="preset.is_shared" class="fa fa-fw fa-users me-1" title="Shared" />
+                        <i t-else="" class="fa fa-fw fa-user me-1" title="Personal" />
+                        <span class="text-truncate flex-grow-1" t-esc="preset.name" />
+                        <i
+                            t-if="canDeletePreset(preset)"
+                            class="o_column_preset_delete fa fa-trash-o ms-2"
+                            title="Delete"
+                            t-on-click.stop="() => this.onDeleteColumnPreset(preset)"
+                        />
+                    </DropdownItem>
+                </t>
+                <div role="separator" class="dropdown-divider" />
             </t>
-            <div role="separator" class="dropdown-divider" />
         </xpath>
     </t>
 </templates>

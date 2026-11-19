@@ -1,7 +1,7 @@
 {
     "name": "List View Column Presets",
     "summary": "Save the columns of a list view as presets, switch back in one click",
-    "version": "17.0.2.3.0",
+    "version": "17.0.2.3.1",
     "category": "Extra Tools",
     "website": "https://github.com/Paulius11/odoo-custom-addons",
     "author": "Paulius Gaizauskas",

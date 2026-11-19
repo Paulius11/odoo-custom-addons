@@ -1,5 +1,10 @@
 ## Module web_listview_column_presets
 
+#### 19.11.2026
+#### Version 17.0.2.3.1
+#### BUG FIX
+- Lists in other modules' JavaScript tests no longer crash with "Service columnPreset is not available".
+
 #### 18.11.2026
 #### Version 17.0.2.3.0
 #### UPDATE

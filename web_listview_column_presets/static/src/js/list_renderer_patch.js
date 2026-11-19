@@ -16,11 +16,17 @@ import { _t } from "@web/core/l10n/translation";
 patch(ListRenderer.prototype, {
     setup() {
         super.setup(...arguments);
-        this.columnPresetService = useService("columnPreset");
+        this.presetState = useState({presets: [], canShare: false});
+        // Test environments (QUnit makeView) start only the services they need: without
+        // ours, the list works as in core and shows no presets.
+        this.columnPresetService =
+            "columnPreset" in this.env.services ? useService("columnPreset") : null;
+        if (!this.columnPresetService) {
+            return;
+        }
         this.dialogService = useService("dialog");
         this.notificationService = useService("notification");
         const user = useService("user");
-        this.presetState = useState({presets: [], canShare: false});
         onWillStart(async () => {
             if (!this.hasOptionalFields) {
                 return;
