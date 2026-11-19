@@ -13,14 +13,18 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 <!-- modules:start -->
 | | Module | What it does | 17.0 | 18.0 | 19.0 |
 |---|---|---|---|---|---|
-| <img src="account_payment_advance/static/description/icon.png" width="32"> | [Advance Payments](account_payment_advance/) | Customer deposits and vendor prepayments, applied to invoices later | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/account_payment_advance) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/account_payment_advance) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/account_payment_advance) |
+| <img src="simple_payment_advance/static/description/icon.png" width="32"> | [Advance Payments](simple_payment_advance/) | Customer deposits and vendor prepayments, applied to invoices later | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_payment_advance) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/simple_payment_advance) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/simple_payment_advance) |
 | <img src="debug_field_copy/static/description/icon.png" width="32"> | [Debug Field Copy](debug_field_copy/) | Copy field names from debug tooltip | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/debug_field_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/debug_field_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/debug_field_copy) |
 |  | Debug Logger | Log create, write, delete and search calls for debugging | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/debug_logger) |  |  |
+|  | List Arrow Keys | Arrow keys move between cells of an editable list, like a spreadsheet | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/web_list_arrow_keys) |  |  |
+|  | List View Column Presets | Save the columns of a list view as presets, switch back in one click | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/web_listview_column_presets) |  |  |
 | <img src="log_real_ip/static/description/icon.png" width="32"> | [Log Real IP](log_real_ip/) | Show real client IP in werkzeug logs when behind a reverse proxy |  | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/log_real_ip) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/log_real_ip) |
 | <img src="mail_lost/static/description/icon.png" width="32"> | [Lost Emails](mail_lost/) | Keep incoming emails that Odoo cannot route, and route them by hand | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/mail_lost) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/mail_lost) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/mail_lost) |
 | <img src="module_version/static/description/icon.png" width="32"> | [Module Version](module_version/) | Display module version, track lifecycle history, and check for App Store updates | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/module_version) |
 | <img src="language_change/static/description/icon.png" width="32"> | [Quick Language Switcher](language_change/) | Fast language switching from the Odoo interface | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/language_change) |
 | <img src="simple_online_users/static/description/icon.png" width="32"> | [Simple Online Users](simple_online_users/) | Display online users count in systray | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_online_users) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/simple_online_users) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/simple_online_users) |
+|  | Simple Scheduled Reports | Email any filtered list as a table and Excel file on a schedule | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_scheduled_reports) |  |  |
+|  | Simple User Menu Sort | Each user sorts the main app menu in their own order | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_user_menu_sort) |  |  |
 |  | User Activity Monitor | Track user login sessions and detect unusual activity patterns | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/user_session_monitor) |  |  |
 | <img src="user_permission_copy/static/description/icon.png" width="32"> | [User Permission Copy](user_permission_copy/) | Copy user permissions from one user to another | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/user_permission_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/user_permission_copy) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/user_permission_copy) |
 
@@ -30,7 +34,7 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 
 Customer deposits and vendor prepayments, applied to invoices later
 
-![Advance Payments](account_payment_advance/static/description/screenshot_1.png)
+![Advance Payments](simple_payment_advance/static/description/screenshot_1.png)
 
 ### Debug Field Copy
 
