@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.pos.escpos</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="pos_other_devices" position="after">
+                <setting
+                    id="pos_escpos_receipt_printer"
+                    string="ESC/POS Network Printer"
+                    help="Print receipts on an ESC/POS printer on the network, through the Odoo server"
+                >
+                    <field
+                        name="pos_escpos_receipt_printer_id"
+                        placeholder="Receipt printer"
+                        context="{'default_printer_type': 'escpos_network'}"
+                        options="{'no_quick_create': True}"
+                        class="w-100"
+                    />
+                    <div class="row mt-2" invisible="not pos_escpos_receipt_printer_id">
+                        <label
+                            string="Link Cashdrawer"
+                            for="pos_iface_cashdrawer"
+                            class="col-lg-4 o_light_label"
+                        />
+                        <field name="pos_iface_cashdrawer" class="col" />
+                    </div>
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>
