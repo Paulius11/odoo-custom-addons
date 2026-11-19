@@ -10,6 +10,8 @@ const arch = `
         <field name="name"/>
         <field name="qty"/>
         <field name="note"/>
+        <field name="kind"/>
+        <field name="email" widget="email"/>
     </tree>`;
 
 /** [column name, row index] of the focused cell */
@@ -35,11 +37,20 @@ QUnit.module("web_list_arrow_keys", (hooks) => {
                         name: {string: "Name", type: "char"},
                         qty: {string: "Qty", type: "integer"},
                         note: {string: "Note", type: "text"},
+                        kind: {
+                            string: "Kind",
+                            type: "selection",
+                            selection: [
+                                ["a", "A"],
+                                ["b", "B"],
+                            ],
+                        },
+                        email: {string: "Email", type: "char"},
                     },
                     records: [
-                        {id: 1, name: "aa", qty: 10, note: "xx"},
-                        {id: 2, name: "bb", qty: 20, note: "yy"},
-                        {id: 3, name: "cc", qty: 30, note: "zz"},
+                        {id: 1, name: "aa", qty: 10, note: "xx", kind: "a", email: "e1@x.lt"},
+                        {id: 2, name: "bb", qty: 20, note: "yy", kind: "a", email: "e2@x.lt"},
+                        {id: 3, name: "cc", qty: 30, note: "zz", kind: "a", email: "e3@x.lt"},
                     ],
                 },
             },
@@ -84,6 +95,21 @@ QUnit.module("web_list_arrow_keys", (hooks) => {
         document.activeElement.setSelectionRange(2, 2);
         await press("ArrowDown");
         assert.deepEqual(position(), ["note", 1]);
+    });
+
+    QUnit.test("a selection moves on with every arrow, its value unchanged", async (assert) => {
+        await makeView({type: "list", resModel: "foo", serverData, arch});
+        await click(target.querySelector(".o_data_row td[name=kind]"));
+        assert.strictEqual(document.activeElement.tagName, "SELECT");
+        await press("ArrowDown");
+        assert.deepEqual(position(), ["kind", 1]);
+        assert.strictEqual(document.activeElement.value, '"a"');
+        await press("ArrowRight");
+        assert.deepEqual(position(), ["email", 1]);
+        await press("ArrowLeft");
+        assert.deepEqual(position(), ["email", 1], "email: Left moves its text cursor");
+        await press("ArrowUp");
+        assert.deepEqual(position(), ["email", 0]);
     });
 
     QUnit.test("Enter on the last line still adds a line", async (assert) => {

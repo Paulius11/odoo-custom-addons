@@ -1,7 +1,7 @@
 {
     "name": "List Arrow Keys",
     "summary": "Arrow keys move between cells of an editable list, like a spreadsheet",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "Extra Tools",
     "website": "https://github.com/Paulius11/odoo-custom-addons",
     "author": "Paulius Gaizauskas",

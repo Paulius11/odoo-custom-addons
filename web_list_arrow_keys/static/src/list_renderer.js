@@ -11,9 +11,13 @@ const HORIZONTAL = {arrowleft: -1, arrowright: 1};
  * value, as right after jumping into a cell, counts as both, like a spreadsheet cell.
  */
 function caretAtEdge(el, step) {
-    if (!["INPUT", "TEXTAREA"].includes(el.tagName) || el.selectionStart === null) {
-        // Checkbox, button: no text cursor to move first
+    if (!["INPUT", "TEXTAREA"].includes(el.tagName)) {
+        // Selection, link, button: no text cursor (a selection would change value instead)
         return true;
+    }
+    if (el.selectionStart === null) {
+        // Checkbox: no text; email: has text but hides its cursor position from scripts
+        return el.type !== "email";
     }
     const {selectionStart: start, selectionEnd: end, value} = el;
     if (start !== end && !(start === 0 && end === value.length)) {
@@ -47,9 +51,10 @@ patch(ListRenderer.prototype, {
             !cell ||
             list.model.useSampleModel ||
             (record.selected && list.model.multiEdit) ||
-            el.tagName === "SELECT" ||
             el.type === "number" ||
-            el.isContentEditable
+            el.isContentEditable ||
+            // An open search dropdown (many2one, tags) keeps its keys
+            el.getAttribute("aria-expanded") === "true"
         ) {
             return false;
         }
@@ -60,10 +65,16 @@ patch(ListRenderer.prototype, {
                 return false;
             }
             const row = cell.parentElement;
-            const toFocus =
-                step > 0
-                    ? this.findNextFocusableOnRow(row, cell)
-                    : this.findPreviousFocusableOnRow(row, cell);
+            let toFocus = el;
+            do {
+                const from = toFocus.closest("td");
+                toFocus =
+                    step > 0
+                        ? this.findNextFocusableOnRow(row, from)
+                        : this.findPreviousFocusableOnRow(row, from);
+                // Skip widget columns (e.g. the stock forecast icon): core gives their
+                // cells no key handler, so the arrows would get stuck there
+            } while (toFocus && !toFocus.closest("td").hasAttribute("name"));
             if (!toFocus) {
                 return false;
             }

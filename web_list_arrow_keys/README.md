@@ -44,9 +44,11 @@ None: works right after install.
 
 - **Depends on**: `web`
 - **Models**: none. `ListRenderer.onCellKeydown` is patched and only acts while a line is
-  being edited. Left alone: dropdown fields (many2one search, selection), number inputs, Up
-  and Down inside a multi-line text except at its first or last character, and multi-editing
-  of selected records.
+  being edited. Left alone: search dropdowns (many2one, tags) and any open dropdown, number
+  inputs, Left and Right in email fields (the browser hides their cursor position), Up and
+  Down inside a multi-line text except at its first or last character, and multi-editing of
+  selected records. A selection field moves on with every arrow instead of changing value;
+  widget columns without a field (e.g. the stock forecast icon) are skipped.
 - **Tests**: QUnit tests in `static/tests/`, run by `tests/` when Chrome is available.
 - **Odoo versions**: see the branches of this repository (one branch per series)
 
