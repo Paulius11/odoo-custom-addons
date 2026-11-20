@@ -11,7 +11,7 @@ manifest-required-authors=Paulius Gaizauskas
 manifest-required-keys=license
 manifest-deprecated-keys=description,active
 license-allowed=AGPL-3,GPL-2,GPL-2 or any later version,GPL-3,GPL-3 or any later version,LGPL-3
-valid-odoo-versions=19.0
+valid-odoo-versions=20.0
 
 [MESSAGES CONTROL]
 disable=all
@@ -85,7 +85,8 @@ enable=anomalous-backslash-in-string,
     translation-too-few-args,
     translation-too-many-args,
     translation-unsupported-format,
-    no-write-in-compute
+    no-write-in-compute,
+    manifest-summary-multiline
 
 [REPORTS]
 msg-template={path}:{line}: [{msg_id}({symbol}), {obj}] {msg}

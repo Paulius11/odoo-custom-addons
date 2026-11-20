@@ -1,0 +1,2 @@
+id,name,model_id/id,group_id/id,operation,domain
+access_user_permission_copy_wizard_system,user.permission.copy.wizard system,model_user_permission_copy_wizard,base.group_system,crud,

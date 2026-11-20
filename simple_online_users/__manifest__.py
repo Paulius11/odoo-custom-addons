@@ -1,6 +1,6 @@
 {
     'name': 'Simple Online Users',
-    'version': '19.0.1.0.1',
+    'version': '20.0.1.0.1',
     'category': 'Website/Tools',
     'author': 'Paulius Gaizauskas',
     'website': 'https://github.com/Paulius11/odoo-custom-addons',

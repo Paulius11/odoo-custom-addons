@@ -1,11 +1,11 @@
 # Odoo Custom Addons
 
-[![tests](https://github.com/Paulius11/odoo-custom-addons/actions/workflows/test.yml/badge.svg?branch=19.0)](https://github.com/Paulius11/odoo-custom-addons/actions/workflows/test.yml?query=branch%3A19.0)
-[![Odoo 19.0](https://img.shields.io/badge/Odoo-19.0-714B67)](https://apps.odoo.com/apps/modules/browse?author=Paulius%20Gaizauskas)
+[![tests](https://github.com/Paulius11/odoo-custom-addons/actions/workflows/test.yml/badge.svg?branch=20.0)](https://github.com/Paulius11/odoo-custom-addons/actions/workflows/test.yml?query=branch%3A20.0)
+[![Odoo 20.0](https://img.shields.io/badge/Odoo-20.0-714B67)](https://apps.odoo.com/apps/modules/browse?author=Paulius%20Gaizauskas)
 [![License: LGPL-3](https://img.shields.io/badge/license-LGPL--3-blue)](https://www.gnu.org/licenses/lgpl-3.0)
 
 Free, open-source Odoo modules for admins and everyday users. Each Odoo series has its own
-branch (`17.0`, `18.0`, `19.0`, `20.0`); this is the **19.0** branch. All modules are
+branch (`17.0`, `18.0`, `19.0`, `20.0`); this is the **20.0** branch. All modules are
 also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=Paulius%20Gaizauskas).
 
 ## Modules
@@ -83,7 +83,7 @@ Copy user permissions from one user to another
 ## Install
 
 ```bash
-git clone -b 19.0 https://github.com/Paulius11/odoo-custom-addons.git
+git clone -b 20.0 https://github.com/Paulius11/odoo-custom-addons.git
 ```
 
 Add the folder to `addons_path`, restart Odoo, then **Apps › Update Apps List** and install.

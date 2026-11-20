@@ -99,7 +99,7 @@ class IrModuleModule(models.Model):
 
     def _get_snapshot(self):
         """Return the stored module snapshot dict, or {} if not yet created."""
-        raw = self.env['ir.config_parameter'].sudo().get_param(
+        raw = self.env['ir.config_parameter'].sudo().get_str(
             'module_version.installed_snapshot', '{}'
         )
         try:
@@ -182,7 +182,7 @@ class IrModuleModule(models.Model):
                     'upgraded_from': existing.get('version', ''),
                 }
             # If version unchanged, leave entry as-is
-        ICP.set_param('module_version.installed_snapshot', json.dumps(snapshot))
+        ICP.set_str('module_version.installed_snapshot', json.dumps(snapshot))
 
     def _sync_module_snapshot(self):
         """Compare all installed modules against snapshot; record new/upgraded entries.
@@ -200,7 +200,7 @@ class IrModuleModule(models.Model):
                 m.name: {'version': m.latest_version or '', 'since': now, 'is_new': False}
                 for m in modules
             }
-            ICP.set_param('module_version.installed_snapshot', json.dumps(snapshot))
+            ICP.set_str('module_version.installed_snapshot', json.dumps(snapshot))
             return
 
         modules = self.search([('state', '=', 'installed')])
@@ -222,7 +222,7 @@ class IrModuleModule(models.Model):
                 }
                 changed = True
         if changed:
-            ICP.set_param('module_version.installed_snapshot', json.dumps(snapshot))
+            ICP.set_str('module_version.installed_snapshot', json.dumps(snapshot))
 
     # Class-level guard so _sync_module_snapshot runs only once per server process
     _snapshot_synced = False

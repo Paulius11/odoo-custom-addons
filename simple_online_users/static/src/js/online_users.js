@@ -4,15 +4,14 @@ import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { rpc } from "@web/core/network/rpc";
 import { user } from "@web/core/user";
-import { Component, useState, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
+import { Component, proxy, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
 
 const UPDATE_INTERVAL = 30000; // Update every 30 seconds
 
 class OnlineUsersSystray extends Component {
-    static props = {};
 
     setup() {
-        this.state = useState({
+        this.state = proxy({
             count: 0,
             isVisible: false,
             error: false,
@@ -127,15 +126,15 @@ class OnlineUsersSystray extends Component {
     getStatusIcon(status) {
         switch(status) {
             case 'online':
-                return 'fa fa-circle text-success';
+                return 'oi text-success';
             case 'away':
-                return 'fa fa-circle text-warning';
+                return 'oi text-warning';
             case 'idle':
-                return 'fa fa-circle text-info';
+                return 'oi text-info';
             case 'offline':
-                return 'fa fa-circle text-muted';
+                return 'oi text-muted';
             default:
-                return 'fa fa-circle text-secondary';
+                return 'oi text-secondary';
         }
     }
 

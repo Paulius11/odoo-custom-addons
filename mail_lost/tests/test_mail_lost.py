@@ -52,7 +52,8 @@ class TestMailLost(TransactionCase):
 
     def receive(self, source, model=None):
         """What fetchmail and the mailgate script do with every incoming email."""
-        return self.Thread.message_process(model, source)
+        thread = self.Thread.message_process(model, source)  # 20.0: a record, not an id
+        return thread and thread.id
 
     def route(self, lost, user=None, **values):
         wizard = Form(
@@ -199,15 +200,14 @@ class TestMailLost(TransactionCase):
         )
 
     def test_route_needs_post_access_on_target(self):
-        # a manager without "Contact Creation" may read contacts, not post or create
+        # a manager without "Contact Creation" may read contacts, not create them
+        # (20.0: posting on a contact needs only read, res.partner._mail_post_access)
         reader = mail_new_test_user(
             self.env,
             login="lost_reader",
             groups="base.group_user,mail_lost.group_mail_lost_manager",
         )
         lost = self.Lost.browse(self.receive(email_source()))
-        with self.assertRaises(AccessError):
-            self.route(lost, user=reader, record_ref=self.partner)
         with self.assertRaises(AccessError):
             self.route(lost, user=reader, mode="new", model="res.partner")
         self.assertEqual(lost.state, "new")

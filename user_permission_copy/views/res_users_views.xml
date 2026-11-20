@@ -11,7 +11,7 @@
                         type="object"
                         string="Copy Permissions"
                         class="btn-primary"
-                        icon="fa-copy"
+                        icon="content_copy"
                         groups="base.group_system"
                         help="Copy this user's permissions to another user"/>
             </xpath>

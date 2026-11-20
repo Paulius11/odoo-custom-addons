@@ -1,4 +1,3 @@
-import base64
 import email
 import email.errors
 import email.policy
@@ -6,6 +5,7 @@ import logging
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import BinaryBytes
 
 _logger = logging.getLogger(__name__)
 
@@ -99,7 +99,7 @@ class MailLost(models.Model):
             )
             raw = False
         values = {
-            "raw_email": raw and base64.b64encode(raw),
+            "raw_email": raw and BinaryBytes(raw),
             "reason": reason,
         }
         route = (self._name, False, values, self.env.uid, None)
@@ -160,7 +160,7 @@ class MailLost(models.Model):
             )
         thread = self.env["mail.thread"]
         message = email.message_from_bytes(
-            base64.b64decode(self.raw_email), policy=email.policy.SMTP
+            self.raw_email.content, policy=email.policy.SMTP
         )
         msg_dict = thread.message_parse(message)
         msg_dict.pop("parent_id", None)  # a parent in another thread means nothing here
@@ -170,6 +170,6 @@ class MailLost(models.Model):
             )
         except ValueError as error:
             raise UserError(str(error)) from error
-        res_id = thread._message_route_process(message, msg_dict, [route])
+        res_id = thread._message_route_process(message, msg_dict, [route]).id
         self.write({"state": "routed", "target_model": model, "target_res_id": res_id})
         return res_id

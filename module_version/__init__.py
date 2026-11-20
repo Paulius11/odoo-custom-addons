@@ -16,6 +16,6 @@ def post_init_hook(env):
         m.name: {'version': m.latest_version or '', 'since': now, 'is_new': False}
         for m in modules
     }
-    env['ir.config_parameter'].sudo().set_param(
+    env['ir.config_parameter'].sudo().set_str(
         'module_version.installed_snapshot', json.dumps(snapshot)
     )

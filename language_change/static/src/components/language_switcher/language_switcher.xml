@@ -4,15 +4,15 @@
         <!-- 18.0 Dropdown: the toggler is the default slot, the items go in the "content" slot -->
         <Dropdown position="'bottom-end'" menuClass="'o_language_menu'">
             <button class="o_language_switcher d-flex align-items-center h-100 px-0 text-reset">
-                <i class="fa fa-language fa-lg" role="img" aria-label="Language" title="Switch Language"/>
+                <i class="oi fs-4" data-icon="translate" role="img" aria-label="Language" title="Switch Language"/>
             </button>
             <t t-set-slot="content">
-                <t t-foreach="state.languages" t-as="language" t-key="language.code">
+                <t t-foreach="this.state.languages" t-as="language" t-key="language.code">
                     <DropdownItem
                         onSelected="() => this.switchLanguage(language.code)">
                         <div class="d-flex align-items-center">
-                            <span t-esc="language.name"/>
-                            <i t-if="language.code === state.currentLang" class="fa fa-check ms-auto" role="img" aria-label="Selected" title="Selected Language"/>
+                            <span t-out="language.name"/>
+                            <i t-if="language.code === this.state.currentLang" class="oi ms-auto" data-icon="check" role="img" aria-label="Selected" title="Selected Language"/>
                         </div>
                     </DropdownItem>
                 </t>

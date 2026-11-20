@@ -5,16 +5,15 @@ import { useService } from "@web/core/utils/hooks";
 import { Dropdown } from "@web/core/dropdown/dropdown";
 import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 
-import { Component, useState, onWillStart } from "@odoo/owl";
+import { Component, proxy, onWillStart } from "@odoo/owl";
 
 export class LanguageSwitcher extends Component {
     static template = "language_switcher.LanguageSwitcher";
     static components = { Dropdown, DropdownItem };
-    static props = {};
 
     setup() {
         this.languageService = useService("language");
-        this.state = useState({
+        this.state = proxy({
             languages: [],
             currentLang: null,
             loading: false

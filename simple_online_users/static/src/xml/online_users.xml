@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="simple_online_users.OnlineUsersSystray" owl="1">
-        <div t-if="state.isVisible" class="o_online_users o_systray_item d-flex align-items-center position-relative"
-             t-on-mouseenter="onSystrayHover"
-             t-on-mouseleave="onSystrayLeave">
+        <div t-if="this.state.isVisible" class="o_online_users o_systray_item d-flex align-items-center position-relative"
+             t-on-mouseenter="this.onSystrayHover"
+             t-on-mouseleave="this.onSystrayLeave">
             <div class="d-flex align-items-center text-white"
-                 t-att-class="state.error ? 'text-danger' : 'text-white'"
-                 t-att-title="tooltip"
+                 t-att-class="this.state.error ? 'text-danger' : 'text-white'"
+                 t-att-title="this.tooltip"
                  style="cursor: default; padding: 8px; line-height: 1;">
-                <i class="fa fa-users" aria-hidden="true" style="margin-right: 4px; font-size: 14px;"/>
-                <span t-esc="state.error ? '?' : state.count" style="font-size: 13px;"/>
+                <i class="oi" data-icon="group" aria-hidden="true" style="margin-right: 4px; font-size: 14px;"/>
+                <span t-out="this.state.error ? '?' : this.state.count" style="font-size: 13px;"/>
             </div>
 
             <!-- Popup -->
-            <div t-if="state.showPopup" 
+            <div t-if="this.state.showPopup" 
                  class="dropdown-menu dropdown-menu-end show position-absolute"
                  style="top: 100%; right: 0; min-width: 280px; max-height: 350px; overflow-y: auto; z-index: 1050;">
                 
@@ -22,11 +22,11 @@
                 </div>
                 <div class="dropdown-divider" style="margin: 0;"/>
 
-                <div t-if="state.users.length === 0" class="dropdown-item-text text-muted text-center py-3">
+                <div t-if="this.state.users.length === 0" class="dropdown-item-text text-muted text-center py-3">
                     No users currently online
                 </div>
 
-                <div t-foreach="state.users" t-as="user" t-key="user.id" 
+                <div t-foreach="this.state.users" t-as="user" t-key="user.id" 
                      class="dropdown-item d-flex align-items-center py-2 px-3" 
                      style="white-space: normal; border-bottom: 1px solid #f0f0f0; cursor: default;">
                     
@@ -40,15 +40,15 @@
                     <div class="flex-grow-1 min-width-0">
                         <div class="d-flex align-items-center justify-content-between">
                             <span class="fw-medium text-truncate me-2" 
-                                  t-esc="user.name" 
+                                  t-out="user.name" 
                                   style="font-size: 13px; max-width: 140px;"/>
                             <div class="d-flex align-items-center flex-shrink-0">
-                                <i t-att-class="getStatusIcon(user.status)" style="font-size: 8px; margin-right: 4px;"/>
-                                <small class="text-muted" t-esc="user.status_text" style="font-size: 11px;"/>
+                                <i data-icon="circle" t-att-class="this.getStatusIcon(user.status)" style="font-size: 8px; margin-right: 4px;"/>
+                                <small class="text-muted" t-out="user.status_text" style="font-size: 11px;"/>
                             </div>
                         </div>
                         <div class="text-muted text-truncate" style="font-size: 11px;">
-                            <t t-esc="user.login"/>
+                            <t t-out="user.login"/>
                             <t t-if="user.is_current_user"> (You)</t>
                         </div>
                     </div>

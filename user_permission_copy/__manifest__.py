@@ -1,13 +1,13 @@
 {
     'name': 'User Permission Copy',
-    'version': '19.0.1.0.2',
+    'version': '20.0.1.0.2',
     'category': 'Administration',
     'author': 'Paulius Gaizauskas',
     'website': 'https://github.com/Paulius11/odoo-custom-addons',
     'summary': 'Copy user permissions from one user to another',
     'depends': ['base'],
     'data': [
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
         'views/res_users_views.xml',
         'wizard/user_permission_copy_wizard_views.xml',
     ],

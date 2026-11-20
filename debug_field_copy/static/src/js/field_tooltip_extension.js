@@ -58,12 +58,13 @@ function showCopyFeedback(button, success) {
     const icon = button.querySelector("i");
     if (!icon) return;
 
-    const originalClass = icon.className;
-    icon.className = success ? "fa fa-check" : "fa fa-times";
+    // 20.0 has no Font Awesome: icons are <i class="oi" data-icon="<Material Symbols name>">
+    const originalIcon = icon.dataset.icon;
+    icon.dataset.icon = success ? "check" : "close";
     button.style.color = success ? "#4caf50" : "#f44336";
 
     setTimeout(() => {
-        icon.className = originalClass;
+        icon.dataset.icon = originalIcon;
         button.style.color = "";
     }, 1500);
 }
@@ -76,7 +77,7 @@ function createCopyButton(textToCopy) {
     btn.className = "o-tooltip-copy-btn";
     btn.title = "Copy to clipboard";
     btn.type = "button";
-    btn.innerHTML = '<i class="fa fa-clipboard"></i>';
+    btn.innerHTML = '<i class="oi" data-icon="content_copy"></i>';
     btn.style.cssText = `
         background: transparent;
         border: none;

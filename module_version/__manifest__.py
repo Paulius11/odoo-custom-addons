@@ -1,6 +1,6 @@
 {
     'name': 'Module Version',
-    'version': '19.0.4.2.2',
+    'version': '20.0.4.2.2',
     'category': 'Extra Tools',
     'summary': 'Display module version, track lifecycle history, and check for App Store updates',
     'author': 'Paulius Gaizauskas',
@@ -10,7 +10,7 @@
     'support': 'paulius.gaizauskas@gmail.com',
     'depends': ['base'],
     'data': [
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
         'views/module_upgrade_history_views.xml',
         'views/ir_module_module_views.xml',
         'views/ir_module_update_info_views.xml',

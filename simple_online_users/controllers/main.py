@@ -116,7 +116,7 @@ class OnlineUsersController(http.Controller):
     def get_visibility_group(self):
         """Get the group that can see online users"""
         try:
-            param = request.env['ir.config_parameter'].sudo().get_param(
+            param = request.env['ir.config_parameter'].sudo().get_str(
                 'online_users.visibility_group', 'base.group_system'
             )
             return {'group_xml_id': param, 'success': True}
