@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="custom_translate.TranslationPopup">
+        <Dialog title="title" size="'lg'" contentClass="'o_translation_popup_dialog'">
+            <div class="o_translation_popup">
+                <div class="mb-2">
+                    <span class="text-muted">Clicked text:</span>
+                    <strong class="ms-1" t-esc="props.text"/>
+                </div>
+                <div t-if="state.loading" class="text-center p-4">
+                    <i class="fa fa-spinner fa-spin fa-2x"/>
+                </div>
+                <div t-elif="isEnglish" class="alert alert-warning" role="status">
+                    Your language is English, the source language. Switch your language
+                    (your user preferences) to the one you want to translate into.
+                </div>
+                <div t-elif="!state.matches.length" class="alert alert-warning" role="status">
+                    No translatable term has this text. It is probably data (a record's
+                    name or a value you typed), not part of Odoo's interface. If the term
+                    list is old, refresh it in Translate › Terms.
+                </div>
+                <t t-else="">
+                    <p class="text-muted small mb-1">
+                        This text appears in <t t-esc="state.matches.length"/> place(s).
+                        Tick the ones to change.
+                    </p>
+                    <div class="o_translation_matches mb-3">
+                        <table class="table table-sm table-hover mb-0">
+                            <thead>
+                                <tr><th/><th>Where</th><th>English</th><th>Now</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="state.matches" t-as="m" t-key="m.id"
+                                    t-on-click="() => this.toggle(m)" class="cursor-pointer">
+                                    <td><input type="checkbox" t-att-checked="state.selected[m.id]"/></td>
+                                    <td t-esc="m.location"/>
+                                    <td t-esc="m.source"/>
+                                    <td>
+                                        <t t-esc="m.live or m.value or m.source"/>
+                                        <span t-if="m.live" class="badge text-bg-success ms-1">changed</span>
+                                        <span t-if="m.pending" class="badge text-bg-info ms-1" t-att-title="m.pending">draft</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <label class="form-label fw-bold">New translation</label>
+                    <textarea class="form-control" rows="3" t-model="state.value"
+                              t-att-disabled="state.saving"/>
+                </t>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="onSaveDraft"
+                        t-att-disabled="state.loading or state.saving or !state.matches.length">
+                    Save draft
+                </button>
+                <button class="btn btn-secondary" t-on-click="onSaveApply"
+                        t-att-disabled="state.loading or state.saving or !state.matches.length">
+                    Save and apply all drafts
+                </button>
+                <button t-if="canRevert" class="btn btn-outline-danger" t-on-click="onRevert"
+                        t-att-disabled="state.saving">
+                    Revert to Odoo's translation
+                </button>
+                <button class="btn btn-link" t-on-click="props.close">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+
+    <t t-name="custom_translate.TranslationModeOverlay">
+        <div t-if="state.enabled" class="o_translation_mode_bar shadow">
+            <i class="fa fa-language me-2"/>
+            <span>Translation mode: click any text</span>
+            <span class="ms-3">Drafts: <strong t-esc="state.pending"/></span>
+            <button class="btn btn-sm btn-primary ms-2" t-att-disabled="!state.pending"
+                    t-on-click="apply">Apply</button>
+            <button class="btn btn-sm btn-secondary ms-1" t-on-click="openChanges">Review</button>
+            <button class="btn btn-sm btn-link ms-1" t-on-click="() => translationMode.toggle()">Exit</button>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="custom_translate.TranslationModeSystray">
+        <div t-if="translationMode.isTranslator" class="o_translation_mode_systray">
+            <button class="btn border-0 bg-transparent position-relative"
+                    t-on-click="() => translationMode.toggle()"
+                    t-att-title="title">
+                <i t-attf-class="fa fa-lg fa-language #{state.enabled ? 'text-success' : ''}"/>
+                <span t-if="state.pending" class="o_translation_mode_badge badge rounded-pill text-bg-info" t-esc="state.pending"/>
+            </button>
+        </div>
+    </t>
+</templates>

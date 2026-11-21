@@ -1,0 +1,40 @@
+.o_translation_mode_active .o_translatable_hover {
+    outline: 2px dashed rgba(0, 123, 255, 0.8) !important;
+    outline-offset: 1px;
+    cursor: help !important;
+}
+
+.o_translation_mode_bar {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1060;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: $o-view-background-color;
+    border: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+.o_translation_mode_systray .o_translation_mode_badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.6rem;
+}
+
+.o_translation_popup .o_translation_matches {
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+// widths of an editable list come from its content: the empty column people type in
+// would get only its header's width, so reserve room while Odoo measures
+.o_custom_translate_list .o_list_table.o_list_computing_widths > thead > tr > th {
+    &[data-name="new_value"],
+    &[data-name="pending_value"] {
+        min-width: 320px;
+    }
+}

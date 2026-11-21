@@ -1,0 +1,928 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* custom_translate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-17 00:11+0000\n"
+"PO-Revision-Date: 2026-11-17 00:11+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid " (+%s more)"
+msgstr " (+dar %s)"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+#, python-format
+msgid "%(count)s terms found for %(lang)s."
+msgstr "Rasta terminų: %(count)s (%(lang)s)."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "%s change(s) are live. Reload the page to see them."
+msgstr "Įsigaliojo pakeitimų: %s. Perkraukite puslapį, kad juos pamatytumėte."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_change.py:0
+#, python-format
+msgid "%s term(s) restored."
+msgstr "Atkurta terminų: %s."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "%s term(s) reverted. Reload the page to see them."
+msgstr "Atšaukta terminų: %s. Perkraukite puslapį, kad pamatytumėte."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+#, python-format
+msgid "<p>No terms: click Refresh term list.</p>"
+msgstr "<p>Terminų nėra: spauskite „Atnaujinti terminų sąrašą“.</p>"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+#, python-format
+msgid "Action"
+msgstr "Veiksmas"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Actions"
+msgstr "Veiksmai"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__new_value
+msgid "After"
+msgstr "Po"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "All %s changed term(s) are back to Odoo's translation."
+msgstr "Visiems pakeistiems terminams (%s) grąžintas Odoo vertimas."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "Applied: %s"
+msgstr "Pritaikyta: %s"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_change_set__operation__apply
+#, python-format
+msgid "Apply"
+msgstr "Pritaikyti"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_tree
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_tree
+msgid "Apply drafts"
+msgstr "Pritaikyti juodraščius"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__old_value
+msgid "Before"
+msgstr "Prieš"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__user_id
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__user_id
+msgid "By"
+msgstr "Kas"
+
+#. module: custom_translate
+#: model:res.groups,comment:custom_translate.group_translator
+msgid "Can change Odoo's UI translations, apply them and revert them."
+msgstr "Gali keisti Odoo sąsajos vertimus, juos pritaikyti ir atšaukti."
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Cancel"
+msgstr "Atšaukti"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__change_ids
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_form
+msgid "Change"
+msgstr "Pakeitimas"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_change_set_form
+msgid "Change set"
+msgstr "Pakeitimų rinkinys"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_form
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_tree
+msgid "Changed"
+msgstr "Pakeista"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Changed (live)"
+msgstr "Pakeisti (galioja)"
+
+#. module: custom_translate
+#: model:ir.actions.act_window,name:custom_translate.action_translation_override
+#: model:ir.ui.menu,name:custom_translate.menu_translate_changes
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_search
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_tree
+msgid "Changes"
+msgstr "Pakeitimai"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Clicked text:"
+msgstr "Paspaustas tekstas:"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+#, python-format
+msgid "Code"
+msgstr "Kodas"
+
+#. module: custom_translate
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_override__kind__code
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_term__kind__code
+msgid "Code term"
+msgstr "Kodo terminas"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Code terms"
+msgstr "Kodo terminai"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "Could not change %(where)s: %(error)s"
+msgstr "Nepavyko pakeisti %(where)s: %(error)s"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__create_uid
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__create_uid
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__create_uid
+msgid "Created by"
+msgstr "Sukūrė"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__create_date
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__create_date
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__create_date
+msgid "Created on"
+msgstr "Sukurta"
+
+#. module: custom_translate
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_override__kind__db
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_term__kind__db
+msgid "Database term"
+msgstr "Duomenų bazės terminas"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_form
+msgid "Discard draft"
+msgstr "Atmesti juodraštį"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_tree
+msgid "Discard drafts"
+msgstr "Atmesti juodraščius"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__display_name
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__display_name
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__display_name
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__display_name
+msgid "Display Name"
+msgstr "Rodomas pavadinimas"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__pending_value
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_override__state__pending
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_search
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Draft"
+msgstr "Juodraštis"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__pending_uid
+msgid "Draft by"
+msgstr "Juodraščio autorius"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Drafts:"
+msgstr "Juodraščiai:"
+
+#. module: custom_translate
+#: model:ir.model.fields,help:custom_translate.field_translation_change__new_value
+#: model:ir.model.fields,help:custom_translate.field_translation_change__old_value
+msgid "Empty: Odoo's own translation."
+msgstr "Tuščia: Odoo vertimas."
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__source
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__source
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__source
+#, python-format
+msgid "English"
+msgstr "Anglų k."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "English is the source language: switch your language to translate."
+msgstr ""
+"Anglų kalba yra šaltinio kalba: norėdami versti, pakeiskite savo kalbą."
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_tree
+msgid ""
+"Every changed term goes back to Odoo's translation, and all drafts are "
+"discarded. Continue?"
+msgstr ""
+"Visiems pakeistiems terminams bus grąžintas Odoo vertimas, o visi "
+"juodraščiai bus atmesti. Tęsti?"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Exit"
+msgstr "Išeiti"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+#, python-format
+msgid "Field label"
+msgstr "Lauko pavadinimas"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Field labels"
+msgstr "Laukų pavadinimai"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_search
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Group By"
+msgstr "Grupuoti pagal"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "HTML tags"
+msgstr "HTML žymės"
+
+#. module: custom_translate
+#: model:ir.model,name:custom_translate.model_ir_http
+msgid "HTTP Routing"
+msgstr "HTTP maršrutizavimas"
+
+#. module: custom_translate
+#: model:ir.actions.act_window,name:custom_translate.action_translation_change_set
+#: model:ir.ui.menu,name:custom_translate.menu_translate_history
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_change_set_tree
+msgid "History"
+msgstr "Istorija"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__id
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__id
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__id
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__id
+msgid "ID"
+msgstr "ID"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__key
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__key
+msgid "Key"
+msgstr "Raktas"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__kind
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__kind
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Kind"
+msgstr "Rūšis"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__lang
+msgid "Lang"
+msgstr "Kalba"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__lang
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__lang
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_search
+msgid "Language"
+msgstr "Kalba"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__write_uid
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__write_uid
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__write_uid
+msgid "Last Updated by"
+msgstr "Paskutinį kartą atnaujino"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__write_date
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__write_date
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__write_date
+msgid "Last Updated on"
+msgstr "Paskutinį kartą atnaujinta"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_change.py:0
+#, python-format
+msgid "Left alone, changed again later: %s"
+msgstr "Nekeista, nes vėliau pakeista dar kartą: %s"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__line_ids
+msgid "Line"
+msgstr "Eilutė"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__line_count
+msgid "Line Count"
+msgstr "Eilučių skaičius"
+
+#. module: custom_translate
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_override__state__live
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_search
+msgid "Live"
+msgstr "Galioja"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__value
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__live_value
+msgid "Live translation"
+msgstr "Galiojantis vertimas"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__location
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__location
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__location
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Location"
+msgstr "Vieta"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+#, python-format
+msgid "Menu"
+msgstr "Meniu"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Menus"
+msgstr "Meniu"
+
+#. module: custom_translate
+#: model:ir.model,name:custom_translate.model_ir_module_module
+msgid "Module"
+msgstr "Modulis"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__module
+msgid "Modules"
+msgstr "Moduliai"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__name
+msgid "Name"
+msgstr "Pavadinimas"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "New translation"
+msgstr "Naujas vertimas"
+
+#. module: custom_translate
+#: model_terms:ir.actions.act_window,help:custom_translate.action_translation_override
+msgid "No changed terms yet"
+msgstr "Pakeistų terminų dar nėra"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_mode_overlay.js:0
+#, python-format
+msgid "No text here to translate."
+msgstr "Čia nėra teksto vertimui."
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid ""
+"No translatable term has this text. It is probably data (a record's\n"
+"                    name or a value you typed), not part of Odoo's interface. If the term\n"
+"                    list is old, refresh it in Translate › Terms."
+msgstr ""
+"Joks verčiamas terminas neturi tokio teksto. Tikriausiai tai duomenys (įrašo"
+" pavadinimas ar jūsų įvesta reikšmė), o ne Odoo sąsajos dalis. Jei terminų "
+"sąrašas senas, atnaujinkite jį skiltyje Versti › Terminai."
+
+#. module: custom_translate
+#: model:ir.model.fields,help:custom_translate.field_translation_override__pending_value
+msgid "Not visible to users until applied."
+msgstr "Naudotojai nemato, kol nepritaikyta."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "Nothing to apply: there are no drafts."
+msgstr "Nėra ką pritaikyti: juodraščių nėra."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "Nothing to revert: no term is changed."
+msgstr "Nėra ką atšaukti: joks terminas nepakeistas."
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Now"
+msgstr "Dabar"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__original_value
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__value
+msgid "Odoo translation"
+msgstr "Odoo vertimas"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "Only Apply and Revert can change: %s"
+msgstr "Tai keisti galima tik pritaikant ar atšaukiant: %s"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__operation
+msgid "Operation"
+msgstr "Veiksmas"
+
+#. module: custom_translate
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_override__state__original
+msgid "Original"
+msgstr "Originalas"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__original_missing
+msgid "Original Missing"
+msgstr "Originalo nebuvo"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__original_taken
+msgid "Original Taken"
+msgstr "Originalas išsaugotas"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__override_id
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__override_id
+msgid "Override"
+msgstr "Pakeitimas"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.js:0
+#, python-format
+msgid "Pick at least one term and type a translation."
+msgstr "Pasirinkite bent vieną terminą ir įrašykite vertimą."
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_tree
+msgid "Refresh term list"
+msgstr "Atnaujinti terminų sąrašą"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__res_id
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__res_id
+msgid "Res"
+msgstr "Įrašo ID"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__res_field
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__res_field
+msgid "Res Field"
+msgstr "Laukas"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__res_model
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__res_model
+msgid "Res Model"
+msgstr "Modelis"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_change_set_form
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_change_set_tree
+msgid "Restore every term of this change set to its value before it?"
+msgstr "Atkurti visų šio rinkinio terminų ankstesnes reikšmes?"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_change_set_tree
+msgid "Revert"
+msgstr "Atšaukti"
+
+#. module: custom_translate
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_change_set__operation__revert_set
+msgid "Revert change set"
+msgstr "Atšaukti pakeitimų rinkinį"
+
+#. module: custom_translate
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_change_set__operation__revert_all
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_tree
+msgid "Revert everything"
+msgstr "Atšaukti viską"
+
+#. module: custom_translate
+#: model:ir.model.fields.selection,name:custom_translate.selection__translation_change_set__operation__revert_term
+msgid "Revert terms"
+msgstr "Atšaukti terminus"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_change_set_form
+msgid "Revert this change set"
+msgstr "Atšaukti šį pakeitimų rinkinį"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_form
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_tree
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_tree
+#, python-format
+msgid "Revert to Odoo's translation"
+msgstr "Grąžinti Odoo vertimą"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_search
+msgid "Reverted"
+msgstr "Atšaukta"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change_set__reverted_by_id
+msgid "Reverted By"
+msgstr "Atšaukė"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "Reverted everything: %s"
+msgstr "Atšaukta viskas: %s"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_change.py:0
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "Reverted: %s"
+msgstr "Atšaukta: %s"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Review"
+msgstr "Peržiūrėti"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Save and apply all drafts"
+msgstr "Išsaugoti ir pritaikyti visus juodraščius"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Save draft"
+msgstr "Išsaugoti juodraštį"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.js:0
+#, python-format
+msgid "Saved as a draft. Apply makes it live."
+msgstr "Išsaugota kaip juodraštis. Pritaikius įsigalios."
+
+#. module: custom_translate
+#: model:ir.model.fields,help:custom_translate.field_translation_term__new_value
+msgid "Saved as a draft; Apply makes drafts live."
+msgstr "Išsaugoma kaip juodraštis; pritaikius įsigalioja."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+#, python-format
+msgid "Selection value"
+msgstr "Pasirinkimo reikšmė"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Selection values"
+msgstr "Pasirinkimo reikšmės"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__set_id
+msgid "Set"
+msgstr "Rinkinys"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_override__state
+msgid "State"
+msgstr "Būsena"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__state
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_search
+msgid "Status"
+msgstr "Būsena"
+
+#. module: custom_translate
+#: model:ir.actions.server,name:custom_translate.action_open_terms
+#: model:ir.ui.menu,name:custom_translate.menu_translate_terms
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_change_set_tree
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_tree
+msgid "Terms"
+msgstr "Terminai"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+#, python-format
+msgid "Terms (%s)"
+msgstr "Terminai (%s)"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_override_search
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Text"
+msgstr "Tekstas"
+
+#. module: custom_translate
+#: model:ir.model.fields,help:custom_translate.field_translation_override__original_value
+msgid "The translation before the first change; Revert restores it."
+msgstr "Vertimas prieš pirmą pakeitimą; atšaukus jis atkuriamas."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "The translation cannot be empty."
+msgstr "Vertimas negali būti tuščias."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid ""
+"The translation must keep exactly the same %(what)s as the English text: "
+"%(items)s"
+msgstr "Vertimo %(what)s turi sutapti su angliško teksto: %(items)s"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "These terms already show Odoo's translation."
+msgstr "Šie terminai jau rodo Odoo vertimą."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_change.py:0
+#, python-format
+msgid "This change set was already reverted."
+msgstr "Šis pakeitimų rinkinys jau atšauktas."
+
+#. module: custom_translate
+#: model:ir.model.constraint,message:custom_translate.constraint_translation_override_key_lang_uniq
+msgid "This term already has a change."
+msgstr "Šis terminas jau turi pakeitimą."
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "This text appears in"
+msgstr "Šis tekstas yra"
+
+#. module: custom_translate
+#: model:ir.model,name:custom_translate.model_translation_term
+msgid "Translatable Term"
+msgstr "Verčiamas terminas"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.js:0
+#: model:ir.ui.menu,name:custom_translate.menu_translate_root
+#, python-format
+msgid "Translate"
+msgstr "Versti"
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__translated
+msgid "Translated"
+msgstr "Išversta"
+
+#. module: custom_translate
+#: model:ir.model,name:custom_translate.model_translation_override
+msgid "Translation Change"
+msgstr "Vertimo pakeitimas"
+
+#. module: custom_translate
+#: model:ir.model,name:custom_translate.model_translation_change
+msgid "Translation Change Line"
+msgstr "Vertimo pakeitimo eilutė"
+
+#. module: custom_translate
+#: model:ir.model,name:custom_translate.model_translation_change_set
+msgid "Translation Change Set"
+msgstr "Vertimų pakeitimų rinkinys"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Translation mode: click any text"
+msgstr "Vertimo režimas: spustelėkite bet kurį tekstą"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_mode_systray.js:0
+#, python-format
+msgid "Translation mode: click any text to translate it"
+msgstr "Vertimo režimas: spustelėkite bet kurį tekstą, kad jį išverstumėte"
+
+#. module: custom_translate
+#: model:res.groups,name:custom_translate.group_translator
+msgid "Translator"
+msgstr "Vertėjas"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_mode_systray.js:0
+#, python-format
+msgid "Turn off translation mode"
+msgstr "Išjungti vertimo režimą"
+
+#. module: custom_translate
+#: model_terms:ir.actions.act_window,help:custom_translate.action_translation_override
+msgid ""
+"Type a new translation in Terms, or turn on translation mode\n"
+"               (the language icon in the top bar) and click any text."
+msgstr ""
+"Įrašykite naują vertimą skiltyje Terminai arba įjunkite vertimo režimą "
+"(kalbos piktograma viršutinėje juostoje) ir spustelėkite bet kurį tekstą."
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_tree
+msgid "Type a new translation…"
+msgstr "Įrašykite naują vertimą…"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Untranslated"
+msgstr "Neišversta"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+#, python-format
+msgid "View"
+msgstr "Rodinys"
+
+#. module: custom_translate
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_term_search
+msgid "Views"
+msgstr "Rodiniai"
+
+#. module: custom_translate
+#: model:ir.model.fields,help:custom_translate.field_translation_override__value
+#: model:ir.model.fields,help:custom_translate.field_translation_term__live_value
+msgid "What users see now. Empty: Odoo's own translation is shown."
+msgstr "Ką naudotojai mato dabar. Tuščia: rodomas Odoo vertimas."
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_change__date
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_change_set_form
+#: model_terms:ir.ui.view,arch_db:custom_translate.view_translation_change_set_tree
+msgid "When"
+msgstr "Kada"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "Where"
+msgstr "Kur"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid ""
+"Your language is English, the source language. Switch your language\n"
+"                    (your user preferences) to the one you want to translate into."
+msgstr ""
+"Jūsų kalba yra anglų, t. y. šaltinio kalba. Pakeiskite kalbą (savo naudotojo"
+" nustatymuose) į tą, į kurią norite versti."
+
+#. module: custom_translate
+#: model:ir.model.fields,field_description:custom_translate.field_translation_term__new_value
+msgid "Your translation"
+msgstr "Jūsų vertimas"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "changed"
+msgstr "pakeista"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid "draft"
+msgstr "juodraštis"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "none"
+msgstr "nėra"
+
+#. module: custom_translate
+#. odoo-javascript
+#: code:addons/custom_translate/static/src/translation_mode/translation_popup.xml:0
+#, python-format
+msgid ""
+"place(s).\n"
+"                        Tick the ones to change."
+msgstr "vietose. Pažymėkite, kurias keisti."
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_override.py:0
+#, python-format
+msgid "placeholders"
+msgstr "kintamieji"
+
+#. module: custom_translate
+#. odoo-python
+#: code:addons/custom_translate/models/translation_term.py:0
+msgid "Only your translation can be changed on a term."
+msgstr "Termine galima keisti tik savo vertimą."

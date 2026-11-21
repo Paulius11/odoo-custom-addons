@@ -1,0 +1,32 @@
+{
+    "name": "Easy Translation Override",
+    "summary": "Click any Odoo text and change its translation: draft, apply, revert",
+    "version": "17.0.4.1.0",
+    "category": "Extra Tools",
+    "website": "https://github.com/Paulius11/odoo-custom-addons",
+    "author": "Paulius Gaizauskas",
+    "maintainers": ["Paulius11"],
+    "support": "paulius.gaizauskas@gmail.com",
+    "license": "LGPL-3",
+    "depends": ["web"],
+    "data": [
+        "security/groups.xml",
+        "security/ir.model.access.csv",
+        "views/translation_views.xml",
+    ],
+    "assets": {
+        "web.assets_backend": [
+            "custom_translate/static/src/translation_mode/translation_mode_service.js",
+            "custom_translate/static/src/translation_mode/translation_popup.js",
+            "custom_translate/static/src/translation_mode/translation_popup.xml",
+            "custom_translate/static/src/translation_mode/translation_mode_overlay.js",
+            "custom_translate/static/src/translation_mode/translation_mode_systray.js",
+            "custom_translate/static/src/translation_mode/translation_mode_systray.xml",
+            "custom_translate/static/src/translation_mode/translation_mode.scss",
+        ],
+    },
+    "images": ["static/description/banner.png"],
+    "uninstall_hook": "uninstall_hook",
+    "installable": True,
+    "application": True,
+}

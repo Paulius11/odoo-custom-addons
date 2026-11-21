@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_translation_term_translator,translation.term translator,model_translation_term,group_translator,1,1,0,0
+access_translation_override_translator,translation.override translator,model_translation_override,group_translator,1,1,0,0
+access_translation_change_set_translator,translation.change.set translator,model_translation_change_set,group_translator,1,0,0,0
+access_translation_change_translator,translation.change translator,model_translation_change,group_translator,1,0,0,0
+access_translation_override_system,translation.override system,model_translation_override,base.group_system,1,1,1,1
+access_translation_change_set_system,translation.change.set system,model_translation_change_set,base.group_system,1,1,1,1
