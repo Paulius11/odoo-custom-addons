@@ -1,6 +1,6 @@
 {
     'name': 'User Permission Copy',
-    'version': '17.0.1.0.1',
+    'version': '17.0.1.0.2',
     'category': 'Administration',
     'author': 'Paulius Gaizauskas',
     'website': 'https://github.com/Paulius11/odoo-custom-addons',
