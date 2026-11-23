@@ -1,8 +1,8 @@
 {
     'name': 'Log Real IP',
-    'version': '20.0.1.0.1',
+    'version': '20.0.1.1.0',
     'category': 'Technical',
-    'summary': 'Show real client IP in werkzeug logs when behind a reverse proxy',
+    'summary': 'Show real client IP in the access log when behind a reverse proxy',
     'author': 'Paulius Gaizauskas',
     'website': 'https://github.com/Paulius11/odoo-custom-addons',
     'support': 'paulius.gaizauskas@gmail.com',

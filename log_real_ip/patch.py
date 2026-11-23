@@ -1,17 +1,37 @@
-import logging
-import werkzeug.serving
+import ipaddress
+
+from odoo.http.server import HTTPSocket
 from odoo.tools import config
 
-_logger = logging.getLogger(__name__)
+_original_make_environ = HTTPSocket._make_environ
 
-_original_address_string = werkzeug.serving.WSGIRequestHandler.address_string
 
-def _patched_address_string(self):
-    xff = self.headers.get("X-Forwarded-For") or self.headers.get("X-Real-Ip")
-    if xff:
-        return xff.split(",")[0].strip()
-    return _original_address_string(self)
+def _client_ip(forwarded_for, real_ip):
+    """The address the proxy saw. It appends to X-Forwarded-For, so only the last
+    entry is its own; everything before comes from the client."""
+    value = forwarded_for.rsplit(",", 1)[-1] if forwarded_for else real_ip or ""
+    value = value.strip()
+    if value.count(":") == 1:
+        value = value.split(":")[0]  # IPv4 with a port
+    if "%" in value:
+        return None  # a zone id may hold any text
+    try:
+        ipaddress.ip_address(value)
+    except ValueError:
+        return None
+    return value
 
-if config.get("proxy_mode"):
-    _logger.info("log_real_ip: patching werkzeug address_string to use X-Forwarded-For")
-    werkzeug.serving.WSGIRequestHandler.address_string = _patched_address_string
+
+def _make_environ(self):
+    environ = _original_make_environ(self)
+    # Odoo does this only when the proxy also sends X-Forwarded-Host
+    if config["proxy_mode"]:
+        ip = _client_ip(
+            environ.get("HTTP_X_FORWARDED_FOR"), environ.get("HTTP_X_REAL_IP")
+        )
+        if ip:
+            self.ip = ip  # the log's address only: REMOTE_ADDR stays Odoo's decision
+    return environ
+
+
+HTTPSocket._make_environ = _make_environ

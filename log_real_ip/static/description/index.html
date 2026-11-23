@@ -7,7 +7,7 @@
   </p>
 
   <p style="text-align:center; margin:0 0 32px;">
-    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#e9eef2; color:#23507a; font-size:13px; font-weight:600;">Odoo 19.0</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#e9eef2; color:#23507a; font-size:13px; font-weight:600;">Odoo 20.0</span>
     <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#e9eef2; color:#23507a; font-size:13px; font-weight:600;">Community &amp; Enterprise</span>
     <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#e9eef2; color:#23507a; font-size:13px; font-weight:600;">Free &middot; LGPL-3</span>
   </p>
@@ -20,7 +20,7 @@
   <div style="display:flex; flex-wrap:wrap; margin:0 -8px 32px;">
     <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #23507a; border-radius:10px; background-color:#ffffff;">
       <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Real client IP</h3>
-      <p style="font-size:14px; color:#4b5563; margin:0;">Reads the standard X-Forwarded-For header your proxy sets.</p>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Logs the X-Forwarded-For entry your proxy added, not the ones a client can fake.</p>
     </div>
     <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #23507a; border-radius:10px; background-color:#ffffff;">
       <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">nginx fallback</h3>
@@ -28,7 +28,7 @@
     </div>
     <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #23507a; border-radius:10px; background-color:#ffffff;">
       <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Only with proxy mode</h3>
-      <p style="font-size:14px; color:#4b5563; margin:0;">Active only when Odoo runs with proxy_mode = True, so the header cannot be spoofed on direct setups.</p>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Active only when Odoo runs with proxy_mode = True. Your proxy must set X-Forwarded-For, and Odoo's port must be closed to direct access.</p>
     </div>
     <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #23507a; border-radius:10px; background-color:#ffffff;">
       <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">No overhead</h3>
