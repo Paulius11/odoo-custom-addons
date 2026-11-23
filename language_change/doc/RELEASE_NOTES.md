@@ -1,5 +1,11 @@
 ## Module language_change
 
+#### 22.11.2026
+#### Version 20.0.1.0.2
+#### BUG FIX
+- Fixed every language switch failing with "Attribute 'context' is read-only".
+- The route uses `jsonrpc` (the `json` type is deprecated).
+
 #### 28.10.2026
 #### Version 19.0.1.0.1
 #### BUG FIX
