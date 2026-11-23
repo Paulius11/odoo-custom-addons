@@ -56,7 +56,6 @@ class ResUsers(models.Model):
         
         # Optional fields that might exist in some Odoo versions/configurations
         optional_fields = [
-            'category_id',         # User category (might not exist in all versions)
             'sel_groups_1_2_3',    # Selection groups
             'sel_groups_4_5_6',
             'sel_groups_7_8_9',
@@ -133,6 +132,9 @@ class ResUsers(models.Model):
         admin_user = self.env.ref('base.user_admin', raise_if_not_found=False)
         if admin_user and target_user.id == admin_user.id:
             raise UserError(_("Cannot modify the administrator user permissions."))
+        
+        if target_user.id == self.env.uid:
+            raise UserError(_("You cannot replace your own permissions. Ask another administrator."))
         
         # Prevent copying to current user (self-copy)
         if target_user.id == self.id:
@@ -218,6 +220,7 @@ class ResUsers(models.Model):
                     'message': success_message,
                     'type': 'success',
                     'sticky': False,
+                    'next': {'type': 'ir.actions.act_window_close'},
                 }
             }
             
@@ -229,12 +232,7 @@ class ResUsers(models.Model):
             )
             
             # Provide more user-friendly error messages
-            if 'category_id' in error_msg:
-                raise UserError(_(
-                    "Failed to copy user category. This field might not be available in your Odoo configuration. "
-                    "Other permissions have been copied successfully."
-                ))
-            elif 'company_id' in error_msg:
+            if 'company_id' in error_msg:
                 raise UserError(_("Failed to copy company settings. Please check company access rights. Error: %s") % error_msg)
             elif 'group_ids' in error_msg:
                 raise UserError(_("Failed to copy security groups. Please check group permissions. Error: %s") % error_msg)

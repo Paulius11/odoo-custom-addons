@@ -20,7 +20,7 @@ class UserPermissionCopyWizard(models.TransientModel):
         'res.users',
         string='Target User',
         required=True,
-        domain="[('id', '!=', source_user_id), ('id', '!=', 1)]",  # Exclude source user and admin
+        domain="[('id', '!=', source_user_id), ('id', '!=', uid), ('id', '!=', 1)]",  # Exclude source user, yourself and admin
         help="User who will receive the copied permissions"
     )
     confirmation = fields.Boolean(
@@ -51,6 +51,9 @@ class UserPermissionCopyWizard(models.TransientModel):
                 if record.target_user_id.id == record.source_user_id.id:
                     raise ValidationError(_("Source and target users cannot be the same."))
                 
+                if record.target_user_id.id == self.env.uid:
+                    raise ValidationError(_("You cannot replace your own permissions. Ask another administrator."))
+                
                 # Prevent copying to admin user
                 admin_user = self.env.ref('base.user_admin', raise_if_not_found=False)
                 if admin_user and record.target_user_id.id == admin_user.id:
@@ -77,11 +80,3 @@ class UserPermissionCopyWizard(models.TransientModel):
         result = self.source_user_id.copy_permissions_to_user(self.target_user_id.id)
         
         return result
-
-    def action_cancel(self):
-        """Cancel the wizard"""
-        _logger.info(
-            "Permission copy wizard cancelled by user %s (ID: %s)",
-            self.env.user.name, self.env.user.id
-        )
-        return {'type': 'ir.actions.act_window_close'}
