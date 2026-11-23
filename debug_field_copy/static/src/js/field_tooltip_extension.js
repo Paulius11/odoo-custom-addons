@@ -75,7 +75,8 @@ function showCopyFeedback(button, success) {
 function createCopyButton(textToCopy) {
     const btn = document.createElement("button");
     btn.className = "o-tooltip-copy-btn";
-    btn.title = "Copy to clipboard";
+    // not a title: 20.0 closes the open tooltip when the mouse enters a titled element
+    btn.setAttribute("aria-label", "Copy to clipboard");
     btn.type = "button";
     btn.innerHTML = '<i class="oi" data-icon="content_copy"></i>';
     btn.style.cssText = `

@@ -1,6 +1,6 @@
 {
     "name": "Debug Field Copy",
-    "version": "20.0.1.1.3",
+    "version": "20.0.1.1.4",
     "category": "Technical",
     "summary": "Copy field names from debug tooltip",
     "author": "Paulius Gaizauskas",
