@@ -1,6 +1,6 @@
 {
     'name': 'Log Real IP',
-    'version': '19.0.1.0.1',
+    'version': '19.0.1.0.2',
     'category': 'Technical',
     'summary': 'Show real client IP in werkzeug logs when behind a reverse proxy',
     'author': 'Paulius Gaizauskas',
