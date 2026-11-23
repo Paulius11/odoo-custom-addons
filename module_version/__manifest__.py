@@ -1,6 +1,6 @@
 {
     'name': 'Module Version',
-    'version': '17.0.4.9.1',
+    'version': '17.0.4.9.2',
     'category': 'Extra Tools',
     'summary': 'Display module version, track lifecycle history, and check for App Store updates',
     'author': 'Paulius Gaizauskas',
