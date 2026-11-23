@@ -13,11 +13,17 @@ class MailLostRoute(models.TransientModel):
         required=True,
     )
     record_ref = fields.Reference(selection="_selection_target_model", string="Record")
-    model = fields.Selection(selection="_selection_target_model", string="Create a")
+    model = fields.Selection(selection="_selection_create_model", string="Create a")
 
     @api.model
     def _selection_target_model(self):
         return self.env["mail.lost"]._selection_target_model()
+
+    @api.model
+    def _selection_create_model(self):
+        # an email cannot give the login a user needs
+        targets = self._selection_target_model()
+        return [target for target in targets if target[0] != "res.users"]
 
     def action_confirm(self):
         self.ensure_one()

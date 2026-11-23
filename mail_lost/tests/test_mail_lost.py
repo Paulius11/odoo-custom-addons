@@ -268,3 +268,8 @@ class TestMailLost(TransactionCase):
         self.assertIn("res.partner", models)
         for hidden in ("mail.lost", "mail.thread", "ir.cron", "mail.blacklist"):
             self.assertNotIn(hidden, models)
+
+    def test_create_a_user_is_not_offered(self):
+        wizard = self.env["mail.lost.route"].fields_get(["model", "record_ref"])
+        self.assertNotIn("res.users", dict(wizard["model"]["selection"]))
+        self.assertIn("res.users", dict(wizard["record_ref"]["selection"]))
