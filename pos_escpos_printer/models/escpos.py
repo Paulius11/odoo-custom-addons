@@ -29,7 +29,7 @@ def image_to_escpos(image_bytes, paper="80"):
     dots = PAPER_DOTS[paper]
     if image.width > dots:
         height = round(image.height * dots / image.width)
-        image = image.resize((dots, height), Image.Resampling.LANCZOS)
+        image = image.resize((dots, height), Image.LANCZOS)
     paper_image = Image.new("L", (dots, image.height), 255)
     paper_image.paste(image, ((dots - image.width) // 2, 0))
     # Inverted 1-bit: bit 1 = black dot, as ESC/POS expects

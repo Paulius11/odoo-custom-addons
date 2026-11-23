@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools.misc import file_path
 
 from . import escpos
 
@@ -89,7 +90,10 @@ class PosPrinter(models.Model):
             self.env._("Paper: %(width)s mm", width=self.escpos_paper),
             fields.Datetime.to_string(fields.Datetime.now()),
         ]
-        font = ImageFont.load_default(size=28)
+        # load_default(size=) needs Pillow 10.1; Odoo 19 pins 9.0.1 on Python 3.10
+        font = ImageFont.truetype(
+            file_path("web/static/fonts/google/Open_Sans/Open_Sans-Regular.ttf"), 28
+        )
         width = escpos.PAPER_DOTS[self.escpos_paper or "80"]
         image = Image.new("L", (width, 60 + 40 * len(lines)), 255)
         draw = ImageDraw.Draw(image)
