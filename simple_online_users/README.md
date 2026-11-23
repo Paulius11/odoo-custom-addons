@@ -8,7 +8,7 @@ A lightweight Odoo module that displays the count of currently online users in t
 
 - **Real-time Online Count**: See how many users are currently active
 - **User Status Popup**: Click to view detailed list with user status
-- **Native Integration**: Uses Odoo's built-in `bus.presence` system
+- **Native Integration**: Uses Odoo's built-in `mail.presence` system
 - **Configurable Visibility**: Control who can see the online users count
 - **Lightweight**: No custom models or heavy resource usage
 - **Status Detection**: Automatic online/away/offline status detection
@@ -27,8 +27,9 @@ Configure visibility permissions in:
 
 Available visibility options:
 - System Administrators only
-- Internal Users  
-- Portal Users (all users)
+- Internal Users
+
+The server checks the setting; portal and public users never get the list.
 
 ## Usage
 
@@ -43,7 +44,7 @@ Available visibility options:
 - **Compatibility**: Odoo 17.0+
 - **License**: LGPL-3
 - **Status Detection**:
-  - Online: Last activity < 1 minute
-  - Away: Last activity 1-3 minutes  
-  - Offline: Last activity > 3 minutes
+  - Online: connected to Odoo
+  - Away: no activity for 30 minutes
+  - Offline: not connected, or set to Offline by the user
 
