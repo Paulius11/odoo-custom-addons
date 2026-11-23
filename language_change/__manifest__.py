@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Quick Language Switcher',
-    'version': '19.0.1.0.1',
+    'version': '19.0.1.0.2',
     'category': 'Tools',
     'author': 'Paulius Gaizauskas',
     'website': 'https://github.com/Paulius11/odoo-custom-addons',

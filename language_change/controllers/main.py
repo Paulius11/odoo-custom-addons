@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class LanguageSwitcherController(http.Controller):
     
-    @http.route('/language_switcher/switch_language', type='json', auth='user')
+    @http.route('/language_switcher/switch_language', type='jsonrpc', auth='user')
     def switch_language(self, lang_code):
         """Switch the user's language preference and return success status"""
         if not lang_code:
@@ -28,7 +28,6 @@ class LanguageSwitcherController(http.Controller):
             
             # Set language preference for the user
             request.env.user.write({'lang': lang_code})
-            request.env.context = dict(request.env.context, lang=lang_code)
             
             _logger.info("User %s switched language to %s", 
                         request.env.user.login, lang_code)
