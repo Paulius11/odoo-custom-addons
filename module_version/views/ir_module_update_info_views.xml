@@ -5,7 +5,7 @@
         <field name="model">ir.module.update.info</field>
         <field name="arch" type="xml">
             <list string="Available Updates" create="false" edit="false" delete="false">
-                <field name="display_name" string="Module" />
+                <field name="module_title" string="Module" />
                 <field name="name" string="Technical Name" />
                 <field name="installed_version" string="Installed Version" />
                 <field name="available_version" string="Available Version" />

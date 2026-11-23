@@ -6,6 +6,6 @@ class IrModuleUpdateInfo(models.TransientModel):
     _description = "Module Update Information"
 
     name = fields.Char("Technical Name", readonly=True)
-    display_name = fields.Char("Module Name", readonly=True)
+    module_title = fields.Char("Module Name", readonly=True)  # display_name is computed by the ORM
     installed_version = fields.Char("Installed Version", readonly=True)
     available_version = fields.Char("Available Version", readonly=True)

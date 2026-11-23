@@ -1,17 +1,24 @@
 import json
+import logging
 import requests
 from datetime import datetime, timedelta
+
+from markupsafe import escape
+from psycopg2 import OperationalError
 
 from odoo import _, models, fields, api
 from odoo.tools.parse_version import parse_version
 from odoo.addons.base.models.ir_module import assert_log_admin_access
 from odoo.modules.module import get_module_path
+from odoo.modules.registry import Registry
 from odoo.service.common import exp_version
 
 try:
     from odoo.addons.base_import_module.models.ir_module import APPS_URL
 except ImportError:
     APPS_URL = "https://apps.odoo.com"
+
+_logger = logging.getLogger(__name__)
 
 
 def _parse_since(since_str):
@@ -131,6 +138,13 @@ class IrModuleModule(models.Model):
             module.is_newly_added = recent and entry.get('is_new', False)
             module.is_recently_upgraded = recent and bool(entry.get('upgraded_from'))
 
+    def _flag_domain(self, operator, value, ids):
+        """Domain of a flag that is true for ``ids``: 19.0+ passes searches ``in`` / ``not in``."""
+        if operator not in ('in', 'not in'):
+            return NotImplemented
+        wanted = (operator == 'in') == (True in value)
+        return [('id', 'in' if wanted else 'not in', ids)]
+
     def _search_is_newly_added(self, operator, value):
         cutoff = datetime.utcnow() - timedelta(days=30)
         snapshot = self._get_snapshot()
@@ -140,10 +154,7 @@ class IrModuleModule(models.Model):
             and _parse_since(entry.get('since')) >= cutoff
         ]
         installed = self.search([('state', '=', 'installed'), ('name', 'in', newly_added)])
-        ids = installed.ids
-        if (operator == '=' and value) or (operator == '!=' and not value):
-            return [('id', 'in', ids)]
-        return [('id', 'not in', ids)]
+        return self._flag_domain(operator, value, installed.ids)
 
     def _search_is_recently_upgraded(self, operator, value):
         cutoff = datetime.utcnow() - timedelta(days=30)
@@ -154,10 +165,7 @@ class IrModuleModule(models.Model):
             and _parse_since(entry.get('since')) >= cutoff
         ]
         installed = self.search([('state', '=', 'installed'), ('name', 'in', upgraded)])
-        ids = installed.ids
-        if (operator == '=' and value) or (operator == '!=' and not value):
-            return [('id', 'in', ids)]
-        return [('id', 'not in', ids)]
+        return self._flag_domain(operator, value, installed.ids)
 
     def _update_module_snapshot(self):
         """Update snapshot entries for self after an install or upgrade."""
@@ -259,7 +267,7 @@ class IrModuleModule(models.Model):
         for name, info in modules_to_update.items():
             UpdateInfo.create({
                 "name": name,
-                "display_name": info.get("display_name", name),
+                "module_title": info.get("display_name", name),
                 "installed_version": info.get("version_local_running", ""),
                 "available_version": info.get("version_remote", ""),
             })
@@ -336,16 +344,13 @@ class IrModuleModule(models.Model):
 
                 has_upgrade = installed_parsed > latest_parsed
 
-                # Apply operator logic
-                if operator == '=' and value == has_upgrade:
-                    modules_with_upgrade.append(module.id)
-                elif operator == '!=' and value != has_upgrade:
+                if has_upgrade:
                     modules_with_upgrade.append(module.id)
             except Exception:
                 # Skip modules with parsing errors
                 pass
 
-        return [('id', 'in', modules_with_upgrade)]
+        return self._flag_domain(operator, value, modules_with_upgrade)
 
     @api.depends('upgrade_history_ids')
     def _compute_upgrade_history_count(self):
@@ -421,6 +426,46 @@ class IrModuleModule(models.Model):
                 )
         except Exception:
             pass
+
+    def _record_failure_after_rollback(self, operation_type, versions, error):
+        """The error rolls this transaction back, so write the failure once it is gone."""
+        if not versions or isinstance(error, OperationalError):
+            return  # OperationalError: Odoo retries the request
+        dbname, uid = self.env.cr.dbname, self.env.uid
+        method = self._detect_upgrade_method()
+        label = {'install': 'Installation', 'upgrade': 'Upgrade', 'uninstall': 'Uninstallation'}[operation_type]
+        # notes is unsanitized HTML and the error can quote any record's data
+        notes = str(escape(f'{label} failed: {error}'))
+
+        def save():
+            try:
+                with Registry(dbname).cursor() as cr:
+                    History = api.Environment(cr, uid, {})['module.upgrade.history'].sudo()
+                    for module_id, (from_version, to_version) in versions.items():
+                        vals = {
+                            'module_id': module_id,
+                            'operation_type': operation_type,
+                            'from_version': from_version,
+                            'to_version': to_version,
+                            'status': 'failed',
+                            'notes': notes,
+                            'upgrade_date': fields.Datetime.now(),
+                            'user_id': uid,
+                            'upgrade_method': method,
+                        }
+                        pending = History.search([
+                            ('module_id', '=', module_id),
+                            ('operation_type', '=', operation_type),
+                            ('status', '=', 'pending'),
+                        ], limit=1)
+                        if pending:
+                            pending.write(vals)
+                        else:
+                            History.create(vals)
+            except Exception:
+                _logger.exception("module_version: could not record the failed %s", operation_type)
+
+        self.env.cr.postrollback.add(save)
 
     # ===========================================
     # App Store Version Checking Methods
@@ -504,62 +549,54 @@ class IrModuleModule(models.Model):
 
     @assert_log_admin_access
     def button_upgrade(self):
-        pre = {m.id: m.installed_version or '1.0' for m in self if m.state == 'installed'}
+        pre = {m.id: (m.latest_version or '1.0', m.installed_version or '1.0') for m in self if m.state == 'installed'}
         result = super().button_upgrade()
         for module in self:
             if module.id in pre:
                 module._create_module_history_record(
                     operation_type='upgrade',
-                    from_version=pre[module.id],
-                    to_version=module.latest_version or '1.0',
+                    from_version=pre[module.id][0],
+                    to_version=pre[module.id][1],
                     status='pending',
                 )
         return result
 
     @assert_log_admin_access
     def button_immediate_upgrade(self):
-        pre = {m.id: m.installed_version or '1.0' for m in self if m.state == 'installed'}
+        pre = {m.id: (m.latest_version or '1.0', m.installed_version or '1.0') for m in self if m.state == 'installed'}
         try:
             result = super().button_immediate_upgrade()
             for module in self:
                 if module.id in pre:
                     module._resolve_pending_record(
                         operation_type='upgrade',
-                        from_version=pre[module.id],
+                        from_version=pre[module.id][0],
                         to_version=module.latest_version or '1.0',
                         status='success',
                     )
             self._update_module_snapshot()
             return result
         except Exception as e:
-            for module in self:
-                if module.id in pre:
-                    module._resolve_pending_record(
-                        operation_type='upgrade',
-                        from_version=pre[module.id],
-                        to_version=module.latest_version or '1.0',
-                        status='failed',
-                        notes=f'Upgrade failed: {e}',
-                    )
+            self._record_failure_after_rollback('upgrade', pre, e)
             raise
 
     @assert_log_admin_access
     def button_install(self):
-        pre = {m.id: m.latest_version or '1.0' for m in self if m.state == 'uninstalled'}
+        pre = {m.id: ('', m.installed_version or '1.0') for m in self if m.state == 'uninstalled'}
         result = super().button_install()
         for module in self:
             if module.id in pre:
                 module._create_module_history_record(
                     operation_type='install',
                     from_version='',
-                    to_version=pre[module.id],
+                    to_version=pre[module.id][1],
                     status='pending',
                 )
         return result
 
     @assert_log_admin_access
     def button_immediate_install(self):
-        pre = {m.id: m.latest_version or '1.0' for m in self if m.state == 'uninstalled'}
+        pre = {m.id: ('', m.installed_version or '1.0') for m in self if m.state == 'uninstalled'}
         try:
             result = super().button_immediate_install()
             for module in self:
@@ -573,21 +610,13 @@ class IrModuleModule(models.Model):
             self._update_module_snapshot()
             return result
         except Exception as e:
-            for module in self:
-                if module.id in pre:
-                    module._resolve_pending_record(
-                        operation_type='install',
-                        from_version='',
-                        to_version=pre[module.id],
-                        status='failed',
-                        notes=f'Installation failed: {e}',
-                    )
+            self._record_failure_after_rollback('install', pre, e)
             raise
 
     @assert_log_admin_access
     def button_uninstall(self):
         pre = {
-            m.id: m.installed_version or m.latest_version or '1.0'
+            m.id: (m.latest_version or m.installed_version or '1.0', '')
             for m in self if m.state in ('installed', 'to upgrade')
         }
         result = super().button_uninstall()
@@ -595,7 +624,7 @@ class IrModuleModule(models.Model):
             if module.id in pre:
                 module._create_module_history_record(
                     operation_type='uninstall',
-                    from_version=pre[module.id],
+                    from_version=pre[module.id][0],
                     to_version='',
                     status='pending',
                 )
@@ -604,7 +633,7 @@ class IrModuleModule(models.Model):
     @assert_log_admin_access
     def button_immediate_uninstall(self):
         pre = {
-            m.id: m.installed_version or m.latest_version or '1.0'
+            m.id: (m.latest_version or m.installed_version or '1.0', '')
             for m in self if m.state in ('installed', 'to upgrade')
         }
         try:
@@ -613,19 +642,11 @@ class IrModuleModule(models.Model):
                 if module.id in pre:
                     module._resolve_pending_record(
                         operation_type='uninstall',
-                        from_version=pre[module.id],
+                        from_version=pre[module.id][0],
                         to_version='',
                         status='success',
                     )
             return result
         except Exception as e:
-            for module in self:
-                if module.id in pre:
-                    module._resolve_pending_record(
-                        operation_type='uninstall',
-                        from_version=pre[module.id],
-                        to_version='',
-                        status='failed',
-                        notes=f'Uninstallation failed: {e}',
-                    )
+            self._record_failure_after_rollback('uninstall', pre, e)
             raise
