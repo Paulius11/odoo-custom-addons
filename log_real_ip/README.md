@@ -6,7 +6,7 @@ Show real client IPs in werkzeug access logs when Odoo runs behind a reverse pro
 
 ## Features
 
-- Reads `X-Forwarded-For` header (standard reverse-proxy convention)
+- Reads the last `X-Forwarded-For` entry: the one your proxy added, which a client cannot forge
 - Falls back to `X-Real-IP` header (nginx convention)
 - Activates only when `proxy_mode = True` — zero impact on direct setups
 - Lightweight: a single startup patch, no database writes
@@ -22,6 +22,8 @@ Show real client IPs in werkzeug access logs when Odoo runs behind a reverse pro
 
 No configuration needed. The module reads the `proxy_mode` setting from `odoo.conf` at startup. If `proxy_mode` is `False` or unset, the patch is not applied.
 
+Your proxy must set `X-Forwarded-For` (nginx: `proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;`) and Odoo's port must not be reachable around the proxy. Otherwise a client can send the header itself. With several proxies in a row, the log shows the address the last one saw.
+
 ## Usage
 
 After installation and restart, werkzeug access log lines will show the originating client IP instead of the proxy's internal address:
@@ -33,7 +35,7 @@ After installation and restart, werkzeug access log lines will show the originat
 
 ## Technical Details
 
-- **Compatibility**: Odoo 17.0
+- **Compatibility**: Odoo 18.0
 - **Dependencies**: `base`
 - **License**: LGPL-3
 - **Approach**: Monkey-patches `werkzeug.serving.WSGIRequestHandler.address_string` at module load time
