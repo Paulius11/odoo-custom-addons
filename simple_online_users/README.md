@@ -27,8 +27,9 @@ Configure visibility permissions in:
 
 Available visibility options:
 - System Administrators only
-- Internal Users  
-- Portal Users (all users)
+- Internal Users
+
+The server checks the setting; portal and public users never get the list.
 
 ## Usage
 
@@ -43,7 +44,7 @@ Available visibility options:
 - **Compatibility**: Odoo 17.0+
 - **License**: LGPL-3
 - **Status Detection**:
-  - Online: Last activity < 1 minute
-  - Away: Last activity 1-3 minutes  
-  - Offline: Last activity > 3 minutes
+  - Online: connected to Odoo
+  - Away: no activity for 30 minutes
+  - Offline: not connected
 
