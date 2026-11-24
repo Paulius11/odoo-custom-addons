@@ -1,4 +1,4 @@
-import {EscPosNetworkPrinter} from "@pos_escpos_printer/app/escpos_printer";
+import {EscPosNetworkPrinter} from "@simple_pos_escpos_printer/app/escpos_printer";
 import {HardwareProxy} from "@point_of_sale/app/services/hardware_proxy_service";
 import {PosStore} from "@point_of_sale/app/services/pos_store";
 import {patch} from "@web/core/utils/patch";

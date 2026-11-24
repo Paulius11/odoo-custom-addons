@@ -1,7 +1,7 @@
 {
     "name": "POS Network Printer",
     "summary": "Receipts and kitchen tickets on ESC/POS network printers, no IoT box",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "category": "Sales/Point of Sale",
     "website": "https://github.com/Paulius11/odoo-custom-addons",
     "author": "Paulius Gaizauskas",
@@ -15,7 +15,7 @@
     ],
     "assets": {
         "point_of_sale._assets_pos": [
-            "pos_escpos_printer/static/src/app/**/*",
+            "simple_pos_escpos_printer/static/src/app/**/*",
         ],
     },
     "images": ["static/description/banner.png"],

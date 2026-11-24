@@ -11,7 +11,7 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.tests import HttpCase, new_test_user, tagged
 from odoo.tests.common import JsonRpcException
 
-from odoo.addons.pos_escpos_printer.models import escpos
+from odoo.addons.simple_pos_escpos_printer.models import escpos
 
 
 class FakePrinter:
@@ -166,13 +166,13 @@ class TestPosEscposPrinter(HttpCase):
     def test_print_route_for_a_pos_user(self):
         self.authenticate("escpos_cashier", "escpos_cashier")
         result = self.make_jsonrpc_request(
-            "/pos_escpos_printer/print",
+            "/simple_pos_escpos_printer/print",
             {"printer_id": self.printer.id, "image": png(64, 8)},
         )
         self.assertEqual(result, {"result": True})
         self.assertEqual(len(self.fake.wait_jobs()), 1)
         result = self.make_jsonrpc_request(
-            "/pos_escpos_printer/cashbox", {"printer_id": self.printer.id}
+            "/simple_pos_escpos_printer/cashbox", {"printer_id": self.printer.id}
         )
         self.assertEqual(self.fake.wait_jobs(2)[1], escpos.INIT + escpos.DRAWER)
 
@@ -180,7 +180,7 @@ class TestPosEscposPrinter(HttpCase):
         self.authenticate("escpos_clerk", "escpos_clerk")
         with self.assertRaises(JsonRpcException):
             self.make_jsonrpc_request(
-                "/pos_escpos_printer/print",
+                "/simple_pos_escpos_printer/print",
                 {"printer_id": self.printer.id, "image": png(64, 8)},
             )
         self.authenticate("escpos_cashier", "escpos_cashier")
@@ -193,7 +193,7 @@ class TestPosEscposPrinter(HttpCase):
         )
         with self.assertRaises(JsonRpcException):
             self.make_jsonrpc_request(
-                "/pos_escpos_printer/cashbox", {"printer_id": epson.id}
+                "/simple_pos_escpos_printer/cashbox", {"printer_id": epson.id}
             )
         self.assertFalse(self.fake.jobs)
 

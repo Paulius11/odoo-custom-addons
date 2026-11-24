@@ -14,10 +14,10 @@ class PosEscposPrinter(http.Controller):
             raise UserError(request.env._("This is not an ESC/POS network printer."))
         return printer
 
-    @http.route("/pos_escpos_printer/print", type="jsonrpc", auth="user")
+    @http.route("/simple_pos_escpos_printer/print", type="jsonrpc", auth="user")
     def print_image(self, printer_id, image):
         return self._printer(printer_id)._escpos_print_image(image)
 
-    @http.route("/pos_escpos_printer/cashbox", type="jsonrpc", auth="user")
+    @http.route("/simple_pos_escpos_printer/cashbox", type="jsonrpc", auth="user")
     def open_cashbox(self, printer_id):
         return self._printer(printer_id)._escpos_open_cashbox()

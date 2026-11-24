@@ -1,6 +1,6 @@
 # POS Network Printer
 
-[![Odoo 19.0](https://img.shields.io/badge/Odoo-19.0-714B67)](https://apps.odoo.com/apps/modules/19.0/pos_escpos_printer)
+[![Odoo 19.0](https://img.shields.io/badge/Odoo-19.0-714B67)](https://apps.odoo.com/apps/modules/19.0/simple_pos_escpos_printer)
 [![License: LGPL-3](https://img.shields.io/badge/license-LGPL--3-blue)](https://www.gnu.org/licenses/lgpl-3.0)
 
 Receipts and kitchen tickets on ESC/POS network printers, no IoT box
@@ -51,7 +51,7 @@ printer in your shop. Only POS managers set printer addresses; cashiers send job
 - **Models**: `pos.printer` gets the type `escpos_network` with address, port and paper width;
   `pos.config` gets `escpos_receipt_printer_id`.
 - **How it prints**: a JS printer class (core `BasePrinter`) sends the receipt image the POS
-  already renders to `/pos_escpos_printer/print`. The server turns it into an ESC/POS raster
+  already renders to `/simple_pos_escpos_printer/print`. The server turns it into an ESC/POS raster
   (`GS v 0`) with Pillow, centred on 576 or 384 dots, ends with a cut (`GS V A`) and writes it
   to the printer over TCP. The drawer is `ESC p` on both pins. Printers without raster
   graphics (e.g. impact models) are not supported.

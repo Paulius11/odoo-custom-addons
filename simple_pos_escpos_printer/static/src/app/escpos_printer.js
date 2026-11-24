@@ -18,11 +18,11 @@ export class EscPosNetworkPrinter extends BasePrinter {
     }
 
     sendPrintingJob(image) {
-        return rpc("/pos_escpos_printer/print", {printer_id: this.printerId, image});
+        return rpc("/simple_pos_escpos_printer/print", {printer_id: this.printerId, image});
     }
 
     openCashbox() {
-        return rpc("/pos_escpos_printer/cashbox", {printer_id: this.printerId}).catch(
+        return rpc("/simple_pos_escpos_printer/cashbox", {printer_id: this.printerId}).catch(
             (error) => console.warn("Cash drawer not opened", error)
         );
     }
