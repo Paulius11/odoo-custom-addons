@@ -22,8 +22,9 @@ also on the [Odoo Apps Store](https://apps.odoo.com/apps/modules/browse?author=P
 |  | Log Real IP | Show real client IP in werkzeug logs when behind a reverse proxy |  | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/log_real_ip) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/log_real_ip) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/20.0/log_real_ip) |
 | <img src="mail_lost/static/description/icon.png" width="32"> | [Lost Emails](mail_lost/) | Keep incoming emails that Odoo cannot route, and route them by hand | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/mail_lost) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/mail_lost) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/mail_lost) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/20.0/mail_lost) |
 | <img src="module_version/static/description/icon.png" width="32"> | [Module Version](module_version/) | Display module version, track lifecycle history, and check for App Store updates | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/module_version) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/20.0/module_version) |
-|  | POS Network Printer | Receipts and kitchen tickets on ESC/POS network printers, no IoT box |  |  | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/pos_escpos_printer) |  |
+|  | POS Network Printer | Receipts and kitchen tickets on ESC/POS network printers, no IoT box |  |  | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/simple_pos_escpos_printer) |  |
 | <img src="language_change/static/description/icon.png" width="32"> | [Quick Language Switcher](language_change/) | Fast language switching from the Odoo interface | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/language_change) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/20.0/language_change) |
+| <img src="simple_access_debugger/static/description/icon.png" width="32"> | [Simple Access Debugger](simple_access_debugger/) | Find out why a user can or cannot open a record, read-only | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_access_debugger) |  |  |  |
 | <img src="simple_online_users/static/description/icon.png" width="32"> | [Simple Online Users](simple_online_users/) | Display online users count in systray | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_online_users) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/18.0/simple_online_users) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/19.0/simple_online_users) | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/20.0/simple_online_users) |
 | <img src="simple_scheduled_reports/static/description/icon.png" width="32"> | [Simple Scheduled Reports](simple_scheduled_reports/) | Email any filtered list as a table and Excel file on a schedule | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_scheduled_reports) |  |  |  |
 | <img src="simple_user_menu_sort/static/description/icon.png" width="32"> | [Simple User Menu Sort](simple_user_menu_sort/) | Each user sorts the main app menu in their own order | [✓](https://github.com/Paulius11/odoo-custom-addons/tree/17.0/simple_user_menu_sort) |  |  |  |
@@ -85,6 +86,12 @@ Display module version, track lifecycle history, and check for App Store updates
 Fast language switching from the Odoo interface
 
 ![Quick Language Switcher](language_change/static/description/screenshot_1.png)
+
+### Simple Access Debugger
+
+Find out why a user can or cannot open a record, read-only
+
+![Simple Access Debugger](simple_access_debugger/static/description/screenshot_1.png)
 
 ### Simple Online Users
 
