@@ -45,7 +45,7 @@ applies them to the invoice or bill. This module does that.
 
 ## Configuration
 
-**Invoicing › Configuration › Settings › Default Accounts › Advance payments**: pick two
+**Invoicing › Configuration › Settings › Advance Payments**: pick two
 accounts that are not the partners' own receivable or payable, both with *Allow
 Reconciliation*:
 
