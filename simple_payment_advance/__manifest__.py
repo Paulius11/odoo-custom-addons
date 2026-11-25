@@ -1,0 +1,22 @@
+{
+    "name": "Advance Payments",
+    "summary": "Customer deposits and vendor prepayments, applied to invoices later",
+    "version": "20.0.1.0.2",
+    "category": "Accounting/Accounting",
+    "website": "https://github.com/Paulius11/odoo-custom-addons",
+    "author": "Paulius Gaizauskas",
+    "maintainers": ["Paulius11"],
+    "support": "paulius.gaizauskas@gmail.com",
+    "license": "LGPL-3",
+    "depends": ["account"],
+    "data": [
+        "security/ir.access.csv",
+        "views/account_payment_views.xml",
+        "views/account_move_views.xml",
+        "views/res_config_settings_views.xml",
+        "wizards/account_advance_apply_views.xml",
+    ],
+    "images": ["static/description/banner.png"],
+    "installable": True,
+    "application": False,
+}
