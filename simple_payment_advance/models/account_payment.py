@@ -52,19 +52,27 @@ class AccountPayment(models.Model):
                 )
         return res
 
+    def _advance_direction_ok(self):
+        """A customer advance is money received, a vendor prepayment money paid."""
+        self.ensure_one()
+        return (self.partner_type == "customer") == (self.payment_type == "inbound")
+
     def _advance_lines(self):
         """The payment's journal items on its advance account."""
         self.ensure_one()
+        if not self.is_advance or not self._advance_direction_ok():
+            return self.env["account.move.line"]
         return self.move_id.line_ids.filtered(
             lambda line: (
-                self.is_advance
-                and line.account_id == self.destination_account_id
+                line.account_id == self.destination_account_id
                 and line.move_id.state == "posted"
             )
         )
 
     @api.depends(
         "is_advance",
+        "payment_type",
+        "partner_type",
         "destination_account_id",
         "move_id.state",
         "move_id.line_ids.amount_residual",
@@ -77,18 +85,27 @@ class AccountPayment(models.Model):
 
     def action_post(self):
         for pay in self.filtered("is_advance"):
-            if not pay._advance_account():
+            account = pay._advance_account()
+            if not account:
                 raise UserError(
                     _(
                         "Set the customer advances and vendor prepayments accounts in "
                         "Accounting settings before posting an advance."
                     )
                 )
-            if pay.destination_account_id != pay._advance_account():
+            if not pay.partner_id:
+                raise UserError(
+                    _("Set the customer or vendor of the advance %s.", pay.name)
+                )
+            if not pay._advance_direction_ok():
                 raise UserError(
                     _(
-                        "%s is an advance; it must post on the advance account.",
+                        "%s goes the wrong way for an advance: a customer advance is "
+                        "money received, a vendor prepayment money paid.",
                         pay.name,
                     )
                 )
+            if pay.destination_account_id != account:
+                # e.g. a draft saved before the advance accounts were set
+                pay.destination_account_id = account
         return super().action_post()

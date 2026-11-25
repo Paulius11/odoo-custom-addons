@@ -1,7 +1,7 @@
 {
     "name": "Advance Payments",
     "summary": "Customer deposits and vendor prepayments, applied to invoices later",
-    "version": "17.0.1.0.1",
+    "version": "17.0.1.0.2",
     "category": "Accounting/Accounting",
     "website": "https://github.com/Paulius11/odoo-custom-addons",
     "author": "Paulius Gaizauskas",

@@ -119,6 +119,55 @@ class TestAccountPaymentAdvance(AccountTestInvoicingCommon):
         with self.assertRaises(UserError):
             self.advance(self.partner_a, 300)
 
+    def test_invoicing_admin_sees_the_setting(self):
+        # Invoicing only: without "full accounting features" core hides its
+        # Default Accounts block
+        admin = new_test_user(
+            self.env,
+            login="advance_invoicing_admin",
+            groups="base.group_system,account.group_account_manager",
+            company_id=self.company.id,
+            company_ids=[Command.set(self.company.ids)],
+        )
+        self.assertFalse(admin.has_group("account.group_account_user"))
+        Settings = self.env["res.config.settings"].with_user(admin)
+        arch = Settings.get_views([(False, "form")])["views"]["form"]["arch"]
+        self.assertIn('name="advance_customer_account_id"', arch)
+
+    def test_draft_saved_before_setup_posts_on_the_advance_account(self):
+        self.company.advance_customer_account_id = False
+        payment = self.env["account.payment"].create(
+            {
+                "is_advance": True,
+                "payment_type": "inbound",
+                "partner_type": "customer",
+                "partner_id": self.partner_a.id,
+                "amount": 300,
+                "journal_id": self.bank.id,
+            }
+        )
+        self.company.advance_customer_account_id = self.customer_advances
+        payment.action_post()
+        self.assertEqual(payment.destination_account_id, self.customer_advances)
+        self.assertEqual(payment.advance_residual, 300)
+
+    def test_advance_needs_a_partner_and_the_right_direction(self):
+        values = {
+            "is_advance": True,
+            "payment_type": "inbound",
+            "partner_type": "customer",
+            "amount": 50,
+            "journal_id": self.bank.id,
+        }
+        Payment = self.env["account.payment"]
+        with self.assertRaises(UserError):
+            Payment.create(values).action_post()
+        values["partner_id"] = self.partner_a.id
+        # money paid to a customer, or received from a vendor, is no advance
+        for wrong in ({"payment_type": "outbound"}, {"partner_type": "supplier"}):
+            with self.assertRaises(UserError):
+                Payment.create(dict(values, **wrong)).action_post()
+
     # ------------------------------------------------------------ registering
 
     def test_customer_advance_waits_on_its_own_account(self):
@@ -267,5 +316,6 @@ class TestAccountPaymentAdvance(AccountTestInvoicingCommon):
         )
         currency.active = True
         invoice = self.invoice("out_invoice", self.partner_a, 500, currency=currency)
+        self.assertFalse(invoice.has_open_advances)  # no Apply Advance button
         with self.assertRaises(UserError):
             invoice._apply_advance(payment, 100)
