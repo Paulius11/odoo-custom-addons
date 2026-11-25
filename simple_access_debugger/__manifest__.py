@@ -1,0 +1,20 @@
+{
+    "name": "Simple Access Debugger",
+    "summary": "Find out why a user can or cannot open a record, read-only",
+    "version": "17.0.1.0.0",
+    "category": "Administration",
+    "website": "https://github.com/Paulius11/odoo-custom-addons",
+    "author": "Paulius Gaizauskas",
+    "maintainers": ["Paulius11"],
+    "support": "paulius.gaizauskas@gmail.com",
+    "license": "LGPL-3",
+    "depends": ["base_setup"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/simple_access_debugger_views.xml",
+        "views/res_config_settings_views.xml",
+    ],
+    "images": ["static/description/banner.png"],
+    "installable": True,
+    "application": False,
+}

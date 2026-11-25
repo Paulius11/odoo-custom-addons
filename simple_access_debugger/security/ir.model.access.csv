@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_simple_access_debugger,simple.access.debugger system,model_simple_access_debugger,base.group_system,1,1,1,1
+access_simple_access_debugger_acl,simple.access.debugger.acl system,model_simple_access_debugger_acl,base.group_system,1,1,1,1
+access_simple_access_debugger_rule,simple.access.debugger.rule system,model_simple_access_debugger_rule,base.group_system,1,1,1,1
+access_simple_access_debugger_model,simple.access.debugger.model system,model_simple_access_debugger_model,base.group_system,1,1,1,1

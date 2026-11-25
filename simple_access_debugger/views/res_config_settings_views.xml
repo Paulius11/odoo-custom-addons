@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.simple_access_debugger</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='user_default_rights']" position="inside">
+                <setting
+                    id="access_debugger_log_errors_setting"
+                    help="Write the user, their groups, the failing rules and the calling code into the server log whenever someone is refused access"
+                    groups="base.group_system"
+                >
+                    <field name="access_debugger_log_errors" />
+                    <div class="mt8">
+                        <button
+                            type="action"
+                            name="%(simple_access_debugger_action)d"
+                            string="Access Debugger"
+                            icon="oi-arrow-right"
+                            class="btn-link"
+                        />
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

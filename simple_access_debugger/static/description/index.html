@@ -1,0 +1,72 @@
+<!--
+  Odoo Apps Store page. The store drops <head> and <style>, so every style is an inline
+  style="" attribute; no classes, scripts, web fonts or emoji.
+-->
+<section style="max-width:760px; margin:0 auto; font-family:Inter, 'Segoe UI', Roboto, Arial, sans-serif; color:#1f2937; line-height:1.6;">
+
+  <img src="banner.png" alt="Simple Access Debugger" style="width:100%; display:block; border-radius:12px;">
+
+  <p style="text-align:center; font-size:18px; color:#4b5563; max-width:600px; margin:28px auto 12px;">
+    &ldquo;You are not allowed to access this document&rdquo; &mdash; but why? Pick the user, the model and the record, and see the access right or record rule that blocks them.
+  </p>
+
+  <p style="text-align:center; margin:0 0 32px;">
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#eceef0; color:#455a64; font-size:13px; font-weight:600;">Odoo 17.0</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#eceef0; color:#455a64; font-size:13px; font-weight:600;">Community &amp; Enterprise</span>
+    <span style="display:inline-block; padding:3px 12px; margin:3px; border-radius:999px; background-color:#eceef0; color:#455a64; font-size:13px; font-weight:600;">Free &middot; LGPL-3</span>
+  </p>
+
+  <!-- Main functionality first: the screenshot sells the module. -->
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">See it in action</h2>
+  <img src="screenshot_1.png" alt="A portal user blocked from a contact by a named record rule" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">A portal user cannot read another company's contact: the red rule is the one that blocks them.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 20px;">Key features</h2>
+  <div style="display:flex; flex-wrap:wrap; margin:0 -8px 32px;">
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #455a64; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">A clear verdict</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Allowed, blocked by access rights with the groups that would allow it, or blocked by the named record rules.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #455a64; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Access rights and record rules</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Every access right and rule of the model, which ones apply to the user, and whether the chosen record passes.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #455a64; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Try a domain</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Type a domain and see how many records it matches for that user; Try on a rule copies its domain there.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #455a64; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Model access at a glance</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Every model with the user's read, write, create and delete rights; the ones they cannot read are red.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #455a64; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Read-only and safe</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Checks as the user with their own groups and companies; nothing about the user or the rules is changed.</p>
+    </div>
+    <div style="flex:1 1 300px; margin:8px; padding:18px 20px; border:1px solid #e5e7eb; border-top:4px solid #455a64; border-radius:10px; background-color:#ffffff;">
+      <h3 style="font-size:16px; font-weight:700; color:#111827; margin:0 0 6px;">Optional error log</h3>
+      <p style="font-size:14px; color:#4b5563; margin:0;">Log Access Errors writes the user, their groups, the failing rules and the calling code to the server log.</p>
+    </div>
+  </div>
+
+  <img src="screenshot_2.png" alt="An internal user blocked from writing countries by access rights" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 24px;">Blocked by access rights: none of the user's groups may write, and the verdict names the group that may.</p>
+  <img src="screenshot_3.png" alt="Every model with the user's read, write, create and delete rights" style="width:100%; display:block; border:1px solid #e5e7eb; border-radius:10px;">
+  <p style="text-align:center; font-size:14px; color:#6b7280; margin:10px 0 40px;">Models Not Readable: every model with the user's rights, unreadable ones in red.</p>
+
+  <h2 style="text-align:center; font-size:22px; font-weight:700; color:#111827; margin:0 0 16px;">Get started</h2>
+  <div style="padding:20px 24px; border-left:4px solid #455a64; border-radius:8px; background-color:#eceef0; margin:0 0 32px;">
+    <ol style="margin:0; padding-left:20px; font-size:15px;">
+      <li style="margin:0 0 6px;">Install <b>Simple Access Debugger</b> from the Apps menu.</li>
+      <li style="margin:0 0 6px;">Go to <b>Settings &rsaquo; Users &amp; Companies &rsaquo; Access Debugger</b>.</li>
+      <li style="margin:0;">Pick a user, an operation, a model and optionally a record ID, then click <b>Check</b>.</li>
+    </ol>
+  </div>
+
+  <p style="text-align:center; font-size:13px; color:#9ca3af; border-top:1px solid #e5e7eb; padding-top:16px; margin:0;">
+    Free and open source (LGPL-3) by
+    <a href="https://github.com/Paulius11/odoo-custom-addons" style="color:#455a64; text-decoration:none;">Paulius Gaizauskas</a>
+    &middot; Questions or bugs:
+    <a href="https://github.com/Paulius11/odoo-custom-addons/issues" style="color:#455a64; text-decoration:none;">GitHub issues</a>
+  </p>
+</section>

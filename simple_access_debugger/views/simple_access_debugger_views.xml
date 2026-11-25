@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="simple_access_debugger_view_form" model="ir.ui.view">
+        <field name="name">simple.access.debugger.form</field>
+        <field name="model">simple.access.debugger</field>
+        <field name="arch" type="xml">
+            <form string="Access Debugger">
+                <header>
+                    <button
+                        name="action_check"
+                        string="Check"
+                        type="object"
+                        class="btn-primary"
+                    />
+                </header>
+                <sheet>
+                    <field name="model_line_count" invisible="1" />
+                    <field name="verdict_state" invisible="1" />
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_models"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-table"
+                            invisible="not model_line_count"
+                        >
+                            <field
+                                name="unreadable_model_count"
+                                widget="statinfo"
+                                string="Models Not Readable"
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>Access Debugger</h1>
+                        <p class="text-muted">
+                            Checks with the user's own groups and all of their
+                            companies switched on. Nothing is changed.
+                        </p>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id" widget="many2one_avatar" />
+                            <field
+                                name="operation"
+                                widget="radio"
+                                options="{'horizontal': true}"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="model_id"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field name="res_id" invisible="not model_id" />
+                            <field name="record_name" invisible="not res_id" />
+                        </group>
+                    </group>
+                    <div
+                        class="alert alert-success"
+                        role="status"
+                        invisible="verdict_state != 'allowed'"
+                    >
+                        <field name="verdict" class="fw-bold" />
+                    </div>
+                    <div
+                        class="alert alert-danger"
+                        role="alert"
+                        invisible="verdict_state != 'blocked'"
+                    >
+                        <field name="verdict" class="fw-bold" />
+                    </div>
+                    <notebook invisible="not model_id">
+                        <page string="Access Rights" name="access_rights">
+                            <field name="acl_line_ids" readonly="1">
+                                <tree
+                                    decoration-success="grants"
+                                    decoration-muted="not user_in_group"
+                                >
+                                    <field name="access_id" />
+                                    <field name="group_id" />
+                                    <field name="perm_read" />
+                                    <field name="perm_write" />
+                                    <field name="perm_create" />
+                                    <field name="perm_unlink" />
+                                    <field name="user_in_group" />
+                                    <field name="grants" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Record Rules" name="record_rules">
+                            <field name="rule_line_ids" readonly="1">
+                                <tree
+                                    create="0"
+                                    delete="0"
+                                    decoration-danger="applies and record_match == 'no'"
+                                    decoration-muted="not applies"
+                                >
+                                    <field name="rule_id" readonly="1" />
+                                    <field name="is_global" />
+                                    <field name="groups" widget="many2many_tags" />
+                                    <field name="domain_force" class="font-monospace" />
+                                    <field name="applies" readonly="1" />
+                                    <field name="allowed_count" readonly="1" />
+                                    <field
+                                        name="record_match"
+                                        readonly="1"
+                                        column_invisible="not parent.res_id"
+                                    />
+                                    <field name="error" readonly="1" />
+                                    <button
+                                        name="action_try"
+                                        type="object"
+                                        string="Try"
+                                        icon="fa-flask"
+                                        title="Copy this domain to Try a Domain"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Try a Domain" name="try_domain">
+                            <group>
+                                <field
+                                    name="test_domain"
+                                    class="font-monospace"
+                                    placeholder="[('user_id', '=', user.id)]"
+                                />
+                                <field name="test_domain_count" />
+                                <field name="test_domain_match" invisible="not res_id" />
+                            </group>
+                        </page>
+                        <page string="Counts" name="counts">
+                            <group>
+                                <field name="allowed_count" />
+                                <field name="total_count" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="simple_access_debugger_model_view_tree" model="ir.ui.view">
+        <field name="name">simple.access.debugger.model.tree</field>
+        <field name="model">simple.access.debugger.model</field>
+        <field name="arch" type="xml">
+            <tree
+                create="0"
+                edit="0"
+                delete="0"
+                decoration-danger="not perm_read"
+            >
+                <field name="model_id" />
+                <field name="model" />
+                <field name="perm_read" />
+                <field name="perm_write" />
+                <field name="perm_create" />
+                <field name="perm_unlink" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="simple_access_debugger_model_view_search" model="ir.ui.view">
+        <field name="name">simple.access.debugger.model.search</field>
+        <field name="model">simple.access.debugger.model</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="model_id" />
+                <field name="model" />
+                <filter
+                    string="Cannot Read"
+                    name="no_read"
+                    domain="[('perm_read', '=', False)]"
+                />
+                <filter
+                    string="Cannot Write"
+                    name="no_write"
+                    domain="[('perm_write', '=', False)]"
+                />
+                <filter
+                    string="Cannot Create"
+                    name="no_create"
+                    domain="[('perm_create', '=', False)]"
+                />
+                <filter
+                    string="Cannot Delete"
+                    name="no_unlink"
+                    domain="[('perm_unlink', '=', False)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="simple_access_debugger_action" model="ir.actions.act_window">
+        <field name="name">Access Debugger</field>
+        <field name="res_model">simple.access.debugger</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem
+        id="simple_access_debugger_menu"
+        name="Access Debugger"
+        parent="base.menu_users"
+        action="simple_access_debugger_action"
+        groups="base.group_system"
+        sequence="50"
+    />
+</odoo>
