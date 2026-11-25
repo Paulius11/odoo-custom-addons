@@ -34,6 +34,7 @@ class AccountMove(models.Model):
         for move in self:
             move.has_open_advances = (
                 move.move_type in ("out_invoice", "in_invoice")
+                and move.currency_id == move.company_currency_id
                 and move.state == "posted"
                 and move.payment_state in ("not_paid", "partial")
                 and bool(Payment.search_count(move._open_advances_domain(), limit=1))
